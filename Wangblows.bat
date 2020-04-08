@@ -9,7 +9,7 @@ If %ERRORLEVEL% == 1 (
 	pause>nul
 	exit
 )
-:: Get list of users on the computer
+:: Get list of users on the computer test
 echo Users and Administrators output to %path%output\users.txt
 start C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe "%path%resources\usrList.ps1"
 :main
