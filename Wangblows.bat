@@ -26,7 +26,7 @@ echo 3. Changing Password Policies
 echo 4. Find Files
 echo 5. Disable Remote Desktop
 echo 6. Enable Auto-Update
-echo 7. Disable Weak services
+echo 7. Disable Weak Services
 echo 8. System Integrity Scan
 echo 9. Powershell rootkit detection
 echo 10. Full Auditing for Failure and Success
@@ -40,6 +40,7 @@ echo 17. Enable User Account Control (Needs work)
 echo 18. Remove Capability (Needs work)
 echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
+echo 21. NoVirusThanks Sys Hardener
 
 CHOICE /C 123456789 /M "Enter your choice: "
 
@@ -478,7 +479,7 @@ dism /online /quiet /disable-feature /featurename:TelnetServer
 
 
 :services
-set servicesD=RemoteAccess Telephony TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
+set servicesD=RemoteAccess BranchCache Browser Telephony TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
 set servicesM=dmserver SrvcSurg
 set servicesG=Dhcp Dnscache NtLmSsp
 echo Disabling bad services...
