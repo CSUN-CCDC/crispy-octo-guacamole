@@ -20,6 +20,7 @@ echo 6. Enable Auto-Update
 echo 7. Disable Weak services
 echo 8. System Integrity Scan
 echo 9. Powershell rootkit detection
+echo 10. Full Auditing for Failure and Success
 
 CHOICE /C 123456789 /M "Enter your choice:"
 if ERRORLEVEL 10 goto Ten
@@ -475,5 +476,17 @@ auditpol /set /subcatergory: "Kerberos Service Ticket Operations" /success:enabl
 auditpol /set /subcatergory: "Other Account Logon Events" /success:enable /failure:enable
 auditpol /set /subcatergory: "Kerberos Authentication Service" /success:enable /failure:enable
 auditpol /set /subcatergory: "Credential Validation" /success:enable /failure:enable
+auditpol /set /category:"Account Logon" /success:enable /failure:enable
+
+Account Logon
+Account Management
+Detailed Tracking
+DS Access
+Logon/Logoff
+Object Access
+Policy Change
+Privilege Use
+System
+
 goto MENU
 PAUSE
