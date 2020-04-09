@@ -33,9 +33,9 @@ echo 10. Full Auditing for Failure and Success
 echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
 echo 13. 
-echo 14. Automatic Password Change
-echo 15. Automatic Group Management
-echo 16. Harden PowerShell (Script Execution)
+echo 14. Automatic Password Change (Needs work)
+echo 15. Automatic Group Management (Needs work)
+echo 16. Harden PowerShell (Script Execution) (Needs work)
 
 CHOICE /C 123456789 /M "Enter your choice: "
 if ERRORLEVEL 13 goto Thirteen
