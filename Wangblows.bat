@@ -8,6 +8,7 @@ echo No admin, please run with Administrative rights...
 pause
 exit
 )
+::test
 :MENU
 echo Choose An option:
 echo 1. A bunch of automated things I guess
@@ -21,6 +22,7 @@ echo 8. System Integrity Scan
 echo 9. Powershell rootkit detection
 
 CHOICE /C 123456789 /M "Enter your choice:"
+if ERRORLEVEL 19 goto Nineteen
 if ERRORLEVEL 9 goto Nine
 if ERRORLEVEL 8 goto Eight
 if ERRORLEVEL 7 goto Seven
