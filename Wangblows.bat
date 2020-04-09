@@ -445,404 +445,273 @@ dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility
 dism /online /quiet /disable-feature /featurename:TFTP
 dism /online /quiet /disable-feature /featurename:TelnetClient
 dism /online /quiet /disable-feature /featurename:TelnetServer
+ dism /online /quiet /disable-feature /featurename:Printing-PrintToPDFServices-Features 
 
-dism /online /quiet /disable-feature /featurename:Printing-PrintToPDFServices-Features
+dism /online /quiet /disable-feature /featurename:Printing-XPSServices-Features 
 
+dism /online /quiet /disable-feature /featurename:SearchEngine-Client-Package 
 
-dism /online /quiet /disable-feature /featurename:Printing-XPSServices-Features
+dism /online /quiet /disable-feature /featurename:MSRDC-Infrastructure 
 
+dism /online /quiet /disable-feature /featurename:TelnetClient 
 
-dism /online /quiet /disable-feature /featurename:SearchEngine-Client-Package
+dism /online /quiet /disable-feature /featurename:TFTP 
 
+dism /online /quiet /disable-feature /featurename:TIFFIFilter 
 
-dism /online /quiet /disable-feature /featurename:MSRDC-Infrastructure
+dism /online /quiet /disable-feature /featurename:LegacyComponents 
 
+dism /online /quiet /disable-feature /featurename:DirectPlay 
 
-dism /online /quiet /disable-feature /featurename:TelnetClient
+dism /online /quiet /disable-feature /featurename:SimpleTCP 
 
 
-dism /online /quiet /disable-feature /featurename:TFTP
 
+dism /online /quiet /disable-feature /featurename:NetFx4Extended-ASPNET45 
 
-dism /online /quiet /disable-feature /featurename:TIFFIFilter
+dism /online /quiet /disable-feature /featurename:WCF-Services45 
 
+dism /online /quiet /disable-feature /featurename:WCF-HTTP-Activation45 
 
-dism /online /quiet /disable-feature /featurename:LegacyComponents
+dism /online /quiet /disable-feature /featurename:WCF-TCP-Activation45 
 
+dism /online /quiet /disable-feature /featurename:WCF-Pipe-Activation45 
 
-dism /online /quiet /disable-feature /featurename:DirectPlay
+dism /online /quiet /disable-feature /featurename:WCF-MSMQ-Activation45 
 
+dism /online /quiet /disable-feature /featurename:WCF-TCP-PortSharing45 
 
-dism /online /quiet /disable-feature /featurename:SimpleTCP
+dism /online /quiet /disable-feature /featurename:IIS-WebServerRole 
 
+dism /online /quiet /disable-feature /featurename:IIS-WebServer 
 
+dism /online /quiet /disable-feature /featurename:IIS-CommonHttpFeatures 
 
+dism /online /quiet /disable-feature /featurename:IIS-HttpErrors 
 
-dism /online /quiet /disable-feature /featurename:NetFx4Extended-ASPNET45
+dism /online /quiet /disable-feature /featurename:IIS-HttpRedirect 
 
+dism /online /quiet /disable-feature /featurename:IIS-ApplicationDevelopment 
 
-dism /online /quiet /disable-feature /featurename:WCF-Services45
+dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility 
 
+dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility45 
 
-dism /online /quiet /disable-feature /featurename:WCF-HTTP-Activation45
+dism /online /quiet /disable-feature /featurename:IIS-HealthAndDiagnostics 
 
+dism /online /quiet /disable-feature /featurename:IIS-HttpLogging 
 
-dism /online /quiet /disable-feature /featurename:WCF-TCP-Activation45
+dism /online /quiet /disable-feature /featurename:IIS-LoggingLibraries 
 
+dism /online /quiet /disable-feature /featurename:IIS-RequestMonitor 
 
-dism /online /quiet /disable-feature /featurename:WCF-Pipe-Activation45
+dism /online /quiet /disable-feature /featurename:IIS-HttpTracing 
 
+dism /online /quiet /disable-feature /featurename:IIS-Security 
 
-dism /online /quiet /disable-feature /featurename:WCF-MSMQ-Activation45
+dism /online /quiet /disable-feature /featurename:IIS-URLAuthorization 
 
+dism /online /quiet /disable-feature /featurename:IIS-RequestFiltering 
 
-dism /online /quiet /disable-feature /featurename:WCF-TCP-PortSharing45
+dism /online /quiet /disable-feature /featurename:IIS-IPSecurity 
 
+dism /online /quiet /disable-feature /featurename:IIS-Performance 
 
-dism /online /quiet /disable-feature /featurename:IIS-WebServerRole
+dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionDynamic 
 
+dism /online /quiet /disable-feature /featurename:IIS-WebServerManagementTools 
 
-dism /online /quiet /disable-feature /featurename:IIS-WebServer
+dism /online /quiet /disable-feature /featurename:IIS-ManagementScriptingTools 
 
+dism /online /quiet /disable-feature /featurename:IIS-IIS6ManagementCompatibility 
 
-dism /online /quiet /disable-feature /featurename:IIS-CommonHttpFeatures
+dism /online /quiet /disable-feature /featurename:IIS-Metabase 
 
+dism /online /quiet /disable-feature /featurename:WAS-WindowsActivationService 
 
-dism /online /quiet /disable-feature /featurename:IIS-HttpErrors
+dism /online /quiet /disable-feature /featurename:WAS-ProcessModel 
 
+dism /online /quiet /disable-feature /featurename:WAS-NetFxEnvironment 
 
-dism /online /quiet /disable-feature /featurename:IIS-HttpRedirect
+dism /online /quiet /disable-feature /featurename:WAS-ConfigurationAPI 
 
+dism /online /quiet /disable-feature /featurename:IIS-HostableWebCore 
 
-dism /online /quiet /disable-feature /featurename:IIS-ApplicationDevelopment
+dism /online /quiet /disable-feature /featurename:WCF-HTTP-Activation 
 
+dism /online /quiet /disable-feature /featurename:WCF-NonHTTP-Activation 
 
-dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility
+dism /online /quiet /disable-feature /featurename:IIS-StaticContent 
 
+dism /online /quiet /disable-feature /featurename:IIS-DefaultDocument 
 
-dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility45
+dism /online /quiet /disable-feature /featurename:IIS-DirectoryBrowsing 
 
+dism /online /quiet /disable-feature /featurename:IIS-WebDAV 
 
-dism /online /quiet /disable-feature /featurename:IIS-HealthAndDiagnostics
+dism /online /quiet /disable-feature /featurename:IIS-WebSockets 
 
+dism /online /quiet /disable-feature /featurename:IIS-ApplicationInit 
 
-dism /online /quiet /disable-feature /featurename:IIS-HttpLogging
+dism /online /quiet /disable-feature /featurename:IIS-ASPNET 
 
+dism /online /quiet /disable-feature /featurename:IIS-ASPNET45 
 
-dism /online /quiet /disable-feature /featurename:IIS-LoggingLibraries
+dism /online /quiet /disable-feature /featurename:IIS-ASP 
 
+dism /online /quiet /disable-feature /featurename:IIS-CGI 
 
-dism /online /quiet /disable-feature /featurename:IIS-RequestMonitor
+dism /online /quiet /disable-feature /featurename:IIS-ISAPIExtensions 
 
+dism /online /quiet /disable-feature /featurename:IIS-ISAPIFilter 
 
-dism /online /quiet /disable-feature /featurename:IIS-HttpTracing
+dism /online /quiet /disable-feature /featurename:IIS-ServerSideIncludes 
 
+dism /online /quiet /disable-feature /featurename:IIS-CustomLogging 
 
-dism /online /quiet /disable-feature /featurename:IIS-Security
+dism /online /quiet /disable-feature /featurename:IIS-BasicAuthentication 
 
+dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionStatic 
 
-dism /online /quiet /disable-feature /featurename:IIS-URLAuthorization
+dism /online /quiet /disable-feature /featurename:IIS-ManagementConsole 
 
+dism /online /quiet /disable-feature /featurename:IIS-ManagementService 
 
-dism /online /quiet /disable-feature /featurename:IIS-RequestFiltering
+dism /online /quiet /disable-feature /featurename:IIS-WMICompatibility 
 
+dism /online /quiet /disable-feature /featurename:IIS-LegacyScripts 
 
-dism /online /quiet /disable-feature /featurename:IIS-IPSecurity
+dism /online /quiet /disable-feature /featurename:IIS-LegacySnapIn 
 
+dism /online /quiet /disable-feature /featurename:IIS-FTPServer 
 
-dism /online /quiet /disable-feature /featurename:IIS-Performance
+dism /online /quiet /disable-feature /featurename:IIS-FTPSvc 
 
+dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility 
 
-dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionDynamic
+dism /online /quiet /disable-feature /featurename:MSMQ-Container 
 
+dism /online /quiet /disable-feature /featurename:MSMQ-DCOMProxy 
 
-dism /online /quiet /disable-feature /featurename:IIS-WebServerManagementTools
+dism /online /quiet /disable-feature /featurename:MSMQ-Server 
 
+dism /online /quiet /disable-feature /featurename:MSMQ-ADIntegration 
 
-dism /online /quiet /disable-feature /featurename:IIS-ManagementScriptingTools
+dism /online /quiet /disable-feature /featurename:MSMQ-HTTP 
 
+dism /online /quiet /disable-feature /featurename:MSMQ-Multicast 
 
-dism /online /quiet /disable-feature /featurename:IIS-IIS6ManagementCompatibility
+dism /online /quiet /disable-feature /featurename:MSMQ-Triggers 
 
+dism /online /quiet /disable-feature /featurename:IIS-CertProvider 
 
-dism /online /quiet /disable-feature /featurename:IIS-Metabase
+dism /online /quiet /disable-feature /featurename:IIS-WindowsAuthentication 
 
+dism /online /quiet /disable-feature /featurename:IIS-DigestAuthentication 
 
-dism /online /quiet /disable-feature /featurename:WAS-WindowsActivationService
+dism /online /quiet /disable-feature /featurename:IIS-ClientCertificateMappingAuthentication 
 
+dism /online /quiet /disable-feature /featurename:IIS-IISCertificateMappingAuthentication 
 
-dism /online /quiet /disable-feature /featurename:WAS-ProcessModel
-
-
-dism /online /quiet /disable-feature /featurename:WAS-NetFxEnvironment
-
-
-dism /online /quiet /disable-feature /featurename:WAS-ConfigurationAPI
-
-
-dism /online /quiet /disable-feature /featurename:IIS-HostableWebCore
-
-
-dism /online /quiet /disable-feature /featurename:WCF-HTTP-Activation
-
-
-dism /online /quiet /disable-feature /featurename:WCF-NonHTTP-Activation
-
-
-dism /online /quiet /disable-feature /featurename:IIS-StaticContent
-
-
-dism /online /quiet /disable-feature /featurename:IIS-DefaultDocument
-
-
-dism /online /quiet /disable-feature /featurename:IIS-DirectoryBrowsing
-
-
-dism /online /quiet /disable-feature /featurename:IIS-WebDAV
-
-
-dism /online /quiet /disable-feature /featurename:IIS-WebSockets
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ApplicationInit
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ASPNET
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ASPNET45
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ASP
-
-
-dism /online /quiet /disable-feature /featurename:IIS-CGI
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ISAPIExtensions
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ISAPIFilter
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ServerSideIncludes
-
-
-dism /online /quiet /disable-feature /featurename:IIS-CustomLogging
-
-
-dism /online /quiet /disable-feature /featurename:IIS-BasicAuthentication
-
-
-dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionStatic
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ManagementConsole
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ManagementService
-
-
-dism /online /quiet /disable-feature /featurename:IIS-WMICompatibility
-
-
-dism /online /quiet /disable-feature /featurename:IIS-LegacyScripts
-
-
-dism /online /quiet /disable-feature /featurename:IIS-LegacySnapIn
-
-
-dism /online /quiet /disable-feature /featurename:IIS-FTPServer
-
-
-dism /online /quiet /disable-feature /featurename:IIS-FTPSvc
-
-
-dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility
-
-
-dism /online /quiet /disable-feature /featurename:MSMQ-Container
-
-
-dism /online /quiet /disable-feature /featurename:MSMQ-DCOMProxy
-
-
-dism /online /quiet /disable-feature /featurename:MSMQ-Server
-
-
-dism /online /quiet /disable-feature /featurename:MSMQ-ADIntegration
-
-
-dism /online /quiet /disable-feature /featurename:MSMQ-HTTP
-
-
-dism /online /quiet /disable-feature /featurename:MSMQ-Multicast
-
-
-dism /online /quiet /disable-feature /featurename:MSMQ-Triggers
-
-
-dism /online /quiet /disable-feature /featurename:IIS-CertProvider
-
-
-dism /online /quiet /disable-feature /featurename:IIS-WindowsAuthentication
-
-
-dism /online /quiet /disable-feature /featurename:IIS-DigestAuthentication
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ClientCertificateMappingAuthentication
-
-
-dism /online /quiet /disable-feature /featurename:IIS-IISCertificateMappingAuthentication
-
-
-dism /online /quiet /disable-feature /featurename:IIS-ODBCLogging
-
+dism /online /quiet /disable-feature /featurename:IIS-ODBCLogging 
 
 dism /online /quiet /disable-feature /featurename:NetFx3
- with Payload Removed
 
-dism /online /quiet /disable-feature /featurename:SMB1Protocol-Deprecation
+dism /online /quiet /disable-feature /featurename:SMB1Protocol-Deprecation 
 
+dism /online /quiet /disable-feature /featurename:MediaPlayback 
 
-dism /online /quiet /disable-feature /featurename:MediaPlayback
+dism /online /quiet /disable-feature /featurename:WindowsMediaPlayer 
 
+dism /online /quiet /disable-feature /featurename:DataCenterBridging 
 
-dism /online /quiet /disable-feature /featurename:WindowsMediaPlayer
+dism /online /quiet /disable-feature /featurename:ServicesForNFS-ClientOnly 
 
+dism /online /quiet /disable-feature /featurename:ClientForNFS-Infrastructure 
 
-dism /online /quiet /disable-feature /featurename:DataCenterBridging
+dism /online /quiet /disable-feature /featurename:NFS-Administration 
 
+dism /online /quiet /disable-feature /featurename:SmbDirect 
 
-dism /online /quiet /disable-feature /featurename:ServicesForNFS-ClientOnly
+dism /online /quiet /disable-feature /featurename:HostGuardian 
 
+dism /online /quiet /disable-feature /featurename:MultiPoint-Connector 
 
-dism /online /quiet /disable-feature /featurename:ClientForNFS-Infrastructure
+dism /online /quiet /disable-feature /featurename:MultiPoint-Connector-Services 
 
+dism /online /quiet /disable-feature /featurename:MultiPoint-Tools 
 
-dism /online /quiet /disable-feature /featurename:NFS-Administration
 
 
-dism /online /quiet /disable-feature /featurename:SmbDirect
+dism /online /quiet /disable-feature /featurename:Printing-Foundation-Features 
 
+dism /online /quiet /disable-feature /featurename:FaxServicesClientPackage 
 
-dism /online /quiet /disable-feature /featurename:HostGuardian
+dism /online /quiet /disable-feature /featurename:Printing-Foundation-InternetPrinting-Client 
 
+dism /online /quiet /disable-feature /featurename:Printing-Foundation-LPDPrintService 
 
-dism /online /quiet /disable-feature /featurename:MultiPoint-Connector
+dism /online /quiet /disable-feature /featurename:Printing-Foundation-LPRPortMonitor 
 
+dism /online /quiet /disable-feature /featurename:Windows-Identity-Foundation 
 
-dism /online /quiet /disable-feature /featurename:MultiPoint-Connector-Services
+dism /online /quiet /disable-feature /featurename:AppServerClient 
 
 
-dism /online /quiet /disable-feature /featurename:MultiPoint-Tools
 
+dism /online /quiet /disable-feature /featurename:WorkFolders-Client 
 
+dism /online /quiet /disable-feature /featurename:Client-DeviceLockdown 
 
+dism /online /quiet /disable-feature /featurename:Client-EmbeddedShellLauncher 
 
-dism /online /quiet /disable-feature /featurename:Printing-Foundation-Features
+dism /online /quiet /disable-feature /featurename:Client-EmbeddedBootExp 
 
+dism /online /quiet /disable-feature /featurename:Client-EmbeddedLogon 
 
-dism /online /quiet /disable-feature /featurename:FaxServicesClientPackage
+dism /online /quiet /disable-feature /featurename:Client-KeyboardFilter 
 
+dism /online /quiet /disable-feature /featurename:Client-UnifiedWriteFilter 
 
-dism /online /quiet /disable-feature /featurename:Printing-Foundation-InternetPrinting-Client
+dism /online /quiet /disable-feature /featurename:SMB1Protocol 
 
+dism /online /quiet /disable-feature /featurename:SMB1Protocol-Client 
 
-dism /online /quiet /disable-feature /featurename:Printing-Foundation-LPDPrintService
+dism /online /quiet /disable-feature /featurename:SMB1Protocol-Server 
 
+ dism /online /quiet /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 
-dism /online /quiet /disable-feature /featurename:Printing-Foundation-LPRPortMonitor
+dism /online /quiet /disable-feature /featurename:HypervisorPlatform 
 
+dism /online /quiet /disable-feature /featurename:VirtualMachinePlatform 
 
-dism /online /quiet /disable-feature /featurename:Windows-Identity-Foundation
+dism /online /quiet /disable-feature /featurename:Client-ProjFS 
 
 
-dism /online /quiet /disable-feature /featurename:AppServerClient
 
+dism /online /quiet /disable-feature /featurename:Microsoft-Windows-Client-EmbeddedExp-Package 
 
 
 
-dism /online /quiet /disable-feature /featurename:WorkFolders-Client
+dism /online /quiet /disable-feature /featurename:Containers-DisposableClientVM 
 
+dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-All 
 
-dism /online /quiet /disable-feature /featurename:Client-DeviceLockdown
+dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V 
 
+dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Tools-All 
 
-dism /online /quiet /disable-feature /featurename:Client-EmbeddedShellLauncher
+dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Management-PowerShell 
 
+dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Hypervisor 
 
-dism /online /quiet /disable-feature /featurename:Client-EmbeddedBootExp
+dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Services 
 
+dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Management-Clients 
 
-dism /online /quiet /disable-feature /featurename:Client-EmbeddedLogon
+dism /online /quiet /disable-feature /featurename:DirectoryServices-ADAM-Client 
 
-
-dism /online /quiet /disable-feature /featurename:Client-KeyboardFilter
-
-
-dism /online /quiet /disable-feature /featurename:Client-UnifiedWriteFilter
-
-
-dism /online /quiet /disable-feature /featurename:SMB1Protocol
-
-
-dism /online /quiet /disable-feature /featurename:SMB1Protocol-Client
-
-
-dism /online /quiet /disable-feature /featurename:SMB1Protocol-Server
-
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux
-
-
-dism /online /quiet /disable-feature /featurename:HypervisorPlatform
-
-
-dism /online /quiet /disable-feature /featurename:VirtualMachinePlatform
-
-
-dism /online /quiet /disable-feature /featurename:Client-ProjFS
-
-
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Windows-Client-EmbeddedExp-Package
-
-
-
-
-dism /online /quiet /disable-feature /featurename:Containers-DisposableClientVM
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-All
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Tools-All
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Management-PowerShell
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Hypervisor
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Services
-
-
-dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Management-Clients
-
-
-dism /online /quiet /disable-feature /featurename:DirectoryServices-ADAM-Client
-
-
-dism /online /quiet /disable-feature /featurename:Windows-Defender-ApplicationGuard
-
+dism /online /quiet /disable-feature /featurename:Windows-Defender-ApplicationGuard 
 
 dism /online /quiet /disable-feature /featurename:Containers
 
