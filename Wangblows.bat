@@ -21,8 +21,12 @@ echo 7. Disable Weak services
 echo 8. System Integrity Scan
 echo 9. Powershell rootkit detection
 echo 10. Full Auditing for Failure and Success
+echo 11. Full Audit for Failure Only
+echo 12. Full Audit for Success Only
 
 CHOICE /C 123456789 /M "Enter your choice:"
+if ERRORLEVEL 12 goto Twelve
+if ERRORLEVEL 11 goto Eleven
 if ERRORLEVEL 10 goto Ten
 if ERRORLEVEL 9 goto Nine
 if ERRORLEVEL 8 goto Eight
@@ -33,6 +37,7 @@ if ERRORLEVEL 4 goto Four
 if ERRORLEVEL 3 goto Three
 if ERRORLEVEL 2 goto Two
 if ERRORLEVEL 1 goto One
+
 :One
 REM Automation found from all over the interwebs, sources unknown, please open issue. sokme crap;
 REM Turns on UAC
@@ -413,6 +418,7 @@ dism /online /quiet /disable-feature /featurename:TFTP
 dism /online /quiet /disable-feature /featurename:TelnetClient
 dism /online /quiet /disable-feature /featurename:TelnetServer
 goto MENU
+
 :Eight
 REM START SYS INTEG SCAN!
 echo "STARTING SYSTEM INTERGRITY SCAN"
@@ -485,14 +491,30 @@ auditpol /set /category:"Object Access" /success:enable /failure:enable
 auditpol /set /category:"Policy Change" /success:enable /failure:enable
 auditpol /set /category:"Privilege Use" /success:enable /failure:enable
 auditpol /set /category:"System" /success:enable /failure:enable
-
-
-
-
-
-
-
-
-
 goto MENU
+
+:Eleven
+auditpol /set /category:"Account Logon" /success:disable /failure:enable
+auditpol /set /category:"Account Management" /success:disable /failure:enable
+auditpol /set /category:"Detailed Tracking" /success:disable /failure:enable
+auditpol /set /category:"DS Access" /success:disable /failure:enable
+auditpol /set /category:"Logon/Logoff" /success:disable /failure:enable
+auditpol /set /category:"Object Access" /success:disable /failure:enable
+auditpol /set /category:"Policy Change" /success:disable /failure:enable
+auditpol /set /category:"Privilege Use" /success:disable /failure:enable
+auditpol /set /category:"System" /success:disable /failure:enable
+goto MENU
+
+:Twelve
+auditpol /set /category:"Account Logon" /success:enable /failure:disable
+auditpol /set /category:"Account Management" /success:enable /failure:disable
+auditpol /set /category:"Detailed Tracking" /success:enable /failure:disable
+auditpol /set /category:"DS Access" /success:enable /failure:disable
+auditpol /set /category:"Logon/Logoff" /success:enable /failure:disable
+auditpol /set /category:"Object Access" /success:enable /failure:disable
+auditpol /set /category:"Policy Change" /success:enable /failure:disable
+auditpol /set /category:"Privilege Use" /success:enable /failure:disable
+auditpol /set /category:"System" /success:enable /failure:disable
+goto MENU
+
 PAUSE
