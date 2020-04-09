@@ -32,7 +32,7 @@ echo 9. Powershell rootkit detection
 echo 10. Full Auditing for Failure and Success
 echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
-echo 13. 
+echo 13. Secure NT Rights
 echo 14. Automatic Password Change (Needs work)
 echo 15. Automatic Group Management (Needs work)
 echo 16. Harden PowerShell (Script Execution) (Needs work)
@@ -567,5 +567,40 @@ auditpol /set /category:"System" /success:enable /failure:disable
 goto MENU
 
 :Thirteen
-
+echo Installing ntrights.exe to C:\Windows\System32
+copy %path%resources\ntrights.exe C:\Windows\System32
+if exist C:\Windows\System32\ntrights.exe (
+	echo Installation succeeded, managing user rights..
+	set remove=("Backup Operators" "Everyone" "Power Users" "Users" "NETWORK SERVICE" "LOCAL SERVICE" "Remote Desktop User" "ANONOYMOUS LOGON" "Guest" "Performance Log Users")
+	for %%a in (%remove%) do (
+			ntrights -U %%a -R SeNetworkLogonRight 
+			ntrights -U %%a -R SeIncreaseQuotaPrivilege
+			ntrights -U %%a -R SeInteractiveLogonRight
+			ntrights -U %%a -R SeRemoteInteractiveLogonRight
+			ntrights -U %%a -R SeSystemtimePrivilege
+			ntrights -U %%a +R SeDenyNetworkLogonRight
+			ntrights -U %%a +R SeDenyRemoteInteractiveLogonRight
+			ntrights -U %%a -R SeProfileSingleProcessPrivilege
+			ntrights -U %%a -R SeBatchLogonRight
+			ntrights -U %%a -R SeUndockPrivilege
+			ntrights -U %%a -R SeRestorePrivilege
+			ntrights -U %%a -R SeShutdownPrivilege
+		)
+		ntrights -U "Administrators" -R SeImpersonatePrivilege
+		ntrights -U "Administrator" -R SeImpersonatePrivilege
+		ntrights -U "SERVICE" -R SeImpersonatePrivilege
+		ntrights -U "LOCAL SERVICE" +R SeImpersonatePrivilege
+		ntrights -U "NETWORK SERVICE" +R SeImpersonatePrivilege
+		ntrights -U "Administrators" +R SeMachineAccountPrivilege
+		ntrights -U "Administrator" +R SeMachineAccountPrivilege
+		ntrights -U "Administrators" -R SeIncreaseQuotaPrivilege
+		ntrights -U "Administrator" -R SeIncreaseQuotaPrivilege
+		ntrights -U "Administrators" -R SeDebugPrivilege
+		ntrights -U "Administrator" -R SeDebugPrivilege
+		ntrights -U "Administrators" +R SeLockMemoryPrivilege
+		ntrights -U "Administrator" +R SeLockMemoryPrivilege
+		ntrights -U "Administrators" -R SeBatchLogonRight
+		ntrights -U "Administrator" -R SeBatchLogonRight
+		echo Managed User Rights
+)
 PAUSE
