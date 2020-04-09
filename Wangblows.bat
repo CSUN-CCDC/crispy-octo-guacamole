@@ -8,7 +8,7 @@ echo No admin, please run with Administrative rights...
 pause
 exit
 )
-::test
+::test michael is bi
 :MENU
 echo Choose An option:
 echo 1. A bunch of automated things I guess
