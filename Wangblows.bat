@@ -33,7 +33,7 @@ if ERRORLEVEL 3 goto Three
 if ERRORLEVEL 2 goto Two
 if ERRORLEVEL 1 goto One
 :One
-REM Automation found from all over the interwebs, sources unknown, please open issue. jesus is king
+REM Automation found from all over the interwebs, sources unknown, please open issue. Lord and savior
 REM Turns on UAC
 reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 REM Turns off RDP
