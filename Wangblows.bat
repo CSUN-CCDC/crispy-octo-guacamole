@@ -23,8 +23,13 @@ echo 9. Powershell rootkit detection
 echo 10. Full Auditing for Failure and Success
 echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
+echo 13. 
+echo 14. Automatic Password Change
+echo 15. Automatic Group Management
+echo 16. Harden PowerShell (Script Execution)
 
 CHOICE /C 123456789 /M "Enter your choice: "
+if ERRORLEVEL 13 goto Thirteen
 if ERRORLEVEL 12 goto Twelve
 if ERRORLEVEL 11 goto Eleven
 if ERRORLEVEL 10 goto Ten
@@ -220,8 +225,8 @@ REM Restict anonymous access to named pipes and shares
 reg ADD HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters /v NullSessionShares /t REG_MULTI_SZ /d "" /f
 REM Allow to use Machine ID for NTLM
 reg ADD HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v UseMachineId /t REG_DWORD /d 0 /f
-
 goto MENU
+
 :Two
 REM Listing possible penetrations
 cd C:\
@@ -358,11 +363,21 @@ echo "DISABLING REMOTE DESKTOP"
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
 goto MENU
+
 :Six
 REM Windows auomatic updates
 echo "ENABLING AUTO-UPDATES"
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /v AUOptions /t REG_DWORD /d 3 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /v AUOptions /t REG_DWORD /d 5 /f
+reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v AutoInstallMinorUpdates /t REG_DWORD /d 1 /f
+reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v NoAutoUpdate /t REG_DWORD /d 0 /f
+reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v AUOptions /t REG_DWORD /d 4 /f
+reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
+reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /v ElevateNonAdmins /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoWindowsUpdate /t REG_DWORD /d 0 /f
+reg add "HKLM\SYSTEM\Internet Communication Management\Internet Communication" /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
 goto MENU
+
 :Seven
 REM Removing good ol' insecure stuff
 echo "DISABLING WEAK SERVICES"
@@ -417,6 +432,31 @@ dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility
 dism /online /quiet /disable-feature /featurename:TFTP
 dism /online /quiet /disable-feature /featurename:TelnetClient
 dism /online /quiet /disable-feature /featurename:TelnetServer
+
+:services
+set servicesD=RemoteAccess Telephony TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
+set servicesM=dmserver SrvcSurg
+set servicesG=Dhcp Dnscache NtLmSsp
+echo Disabling bad services...
+for %%a in (%servicesD%) do (
+	echo Service: %%a
+	sc stop "%%a"
+	sc config "%%a" start= disabled
+)
+echo Disabled bad services
+echo Setting services to manual...
+for %%b in (%servicesM%) do (
+	echo Service: %%b
+	sc config "%%b" start= demand
+)
+echo Set services to manual
+echo Seting services to auto...
+for %%c in (%servicesG%) do (
+	echo Service: %%c
+	sc config "%%c" start= auto
+)
+echo Started auto services
+
 goto MENU
 
 :Eight
@@ -516,5 +556,7 @@ auditpol /set /category:"Policy Change" /success:enable /failure:disable
 auditpol /set /category:"Privilege Use" /success:enable /failure:disable
 auditpol /set /category:"System" /success:enable /failure:disable
 goto MENU
+
+:Thirteen
 
 PAUSE
