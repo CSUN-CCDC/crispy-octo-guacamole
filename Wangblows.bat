@@ -36,8 +36,11 @@ echo 13. Secure NT Rights
 echo 14. Automatic Password Change (Needs work)
 echo 15. Automatic Group Management (Needs work)
 echo 16. Harden PowerShell (Script Execution) (Needs work)
+echo 17. Enable User Account Control
 
 CHOICE /C 123456789 /M "Enter your choice: "
+
+if ERRORLEVEL 17 goto Seventeen
 if ERRORLEVEL 13 goto Thirteen
 if ERRORLEVEL 12 goto Twelve
 if ERRORLEVEL 11 goto Eleven
@@ -54,12 +57,9 @@ if ERRORLEVEL 1 goto One
 
 :One
 REM Automation found from all over the interwebs, sources unknown, please open issue. sokme crap;
-REM Turns on UAC
-reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 REM Turns off RDP
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
 
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v DisableLocalMachineRunOnce /t REG_DWORD /d 1 /f
 REM Failsafe
 if %errorlevel%==1 netsh advfirewall firewall set service type = remotedesktop mode = disable
 REM Windows auomatic updates
@@ -373,6 +373,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnec
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
 goto MENU
 
+
 :Six
 REM Windows auomatic updates
 echo "ENABLING AUTO-UPDATES"
@@ -568,7 +569,7 @@ goto MENU
 
 :Thirteen
 echo Installing ntrights.exe to C:\Windows\System32
-copy %path%resources\ntrights.exe C:\Windows\System32
+copy %path%\ntrights.exe C:\Windows\System32
 if exist C:\Windows\System32\ntrights.exe (
 	echo Installation succeeded, managing user rights..
 	set remove=("Backup Operators" "Everyone" "Power Users" "Users" "NETWORK SERVICE" "LOCAL SERVICE" "Remote Desktop User" "ANONOYMOUS LOGON" "Guest" "Performance Log Users")
@@ -603,4 +604,10 @@ if exist C:\Windows\System32\ntrights.exe (
 		ntrights -U "Administrator" -R SeBatchLogonRight
 		echo Managed User Rights
 )
-PAUSE
+goto MENU
+
+:Seventeen
+reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
+goto MENU
+
+PAUSE >nul
