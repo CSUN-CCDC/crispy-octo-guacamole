@@ -477,7 +477,7 @@ auditpol /set /subcatergory: "Other Account Logon Events" /success:enable /failu
 auditpol /set /subcatergory: "Kerberos Authentication Service" /success:enable /failure:enable
 auditpol /set /subcatergory: "Credential Validation" /success:enable /failure:enable
 auditpol /set /category:"Account Logon" /success:enable /failure:enable
-
+::AUDIT POLICY NEEDS TO BE FIXED FUCK UCR
 Account Logon
 Account Management
 Detailed Tracking
