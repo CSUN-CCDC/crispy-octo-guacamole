@@ -24,7 +24,7 @@ echo 10. Full Auditing for Failure and Success
 echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
 
-CHOICE /C 123456789 /M "Enter your choice:"
+CHOICE /C 123456789 /M "Enter your choice: "
 if ERRORLEVEL 12 goto Twelve
 if ERRORLEVEL 11 goto Eleven
 if ERRORLEVEL 10 goto Ten
