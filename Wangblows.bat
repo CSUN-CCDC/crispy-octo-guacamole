@@ -37,6 +37,9 @@ echo 14. Automatic Password Change (Needs work)
 echo 15. Automatic Group Management (Needs work)
 echo 16. Harden PowerShell (Script Execution) (Needs work)
 echo 17. Enable User Account Control
+echo 18. Remove Capability
+echo 19. Remove Packages
+echo 20. Update Windows AppStore Apps
 
 CHOICE /C 123456789 /M "Enter your choice: "
 
