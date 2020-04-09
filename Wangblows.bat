@@ -1,13 +1,22 @@
 @echo off
+title CCDC meets Cyber Patriot
 echo Checking if script contains Administrative rights...
 net sessions
 if %errorlevel%==0 (
 echo Success!
 ) else (
-echo No admin, please run with Administrative rights...
+echo Please run as Administrator.
 pause
 exit
 )
+
+reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine" /v "PowerShellVersion" /z >nul
+If %ERRORLEVEL% == 1 (
+	echo POWERSHELL NOT INSTALLED, please install before continuing
+	pause>nul
+	exit
+)
+
 ::test michael is bi
 :MENU
 echo Choose An option:
