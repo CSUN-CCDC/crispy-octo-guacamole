@@ -36,10 +36,10 @@ echo 13. Secure NT Rights
 echo 14. Automatic Password Change (Needs work)
 echo 15. Automatic Group Management (Needs work)
 echo 16. Harden PowerShell (Script Execution) (Needs work)
-echo 17. Enable User Account Control
-echo 18. Remove Capability
-echo 19. Remove Packages
-echo 20. Update Windows AppStore Apps
+echo 17. Enable User Account Control (Needs work)
+echo 18. Remove Capability (Needs work)
+echo 19. Remove Packages and Update Packages (Needs work)
+echo 20. Update Windows AppStore Apps (Needs work)
 
 CHOICE /C 123456789 /M "Enter your choice: "
 
@@ -108,57 +108,7 @@ netsh advfirewall firewall set rule name="Remote Assistance (SSDP UDP-In)" new e
 netsh advfirewall firewall set rule name="Remote Assistance (TCP-In)" new enable=no >NUL
 netsh advfirewall firewall set rule name="Telnet Server" new enable=no >NUL
 netsh advfirewall firewall set rule name="netcat" new enable=no >NUL
-dism /online /quiet /disable-feature /featurename:IIS-WebServerRole >NUL
-dism /online /quiet /disable-feature /featurename:IIS-WebServer >NUL
-dism /online /quiet /disable-feature /featurename:IIS-CommonHttpFeatures >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HttpErrors >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HttpRedirect >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ApplicationDevelopment >NUL
-dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility >NUL
-dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility45 >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HealthAndDiagnostics >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HttpLogging >NUL
-dism /online /quiet /disable-feature /featurename:IIS-LoggingLibraries >NUL
-dism /online /quiet /disable-feature /featurename:IIS-RequestMonitor >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HttpTracing >NUL
-dism /online /quiet /disable-feature /featurename:IIS-Security >NUL
-dism /online /quiet /disable-feature /featurename:IIS-URLAuthorization >NUL
-dism /online /quiet /disable-feature /featurename:IIS-RequestFiltering >NUL
-dism /online /quiet /disable-feature /featurename:IIS-IPSecurity >NUL
-dism /online /quiet /disable-feature /featurename:IIS-Performance >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionDynamic >NUL
-dism /online /quiet /disable-feature /featurename:IIS-WebServerManagementTools >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ManagementScriptingTools >NUL
-dism /online /quiet /disable-feature /featurename:IIS-IIS6ManagementCompatibility >NUL
-dism /online /quiet /disable-feature /featurename:IIS-Metabase >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HostableWebCore >NUL
-dism /online /quiet /disable-feature /featurename:IIS-StaticContent >NUL
-dism /online /quiet /disable-feature /featurename:IIS-DefaultDocument >NUL
-dism /online /quiet /disable-feature /featurename:IIS-DirectoryBrowsing >NUL
-dism /online /quiet /disable-feature /featurename:IIS-WebDAV >NUL
-dism /online /quiet /disable-feature /featurename:IIS-WebSockets >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ApplicationInit >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ASPNET >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ASPNET45 >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ASP >NUL
-dism /online /quiet /disable-feature /featurename:IIS-CGI >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ISAPIExtensions >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ISAPIFilter >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ServerSideIncludes >NUL
-dism /online /quiet /disable-feature /featurename:IIS-CustomLogging >NUL
-dism /online /quiet /disable-feature /featurename:IIS-BasicAuthentication >NUL
-dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionStatic >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ManagementConsole >NUL
-dism /online /quiet /disable-feature /featurename:IIS-ManagementService >NUL
-dism /online /quiet /disable-feature /featurename:IIS-WMICompatibility >NUL
-dism /online /quiet /disable-feature /featurename:IIS-LegacyScripts >NUL
-dism /online /quiet /disable-feature /featurename:IIS-LegacySnapIn >NUL
-dism /online /quiet /disable-feature /featurename:IIS-FTPServer >NUL
-dism /online /quiet /disable-feature /featurename:IIS-FTPSvc >NUL
-dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility >NUL
-dism /online /quiet /disable-feature /featurename:TFTP >NUL
-dism /online /quiet /disable-feature /featurename:TelnetClient >NUL
-dism /online /quiet /disable-feature /featurename:TelnetServer >NUL
+
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Main" /v DoNotTrack /t REG_DWORD /d 1 /f
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Download" /v RunInvalidSignatures /t REG_DWORD /d 1 /f
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_LOCALMACHINE_LOCKDOWN\Settings" /v LOCALMACHINE_CD_UNLOCK /t REG_DWORD /d 1 /t
@@ -394,13 +344,10 @@ goto MENU
 :Seven
 REM Removing good ol' insecure stuff
 echo "DISABLING WEAK SERVICES"
-dism /online /quiet /disable-feature /featurename:TelnetServer
 dism /online /quiet /disable-feature /featurename:Printing-PrintToPDFServices-Features
 dism /online /quiet /disable-feature /featurename:Printing-XPSServices-Features
 dism /online /quiet /disable-feature /featurename:SearchEngine-Client-Package
 dism /online /quiet /disable-feature /featurename:MSRDC-Infrastructure
-dism /online /quiet /disable-feature /featurename:TelnetClient
-dism /online /quiet /disable-feature /featurename:TFTP
 dism /online /quiet /disable-feature /featurename:TIFFIFilter
 dism /online /quiet /disable-feature /featurename:LegacyComponents
 dism /online /quiet /disable-feature /featurename:DirectPlay
@@ -412,60 +359,12 @@ dism /online /quiet /disable-feature /featurename:WCF-TCP-Activation45
 dism /online /quiet /disable-feature /featurename:WCF-Pipe-Activation45
 dism /online /quiet /disable-feature /featurename:WCF-MSMQ-Activation45
 dism /online /quiet /disable-feature /featurename:WCF-TCP-PortSharing45
-dism /online /quiet /disable-feature /featurename:IIS-WebServerRole
-dism /online /quiet /disable-feature /featurename:IIS-WebServer
-dism /online /quiet /disable-feature /featurename:IIS-CommonHttpFeatures
-dism /online /quiet /disable-feature /featurename:IIS-HttpErrors
-dism /online /quiet /disable-feature /featurename:IIS-HttpRedirect
-dism /online /quiet /disable-feature /featurename:IIS-ApplicationDevelopment
-dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility
-dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility45
-dism /online /quiet /disable-feature /featurename:IIS-HealthAndDiagnostics
-dism /online /quiet /disable-feature /featurename:IIS-HttpLogging
-dism /online /quiet /disable-feature /featurename:IIS-LoggingLibraries
-dism /online /quiet /disable-feature /featurename:IIS-RequestMonitor
-dism /online /quiet /disable-feature /featurename:IIS-HttpTracing
-dism /online /quiet /disable-feature /featurename:IIS-Security
-dism /online /quiet /disable-feature /featurename:IIS-URLAuthorization
-dism /online /quiet /disable-feature /featurename:IIS-RequestFiltering
-dism /online /quiet /disable-feature /featurename:IIS-IPSecurity
-dism /online /quiet /disable-feature /featurename:IIS-Performance
-dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionDynamic
-dism /online /quiet /disable-feature /featurename:IIS-WebServerManagementTools
-dism /online /quiet /disable-feature /featurename:IIS-ManagementScriptingTools
-dism /online /quiet /disable-feature /featurename:IIS-IIS6ManagementCompatibility
-dism /online /quiet /disable-feature /featurename:IIS-Metabase
 dism /online /quiet /disable-feature /featurename:WAS-WindowsActivationService
 dism /online /quiet /disable-feature /featurename:WAS-ProcessModel
 dism /online /quiet /disable-feature /featurename:WAS-NetFxEnvironment
 dism /online /quiet /disable-feature /featurename:WAS-ConfigurationAPI
-dism /online /quiet /disable-feature /featurename:IIS-HostableWebCore
 dism /online /quiet /disable-feature /featurename:WCF-HTTP-Activation
 dism /online /quiet /disable-feature /featurename:WCF-NonHTTP-Activation
-dism /online /quiet /disable-feature /featurename:IIS-StaticContent
-dism /online /quiet /disable-feature /featurename:IIS-DefaultDocument
-dism /online /quiet /disable-feature /featurename:IIS-DirectoryBrowsing
-dism /online /quiet /disable-feature /featurename:IIS-WebDAV
-dism /online /quiet /disable-feature /featurename:IIS-WebSockets
-dism /online /quiet /disable-feature /featurename:IIS-ApplicationInit
-dism /online /quiet /disable-feature /featurename:IIS-ASPNET
-dism /online /quiet /disable-feature /featurename:IIS-ASPNET45
-dism /online /quiet /disable-feature /featurename:IIS-ASP
-dism /online /quiet /disable-feature /featurename:IIS-CGI
-dism /online /quiet /disable-feature /featurename:IIS-ISAPIExtensions
-dism /online /quiet /disable-feature /featurename:IIS-ISAPIFilter
-dism /online /quiet /disable-feature /featurename:IIS-ServerSideIncludes
-dism /online /quiet /disable-feature /featurename:IIS-CustomLogging
-dism /online /quiet /disable-feature /featurename:IIS-BasicAuthentication
-dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionStatic
-dism /online /quiet /disable-feature /featurename:IIS-ManagementConsole
-dism /online /quiet /disable-feature /featurename:IIS-ManagementService
-dism /online /quiet /disable-feature /featurename:IIS-WMICompatibility
-dism /online /quiet /disable-feature /featurename:IIS-LegacyScripts
-dism /online /quiet /disable-feature /featurename:IIS-LegacySnapIn
-dism /online /quiet /disable-feature /featurename:IIS-FTPServer
-dism /online /quiet /disable-feature /featurename:IIS-FTPSvc
-dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility
 dism /online /quiet /disable-feature /featurename:MSMQ-Container
 dism /online /quiet /disable-feature /featurename:MSMQ-DCOMProxy
 dism /online /quiet /disable-feature /featurename:MSMQ-Server
@@ -525,6 +424,58 @@ dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Management-C
 dism /online /quiet /disable-feature /featurename:DirectoryServices-ADAM-Client
 dism /online /quiet /enable-feature /featurename:Windows-Defender-ApplicationGuard
 dism /online /quiet /disable-feature /featurename:Containers
+dism /online /quiet /disable-feature /featurename:IIS-WebServerRole
+dism /online /quiet /disable-feature /featurename:IIS-WebServer
+dism /online /quiet /disable-feature /featurename:IIS-CommonHttpFeatures
+dism /online /quiet /disable-feature /featurename:IIS-HttpErrors
+dism /online /quiet /disable-feature /featurename:IIS-HttpRedirect
+dism /online /quiet /disable-feature /featurename:IIS-ApplicationDevelopment
+dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility
+dism /online /quiet /disable-feature /featurename:IIS-NetFxExtensibility45
+dism /online /quiet /disable-feature /featurename:IIS-HealthAndDiagnostics
+dism /online /quiet /disable-feature /featurename:IIS-HttpLogging
+dism /online /quiet /disable-feature /featurename:IIS-LoggingLibraries
+dism /online /quiet /disable-feature /featurename:IIS-RequestMonitor
+dism /online /quiet /disable-feature /featurename:IIS-HttpTracing
+dism /online /quiet /disable-feature /featurename:IIS-Security
+dism /online /quiet /disable-feature /featurename:IIS-URLAuthorization
+dism /online /quiet /disable-feature /featurename:IIS-RequestFiltering
+dism /online /quiet /disable-feature /featurename:IIS-IPSecurity
+dism /online /quiet /disable-feature /featurename:IIS-Performance
+dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionDynamic
+dism /online /quiet /disable-feature /featurename:IIS-WebServerManagementTools
+dism /online /quiet /disable-feature /featurename:IIS-ManagementScriptingTools
+dism /online /quiet /disable-feature /featurename:IIS-IIS6ManagementCompatibility
+dism /online /quiet /disable-feature /featurename:IIS-Metabase
+dism /online /quiet /disable-feature /featurename:IIS-HostableWebCore
+dism /online /quiet /disable-feature /featurename:IIS-StaticContent
+dism /online /quiet /disable-feature /featurename:IIS-DefaultDocument
+dism /online /quiet /disable-feature /featurename:IIS-DirectoryBrowsing
+dism /online /quiet /disable-feature /featurename:IIS-WebDAV
+dism /online /quiet /disable-feature /featurename:IIS-WebSockets
+dism /online /quiet /disable-feature /featurename:IIS-ApplicationInit
+dism /online /quiet /disable-feature /featurename:IIS-ASPNET
+dism /online /quiet /disable-feature /featurename:IIS-ASPNET45
+dism /online /quiet /disable-feature /featurename:IIS-ASP
+dism /online /quiet /disable-feature /featurename:IIS-CGI
+dism /online /quiet /disable-feature /featurename:IIS-ISAPIExtensions
+dism /online /quiet /disable-feature /featurename:IIS-ISAPIFilter
+dism /online /quiet /disable-feature /featurename:IIS-ServerSideIncludes
+dism /online /quiet /disable-feature /featurename:IIS-CustomLogging
+dism /online /quiet /disable-feature /featurename:IIS-BasicAuthentication
+dism /online /quiet /disable-feature /featurename:IIS-HttpCompressionStatic
+dism /online /quiet /disable-feature /featurename:IIS-ManagementConsole
+dism /online /quiet /disable-feature /featurename:IIS-ManagementService
+dism /online /quiet /disable-feature /featurename:IIS-WMICompatibility
+dism /online /quiet /disable-feature /featurename:IIS-LegacyScripts
+dism /online /quiet /disable-feature /featurename:IIS-LegacySnapIn
+dism /online /quiet /disable-feature /featurename:IIS-FTPServer
+dism /online /quiet /disable-feature /featurename:IIS-FTPSvc
+dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility
+dism /online /quiet /disable-feature /featurename:TFTP
+dism /online /quiet /disable-feature /featurename:TelnetClient
+dism /online /quiet /disable-feature /featurename:TelnetServer
+
 
 :services
 set servicesD=RemoteAccess Telephony TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
