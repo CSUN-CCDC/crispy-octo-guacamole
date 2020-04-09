@@ -477,16 +477,22 @@ auditpol /set /subcatergory: "Other Account Logon Events" /success:enable /failu
 auditpol /set /subcatergory: "Kerberos Authentication Service" /success:enable /failure:enable
 auditpol /set /subcatergory: "Credential Validation" /success:enable /failure:enable
 auditpol /set /category:"Account Logon" /success:enable /failure:enable
-::AUDIT POLICY NEEDS TO BE FIXED FUCK UCR
-Account Logon
-Account Management
-Detailed Tracking
-DS Access
-Logon/Logoff
-Object Access
-Policy Change
-Privilege Use
-System
+auditpol /set /category:"Account Management" /success:enable /failure:enable
+auditpol /set /category:"Detailed Tracking" /success:enable /failure:enable
+auditpol /set /category:"DS Access" /success:enable /failure:enable
+auditpol /set /category:"Logon/Logoff" /success:enable /failure:enable
+auditpol /set /category:"Object Access" /success:enable /failure:enable
+auditpol /set /category:"Policy Change" /success:enable /failure:enable
+auditpol /set /category:"Privilege Use" /success:enable /failure:enable
+auditpol /set /category:"System" /success:enable /failure:enable
+
+
+
+
+
+
+
+
 
 goto MENU
 PAUSE
