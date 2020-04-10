@@ -323,122 +323,13 @@ pause >NUL
 )
 cls
 findstr "netcat" "nc" c.flashed
-if %errorlevel%==0 (
-echo Potential netcat detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
+
+
+
 cls
-findstr "orphcrack" c.flashed
+findstr "scapy" "Metasploit" "nikto" "Wireshark" "netcat" "nc" "orphcrack" "passwords" "r57" "beef" "weevely" "dradis" "sqlmap" "w3af" "c99"  "aircrack" "b374k" "mimikatz" "php9cba" "php99eb" "caidao" c.flashed
 if %errorlevel%==0 (
-echo Potential orphcrack detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "passwords" c.flashed
-if %errorlevel%==0 (
-echo Potential passwords detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "lsass" c.flashed
-if %errorlevel%==0 (
-echo Potential lsass detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "r57" c.flashed
-if %errorlevel%==0 (
-echo Potential r57 detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "weevely" c.flashed
-if %errorlevel%==0 (
-echo Potential weevely detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "c99" c.flashed
-if %errorlevel%==0 (
-echo Potential c99 detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "b374k" c.flashed
-if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "caidao" c.flashed
-if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "php99eb" c.flashed
-if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "php9cba" c.flashed
-if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "README" c.flashed
-if %errorlevel%==0 (
-echo Potential README detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "mimikatz" c.flashed
-if %errorlevel%==0 (
-echo Potential mimikatz detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "aircrack" c.flashed
-if %errorlevel%==0 (
-echo Potential aircrack detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "w3af" c.flashed
-if %errorlevel%==0 (
-echo Potential w3af detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "sqlmap" c.flashed
-if %errorlevel%==0 (
-echo Potential sqlmap detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "beef" c.flashed
-if %errorlevel%==0 (
-echo Potential beef detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "dradis" c.flashed
-if %errorlevel%==0 (
-echo Potential dradis detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "nikto" c.flashed
-if %errorlevel%==0 (
-echo Potential nikto detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "scapy" c.flashed
-if %errorlevel%==0 (
-echo Potential scapy detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+echo Potential harmful software detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
