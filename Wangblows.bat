@@ -446,7 +446,7 @@ reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate /v
 goto MENU
 
 :Seven
-REM Removing good ol' insecure stuff
+REM Removing good ol' insecure stuff but not me. I may be insecure, but I am important. Or am I? I don't even know anymore
 echo "DISABLING WEAK SERVICES"
 dism /online /quiet /disable-feature /featurename:Printing-PrintToPDFServices-Features
 dism /online /quiet /disable-feature /featurename:Printing-XPSServices-Features
@@ -919,6 +919,17 @@ echo Update Firefox
 goto MENU
 
 :Twentynine
+REM Services
+Net stop "Telnet"
+sc config "Telnet" start=disabled
+Net stop "Telephony"
+sc config "Telephony" start=disabled
+Net stop "RIP Listener"
+sc config "RIP Listener" start=disabled
+Net stop "SNMP Trap"
+sc config "SNMP Trap" start=disabled
+Net stop "Remote Registry"
+sc config "Remote Registry" start=disabled
 
 goto MENU
 
