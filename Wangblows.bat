@@ -954,6 +954,19 @@ netsh advfirewall set allprofile logging allowedconnections enable
 echo "Disabling IPv6..."
 reg add "HKLM\System\CurrentControlSet\services\TCPIP6\Parameters" /v DisabledComponents /t REG_DWORD /d 255 /f
 
+:@@@ENABLE WINDOWS FIREWALL
+sc config MPSSVC start= auto
+net start MPSSVC
+netsh Advfirewall set allprofiles state on
+netsh advfirewall set publicprofile state on
+netsh advfirewall set domainprofile state on
+netsh advfirewall set publicprofile state on
+netsh advfirewall set privateprofile state on
+netsh advfirewall set currentprofile logging maxfilesize 4096
+netsh advfirewall set currentprofile logging droppedconnections enable
+netsh advfirewall set currentprofile logging allowedconnections enable
+
+
 goto MENU
 
 PAUSE >nul
