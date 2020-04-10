@@ -80,7 +80,7 @@ echo 14. Automatic Password Change
 echo 15. User Group Management
 echo 16. User Enable or Disable
 echo 17. Enable User Account Control
-echo 18. Download SysInternals
+echo 18. Download and Install SysInternals
 echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
 echo 21. SysInternals Autoruns and Process Explorer with VT Upload
@@ -98,6 +98,7 @@ echo 32. Install Antivirus
 echo 69. Nice 
 
 set /p mo="Enter your choice: "
+IF %mo%==69 goto Nice
 IF %mo%==33 goto Thirtythree
 IF %mo%==32 goto Thirtytwo
 IF %mo%==31 goto Thirtyone
@@ -804,7 +805,10 @@ goto MENU
 :Twentytwo
 attrib -r -s C:\WINDOWS\system32\drivers\etc\hosts
 echo > C:\Windows\System32\drivers\etc\hosts
+echo 127.0.0.1 localhost >> C:\Windows\System32\drivers\etc\hosts
+echo localhost 127.0.0.1 >> C:\Windows\System32\drivers\etc\hosts
 attrib +r +s C:\WINDOWS\system32\drivers\etc\hosts
+pause
 goto MENU
 
 :Twentythree
@@ -812,19 +816,19 @@ bcdedit.exe /set {current} nx AlwaysOn
 goto MENU
 
 :Twentyfour
-
+pause
 goto MENU
 
 :Twentyfive
-
+pause
 goto MENU
 
 :Twentysix
-
+pause
 goto MENU
 
 :Twentyseven
-
+pause
 goto MENU
 
 :Twentyeight
@@ -834,7 +838,7 @@ echo Warn when try to install addons
 echo Popup blocker
 echo Remove bad extensions
 echo Update Firefox
-
+pause
 goto MENU
 
 :Twentynine
@@ -860,15 +864,15 @@ pause
 goto MENU
 
 :Thirtyone
-
+pause
 goto MENU
 
 :Thirtytwo
-
+pause
 goto MENU
 
 :Thirtythree
-
+pause
 goto MENU
 
 :Twentyfive
@@ -876,4 +880,7 @@ start appwiz.cpl /wait
 pause
 goto MENU
 
+:Nice
+echo Reserved for future use, but nice.
+goto MENU
 PAUSE >nul
