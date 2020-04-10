@@ -915,7 +915,7 @@ echo Warn when try to install addons
 echo Popup blocker
 echo Remove bad extensions
 echo Update Firefox
-
+pause
 goto MENU
 
 :Twentynine
