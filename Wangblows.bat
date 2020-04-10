@@ -807,7 +807,7 @@ goto MENU
 pause
 goto MENU
 
-:Twentytwo
+:Twentytwo 
 attrib -r -s C:\WINDOWS\system32\drivers\etc\hosts
 echo > C:\Windows\System32\drivers\etc\hosts
 echo 127.0.0.1 localhost >> C:\Windows\System32\drivers\etc\hosts
@@ -819,11 +819,11 @@ goto MENU
 :Twentythree
 set /p a=Would you like to set block or warn for SmartScreen (b/w) (Recommended: Block):
 IF %a%==b (
-reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ Block /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ RequireAdmin /f
+REG ADD HKCU\SOFTWARE\Microsoft\Internet Explorer\PhishingFilter /v EnabledV9 /t REG_DWORD /d 1 /f
 goto MENU
-)
 IF %a%==w (
-reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ Warn /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ 0 /f
 goto MENU
 )
 
