@@ -423,7 +423,6 @@ dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Hypervisor
 dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Services
 dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-Management-Clients
 dism /online /quiet /disable-feature /featurename:DirectoryServices-ADAM-Client
-dism /online /quiet /enable-feature /featurename:Windows-Defender-ApplicationGuard
 dism /online /quiet /disable-feature /featurename:Containers
 dism /online /quiet /disable-feature /featurename:IIS-WebServerRole
 dism /online /quiet /disable-feature /featurename:IIS-WebServer
