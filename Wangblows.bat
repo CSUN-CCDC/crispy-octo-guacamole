@@ -97,8 +97,6 @@ echo 31. NoVirusThanks Sys Hardener
 echo 32. Install Antivirus
 echo 69. Nice 
 
-
-
 set /p mo="Enter your choice: "
 IF %mo%==33 goto Thirtythree
 IF %mo%==32 goto Thirtytwo
@@ -855,8 +853,9 @@ pause
 goto MENU
 
 :Thirty
-powershell Invoke-WebRequest -OutFile Ucheck.exe https://download.adlice.com/api/?action=download&app=ucheck&type=x86
-copy /y SysinternalsSuite.zip -DestinationPath C:\Windows\System32\
+powershell Invoke-WebRequest -OutFile Ucheck.exe https://github.com/homunculus39/crispy-octo-guacamole/blob/master/UCheck.exe
+copy /y %cd%\Ucheck.exe  C:\Windows\System32\
+start Ucheck.exe /wait
 pause
 goto MENU
 
