@@ -27,25 +27,23 @@ if %errorlevel%==1 ( echo Failed to write Original Services >> C:\Wangblows\Wang
 echo Outputted Original Service Configs.
 )
 
+:@@@Listing possible penetrations@@@
+cd C:\Wangblows\
+echo "STARTING TO OUTPUT PROCESS FILES DIRECTLY TO THE C:\Wangblows\ DRIVE!"
+wmic process list brief > BriefProcesses.txt
+if %errorlevel%==1 echo Brief Processes failed to write >> C:\Wangblows\Wangblows.txt
+wmic process list full >FullProcesses.txt
+if %errorlevel%==1 echo Full Processes failed to write >> C:\Wangblows\Wangblows.txt
+wmic startup list full > StartupLists.txt
+if %errorlevel%==1 echo Startup Processes failed to write >> C:\Wangblows\Wangblows.txt
+net start > StartedProcesses.txt
+if %errorlevel%==1 echo Started processes failed to write >> C:\Wangblows\Wangblows.txt
+reg export HKLM\Software\Microsoft\Windows\CurrentVersion\Run  Run.reg
+if %errorlevel%==1 echo Run processes failed to write >> C:\Wangblows\Wangblows.txt
+
 :@@@FIREWALL BACKUP@@@
 netsh advfirewall export "C:\Wangblows\Original_Firewall_Policy.wfw"
 if %errorlevel%==1 echo "Failed to export firewall policy" >> C:\Wangblows\Wangblows.txt
-
-:@@@REGISTRY BACKUP@@@
-@echo off
-setlocal
-for %%k in (lm cu cr u cc) do call :ExpReg %%k
-goto :eof
-:ExpReg
-cd C:\Wangblows\
-reg.exe export hk%1 hk%1.reg > nul
-if "%errorlevel%"=="1" (
-  echo ^>^> Export --hk%1-- Failed.
-) else (
-  echo ^>^> Export --hk%1-- Success.
-)
-goto :eof
-endlocal
 
 :: Set stickykeys to CMD
 takeown /f "%systemroot%\System32\sethc.exe"
@@ -65,7 +63,7 @@ if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblo
 echo Choose an Option:
 echo 1. A bunch of automated things I guess
 echo 2. List Processes
-echo 3. Changing Password Policies
+echo 3. Take Registry Backup
 echo 4. Find Files
 echo 5. Disable Remote Desktop
 echo 6. Enable Auto-Update
@@ -166,33 +164,15 @@ reg ADD "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Remote Assistance" /v C
 goto MENU
 
 :Two
-REM Listing possible penetrations
-cd C:\Wangblows\
-echo "STARTING TO OUTPUT PROCESS FILES DIRECTLY TO THE C:\Wangblows\ DRIVE!"
-wmic process list brief > BriefProcesses.txt
-if %errorlevel%==1 echo Brief Processes failed to write
-wmic process list full >FullProcesses.txt
-if %errorlevel%==1 echo Full Processes failed to write
-wmic startup list full > StartupLists.txt
-if %errorlevel%==1 echo Startup Processes failed to write
-net start > StartedProcesses.txt
-if %errorlevel%==1 echo Started processes failed to write
-reg export HKLM\Software\Microsoft\Windows\CurrentVersion\Run  Run.reg
-if %errorlevel%==1 echo Run processes failed to write
+
 goto MENU
+
 :Three
-echo "OUTPUT DONE, CHANGING PASSWORD POLICIES!"
-REM Passwords must be 10 digits
-net accounts /minpwlen:10
-REM Passwords must be changed every 30 days
-net accounts /maxpwage:30
-REM Passwords can only be changed after 5 day has passed
-net accounts /minpwage:5
-REM Display current password policy
-echo "CURRENT POLICY"
-PAUSE
-net accounts
+echo Backup HKLM, HKCR, HKCU, HKU, HKCC manually
+start regedit.exe /wait
+pause
 goto MENU
+
 :Four
 REM Find file
 @echo off
