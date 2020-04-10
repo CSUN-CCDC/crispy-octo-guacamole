@@ -1,6 +1,6 @@
 Mark the ones you sifted through, you lazy fugs.
 
-Mark with $ at the beginning of the line to indicate its been done.
+Mark with $$$$$ at the beginning of the line to indicate its been done.
 
 ALA-CyberPatriotScripts-master
 CCDC-2020-master
@@ -19,7 +19,7 @@ CyberPatriotScript-master
 CyberPatriotScripts2-master
 CyberPatriotScripts-2-master
 CyberPatriot-Scripts-Amador-master
-$CyberPatriotScripts-master
+$$$$$CyberPatriotScripts-master
 CyberPatriot-Scripts-master
 CyberPatriots-Script-master
 CyberPatriot-Tools-master
