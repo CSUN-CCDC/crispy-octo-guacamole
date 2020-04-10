@@ -575,6 +575,8 @@ auditpol /set /category:"Object Access" /success:enable /failure:enable
 auditpol /set /category:"Policy Change" /success:enable /failure:enable
 auditpol /set /category:"Privilege Use" /success:enable /failure:enable
 auditpol /set /category:"System" /success:enable /failure:enable
+auditpol /set /category:* /success:enable
+auditpol /set /category:* /failure:enable
 goto MENU
 
 :Eleven
@@ -587,6 +589,8 @@ auditpol /set /category:"Object Access" /success:disable /failure:enable
 auditpol /set /category:"Policy Change" /success:disable /failure:enable
 auditpol /set /category:"Privilege Use" /success:disable /failure:enable
 auditpol /set /category:"System" /success:disable /failure:enable
+auditpol /set /category:* /success:disable
+auditpol /set /category:* /failure:enable
 goto MENU
 
 :Twelve
@@ -599,6 +603,8 @@ auditpol /set /category:"Object Access" /success:enable /failure:disable
 auditpol /set /category:"Policy Change" /success:enable /failure:disable
 auditpol /set /category:"Privilege Use" /success:enable /failure:disable
 auditpol /set /category:"System" /success:enable /failure:disable
+auditpol /set /category:* /success:enable
+auditpol /set /category:* /failure:disable
 goto MENU
 
 :Thirteen
