@@ -62,7 +62,7 @@ if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblo
 :MENU
 echo Choose an Option:
 echo 1. A bunch of automated things I guess
-echo 2. List Processes
+echo 2. Harden Networking
 echo 3. Take Registry Backup
 echo 4. Find Files
 echo 5. Disable Remote Desktop
@@ -93,7 +93,7 @@ echo 29. Check for prohibited/sketchy files Remove .zip, .exe, .msi
 echo 30. Update all programs adlice program updater
 echo 31. NoVirusThanks Sys Hardener
 echo 32. Install Antivirus
-echo 33. Harden Networking
+echo 33. 
 
 
 
@@ -164,7 +164,35 @@ reg ADD "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Remote Assistance" /v C
 goto MENU
 
 :Two
+echo "Turning the firewall on..."
+netsh advfirewall set currentprofile state on
 
+echo "Turning all states on the firewall on..."
+netsh advfirewall set currentprofile set allprofile state on
+
+echo "Setting Firewall Log MaxFileSize to 4096..."
+netsh advfirewall set allprofile logging maxfilesize 4096
+
+echo "Setting Firewall Log to log DROPPED connections..."
+netsh advfirewall set allprofile logging droppedconnections enable
+
+echo "Setting Firewall Log to log ALLOWED connections..."
+netsh advfirewall set allprofile logging allowedconnections enable
+
+echo "Disabling IPv6..."
+reg add "HKLM\System\CurrentControlSet\services\TCPIP6\Parameters" /v DisabledComponents /t REG_DWORD /d 255 /f
+
+:@@@ENABLE WINDOWS FIREWALL
+sc config MPSSVC start= auto
+net start MPSSVC
+netsh Advfirewall set allprofiles state on
+netsh advfirewall set publicprofile state on
+netsh advfirewall set domainprofile state on
+netsh advfirewall set publicprofile state on
+netsh advfirewall set privateprofile state on
+netsh advfirewall set currentprofile logging maxfilesize 4096
+netsh advfirewall set currentprofile logging droppedconnections enable
+netsh advfirewall set currentprofile logging allowedconnections enable
 goto MENU
 
 :Three
@@ -829,35 +857,6 @@ goto MENU
 
 :Thirtythree
 
-echo "Turning the firewall on..."
-netsh advfirewall set currentprofile state on
-
-echo "Turning all states on the firewall on..."
-netsh advfirewall set currentprofile set allprofile state on
-
-echo "Setting Firewall Log MaxFileSize to 4096..."
-netsh advfirewall set allprofile logging maxfilesize 4096
-
-echo "Setting Firewall Log to log DROPPED connections..."
-netsh advfirewall set allprofile logging droppedconnections enable
-
-echo "Setting Firewall Log to log ALLOWED connections..."
-netsh advfirewall set allprofile logging allowedconnections enable
-
-echo "Disabling IPv6..."
-reg add "HKLM\System\CurrentControlSet\services\TCPIP6\Parameters" /v DisabledComponents /t REG_DWORD /d 255 /f
-
-:@@@ENABLE WINDOWS FIREWALL
-sc config MPSSVC start= auto
-net start MPSSVC
-netsh Advfirewall set allprofiles state on
-netsh advfirewall set publicprofile state on
-netsh advfirewall set domainprofile state on
-netsh advfirewall set publicprofile state on
-netsh advfirewall set privateprofile state on
-netsh advfirewall set currentprofile logging maxfilesize 4096
-netsh advfirewall set currentprofile logging droppedconnections enable
-netsh advfirewall set currentprofile logging allowedconnections enable
 goto MENU
 
 :Twentyfive
