@@ -965,8 +965,6 @@ netsh advfirewall set privateprofile state on
 netsh advfirewall set currentprofile logging maxfilesize 4096
 netsh advfirewall set currentprofile logging droppedconnections enable
 netsh advfirewall set currentprofile logging allowedconnections enable
-
-
 goto MENU
 
 PAUSE >nul
