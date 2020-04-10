@@ -4,7 +4,7 @@ Mark with $$$$$ at the beginning of the line to indicate its been done.
 
 $$$$$ALA-CyberPatriotScripts-master
 $$$$$CCDC-2020-master
-ccdc-bin-master
+$$$$$ccdc-bin-master
 $$$$$CCDC-joefishslap-master
 CCDC-master
 CCDC-Windows_Script-master
