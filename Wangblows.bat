@@ -1,6 +1,6 @@
 @echo off
 title 0A
-title CCDC meets Cyber Patriot
+title Cyber Patriot meets Hivestorm meets CCDC 
 ::Initilize variables
 %path=%~dp0
 echo Checking if this script contains Administrative rights...
@@ -68,7 +68,7 @@ echo 2. Harden Networking
 echo 3. Take Registry Backup
 echo 4. Find Files
 echo 5. Disable Remote Desktop
-echo 6. A bunch of automated things I guess
+echo 6. Miscallaneous Registry Security Keys
 echo 7. Disable Weak Services
 echo 8. System Integrity Scan
 echo 9. Powershell rootkit detection
@@ -85,7 +85,7 @@ echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
 echo 21. SysInternals Autoruns and Process Explorer with VT Upload
 echo 22. Clear Hosts File
-echo 23. Enable Data Execution Prevention
+echo 23. SmartScreen Toggle
 echo 24. Run Security Programs
 echo 25. Uninstall programs
 echo 26. Set up Backup
@@ -145,6 +145,7 @@ reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /v ElevateNonAdmi
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoWindowsUpdate /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\Internet Communication Management\Internet Communication" /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore /v AutoDownload /t REG_DWORD /d 2 /f
 pause
 goto MENU
 
@@ -205,78 +206,78 @@ pause
 
 echo Finding media files in C:\Users and/or C:\Documents and Settings...
 findstr .mp3 users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.mp3 > media_audio
+if %errorlevel%==0 where /r C:\Users\ *.mp3 > media_audio
 findstr .ac3 users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.ac3 >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.ac3 >> media_audio
 findstr .aac users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.aac >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.aac >> media_audio
 findstr .aiff users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.aiff >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.aiff >> media_audio
 findstr .aif users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.aif >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.aif >> media_audio
 findstr .flac users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.flac >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.flac >> media_audio
 findstr .m4a users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.m4a >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.m4a >> media_audio
 findstr .m4p users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.m4p >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.m4p >> media_audio
 findstr .midi users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.midi >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.midi >> media_audio
 findstr .mp2 users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.mp2 >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.mp2 >> media_audio
 findstr .m3u users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.m3u >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.m3u >> media_audio
 findstr .ogg users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.ogg >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.ogg >> media_audio
 findstr .vqf users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.vqf >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.vqf >> media_audio
 findstr .wav users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.wav >> media_audio
+if %errorlevel%==0 where /r C:\Users\ *.wav >> media_audio
 findstr .wma users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.wma >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.wma >> media_video
 findstr .mp4 users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.mp4 >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.mp4 >> media_video
 findstr .avi users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.avi >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.avi >> media_video
 findstr .wmv  users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.wmv >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.wmv >> media_video
 findstr .vob users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.vob >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.vob >> media_video
 findstr .swf users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.swf >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.swf >> media_video
 findstr .srt users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.srt >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.srt >> media_video
 findstr .rm users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.rm >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.rm >> media_video
 findstr .mov users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.mov >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.mov >> media_video
 findstr .mpg users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.mpg >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.mpg >> media_video
 findstr .m4v users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.m4v >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.m4v >> media_video
 findstr .flv users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.flv >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.flv >> media_video
 findstr .avi users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.avi >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.avi >> media_video
 findstr .asx users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.asx >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.asx >> media_video
 findstr .asf users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.asf >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.asf >> media_video
 findstr .3gp users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.3gp >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.3gp >> media_video
 findstr .3g2 users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.3g2 >> media_video
+if %errorlevel%==0 where /r C:\Users\ *.3g2 >> media_video
 REM BREAKLINE
 findstr .gif users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.gif >> media_pics
+if %errorlevel%==0 where /r C:\Users\ *.gif >> media_pics
 findstr .png users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.png >> media_pics
+if %errorlevel%==0 where /r C:\Users\ *.png >> media_pics
 findstr .bmp users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ *.bmp >> media_pics
+if %errorlevel%==0 where /r C:\Users\ *.bmp >> media_pics
 findstr .jpg users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ .jpg >> media_pics
+if %errorlevel%==0 where /r C:\Users\ .jpg >> media_pics
 findstr .jpeg users.flashed >NUL
-if %errorlevel%==0 where /r c:\Users\ .jpeg >> media_pics
+if %errorlevel%==0 where /r C:\Users\ .jpeg >> media_pics
 C:\WINDOWS\system32\notepad.exe media_video
 C:\WINDOWS\system32\notepad.exe media_audio
 C:\WINDOWS\system32\notepad.exe media_pics
@@ -326,7 +327,7 @@ if %rdpChk%==n (
 	pause
 	goto MENU
 )
-echo Invalid input %rdpChk%
+echo Warning: Invalid input %rdpChk%
 pause
 goto :Five
 
@@ -352,6 +353,7 @@ reg ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v Di
 reg ADD HKCU\SYSTEM\CurrentControlSet\Services\CDROM /v AutoRun /t REG_DWORD /d 1 /f
 reg ADD HKLM\SYSTEM\CurrentControlSet\Control\CrashControl /v CrashDumpEnabled /t REG_DWORD /d 0 /f
 reg ADD "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Remote Assistance" /v CreateEncryptedOnlyTickets /t REG_DWORD /d 1 /f
+bcdedit.exe /set {current} nx AlwaysOn
 pause
 goto MENU
 
@@ -801,6 +803,9 @@ powershell Expand-Archive SysinternalsSuite.zip -DestinationPath C:\Windows\Syst
 pause
 goto MENU
 
+:Nineteen
+pause
+goto MENU
 
 :Twentytwo
 attrib -r -s C:\WINDOWS\system32\drivers\etc\hosts
@@ -812,7 +817,16 @@ pause
 goto MENU
 
 :Twentythree
-bcdedit.exe /set {current} nx AlwaysOn
+set /p a=Would you like to set block or warn for SmartScreen (b/w) (Recommended: Block):
+IF %a%==b (
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ Block /f
+goto MENU
+)
+IF %a%==w (
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ Warn /f
+goto MENU
+)
+
 goto MENU
 
 :Twentyfour
