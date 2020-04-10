@@ -34,7 +34,7 @@ echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
 echo 13. Secure NT Rights
 echo 14. Automatic Password Change (Needs work)
-echo 15. Automatic Group Management (Needs work)
+echo 15. Group Management
 echo 16. Harden PowerShell (Script Execution) (Needs work)
 echo 17. Enable User Account Control (Needs work)
 echo 18. Remove Capability (Needs work)
@@ -42,6 +42,7 @@ echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
 echo 21. NoVirusThanks Sys Hardener
 echo 22. Clear Hosts File
+echo 23. Enable Data Execution Prevention
 
 CHOICE /C 123456789 /M "Enter your choice: "
 
@@ -512,7 +513,7 @@ dism /online /quiet /disable-feature /featurename:TelnetServer
 
 
 :services
-set servicesD=RemoteAccess CDPSvc HomeGroupListener lmhosts PlugPlay Spooler UevAgentService shpamsvc NetTcpPortSharing TrkWks iphlpsvc HomeGroupProvider BranchCache FDResPub Browser Telephony fdpHost TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
+set servicesD=RemoteAccess CDPSvc SNMP SNMPTrap HomeGroupListener lmhosts PlugPlay Spooler UevAgentService shpamsvc NetTcpPortSharing TrkWks iphlpsvc HomeGroupProvider BranchCache FDResPub Browser Telephony fdpHost TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
 set servicesM=dmserver SrvcSurg
 set servicesG=Dhcp Dnscache NtLmSsp EventLog MpsSvc winmgmt wuauserv CryptSvc Schedule WdiServiceHost WdiSystemHost
 echo Disabling bad services...
@@ -704,11 +705,12 @@ FOR /F "TOKENS=2* delims==" %%G IN ('
 goto MENU
 
 :Fifteen
-echo Enable DEP
-bcdedit.exe /set {current} nx AlwaysOn
-goto MENU
+set /p groupOption="Use automatic or manual group management? (Recommended: Manual) (a/m)"
+if %groupOption%==m (
 
-:Sixteen
+	goto MENU
+)
+if %groupOption%==a (
 @ECHO OFF
 SETLOCAL EnableExtensions
 FOR /F "TOKENS=2* delims==" %%G IN ('
@@ -737,6 +739,45 @@ net localgroup Guests Guest /add
 net localgroup Users Guest /delete)
 			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Users\Administrator\Artemis.txt
           )
+	goto MENU
+@ECHO OFF
+SETLOCAL EnableExtensions
+FOR /F "TOKENS=2* delims==" %%G IN ('
+        wmic USERACCOUNT where "status='DEGRADED'" get name/value  2^>NUL
+    ') DO for %%g in (%%~G) do (
+if %%~g==%username% (echo "Will not lose current user rights") else (
+net localgroup Users %%~g /add
+net localgroup Administrators %%~g /delete
+net localgroup "Power Users" %%~g /delete
+net localgroup "Access Control Assistance Operators" %%~g /delete
+net localgroup "Backup Operators" %%~g /delete
+net localgroup "Cryptographic Operators" %%~g /delete
+net localgroup "Distributed COM Users" %%~g /delete
+net localgroup "Event Log Readers" %%~g /delete
+net localgroup Guests %%~g /delete
+net localgroup "Hyper-V Administrators" %%~g /delete
+REM net localgroup IIS_IUSRS
+net localgroup "Network Configuration Operators" %%~g /delete
+net localgroup "Performance Log Users" %%~g /delete
+net localgroup "Performance Monitor Users" %%~g /delete
+net localgroup "Remote Desktop Users" %%~g /delete
+net localgroup "Remote Management Users" %%~g /delete
+net localgroup "Replicator" %%~g /delete
+net localgroup "System Managed Accounts Group" %%~g /delete
+net localgroup Guests Guest /add
+net localgroup Users Guest /delete)
+			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Users\Administrator\Artemis.txt
+          )
+)
+echo Invalid input %groupOption%
+goto :Fifteen
+
+:Twentythree
+bcdedit.exe /set {current} nx AlwaysOn
+goto MENU
+
+:Sixteen
+
 goto MENU
 
 :Seventeen
