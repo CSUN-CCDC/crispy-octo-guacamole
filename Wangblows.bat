@@ -397,7 +397,6 @@ dism /online /quiet /disable-feature /featurename:IIS-DigestAuthentication
 dism /online /quiet /disable-feature /featurename:IIS-ClientCertificateMappingAuthentication
 dism /online /quiet /disable-feature /featurename:IIS-IISCertificateMappingAuthentication
 dism /online /quiet /disable-feature /featurename:IIS-ODBCLogging
-dism /online /quiet /disable-feature /featurename:NetFx3
 dism /online /quiet /disable-feature /featurename:SMB1Protocol-Deprecation
 dism /online /quiet /disable-feature /featurename:MediaPlayback
 dism /online /quiet /disable-feature /featurename:WindowsMediaPlayer
