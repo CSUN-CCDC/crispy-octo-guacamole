@@ -685,6 +685,14 @@ echo Setting proper account properties...
 wmic UserAccount set PasswordExpires=True
 wmic UserAccount set PasswordChangeable=True
 wmic UserAccount set PasswordRequired=True
+@ECHO OFF
+SETLOCAL EnableExtensions
+FOR /F "TOKENS=2* delims==" %%G IN ('
+        wmic USERACCOUNT where "status='OK'" get name/value  2^>NUL
+    ') DO for %%g in (%%~G) do (
+            net user %%~g what1ASecure$PassPhraze!
+			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Users\Administrator\Artemis.txt
+          )
 goto MENU
 
 :Fifteen
