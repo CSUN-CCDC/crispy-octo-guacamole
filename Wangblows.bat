@@ -10,6 +10,8 @@ pause
 exit
 )
 
+mkdir C:\Wangblows
+
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine" /v "PowerShellVersion" /z >nul
 If %ERRORLEVEL% == 1 (
 	echo POWERSHELL NOT INSTALLED, please install before continuing
@@ -19,14 +21,14 @@ If %ERRORLEVEL% == 1 (
 
 :@@@INTITIAL SERVICE CONFIG@@@
 start cmd.exe /c sc query >> C:\Services_Original.txt
-if %errorlevel%==1 ( echo Failed to write Original Services >> C:\Users\Administrator\Artemis.txt
+if %errorlevel%==1 ( echo Failed to write Original Services >> C:\Wangblows\Wangblows.txt
 ) else (
 echo Outputted Original Service Configs.
 )
 
 :@@@FIREWALL BACKUP@@@
-netsh advfirewall export "C:\Users\Administrator\Original_Firewall_Policy.wfw"
-if %errorlevel%==1 echo "Failed to export firewall policy" >> C:\Users\Administrator\Artemis.txt
+netsh advfirewall export "C:\Wangblows\Original_Firewall_Policy.wfw"
+if %errorlevel%==1 echo "Failed to export firewall policy" >> C:\Wangblows\Wangblows.txt
 
 :@@@REGISTRY BACKUP@@@
 @echo off
@@ -34,7 +36,7 @@ setlocal
 for %%k in (lm cu cr u cc) do call :ExpReg %%k
 goto :eof
 :ExpReg
-cd C:\Users\Administrator\
+cd C:\Wangblows\
 reg.exe export hk%1 hk%1.reg > nul
 if "%errorlevel%"=="1" (
   echo ^>^> Export --hk%1-- Failed.
@@ -54,7 +56,7 @@ copy "%systemroot%\System32\cmd.exe" "%systemroot%\System32\sethc.exe"
 
 :@@@CURRENTLY RUNNING SERVICES@@@
 start cmd.exe /c net start >> C:\Services_Started.txt
-if %errorlevel%==1 echo Running services failed to write >> C:\Users\Administrator\Artemis.txt
+if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblows.txt
 
 
 ::test michael is bi bi bii
@@ -759,7 +761,7 @@ FOR /F "TOKENS=2* delims==" %%G IN ('
         wmic USERACCOUNT where "status='OK'" get name/value  2^>NUL
     ') DO for %%g in (%%~G) do (
             net user %%~g Csunccdc420$69
-			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Users\Administrator\Artemis.txt
+			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Wangblows\Wangblows.txt
           )
 endlocal
 @ECHO OFF
@@ -768,7 +770,7 @@ FOR /F "TOKENS=2* delims==" %%G IN ('
         wmic USERACCOUNT where "status='DEGRADED'" get name/value  2^>NUL
     ') DO for %%g in (%%~G) do (
             net user %%~g Csunccdc420$69
-			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Users\Administrator\Artemis.txt
+			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Wangblows\Wangblows.txt
           )
 endlocal
 goto MENU
@@ -805,7 +807,7 @@ net localgroup "Replicator" %%~g /delete
 net localgroup "System Managed Accounts Group" %%~g /delete
 net localgroup Guests Guest /add
 net localgroup Users Guest /delete)
-			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Users\Administrator\Artemis.txt
+			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Wangblows\Wangblows.txt
           )
 endlocal
 @ECHO OFF
@@ -834,7 +836,7 @@ net localgroup "Replicator" %%~g /delete
 net localgroup "System Managed Accounts Group" %%~g /delete
 net localgroup Guests Guest /add
 net localgroup Users Guest /delete)
-			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Users\Administrator\Artemis.txt
+			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Wangblows\Wangblows.txt
           )
 )
 echo Invalid input %groupOption%
