@@ -425,6 +425,7 @@ dism /online /quiet /disable-feature /featurename:Microsoft-Windows-Subsystem-Li
 dism /online /quiet /disable-feature /featurename:HypervisorPlatform
 dism /online /quiet /disable-feature /featurename:VirtualMachinePlatform
 dism /online /quiet /disable-feature /featurename:Client-ProjFS
+echo "Disabling weak services 40% complete..."
 dism /online /quiet /disable-feature /featurename:Microsoft-Windows-Client-EmbeddedExp-Package
 dism /online /quiet /disable-feature /featurename:Containers-DisposableClientVM
 dism /online /quiet /disable-feature /featurename:Microsoft-Hyper-V-All
@@ -488,6 +489,8 @@ dism /online /quiet /disable-feature /featurename:TFTP
 dism /online /quiet /disable-feature /featurename:TelnetClient
 dism /online /quiet /disable-feature /featurename:TelnetServer
 
+echo "Disabling weak services 70% complete..."
+
 
 :services
 set servicesD=RemoteAccess CDPSvc mnmsrvc XboxGipSvc xbgm xboxgip XblAuthManager RasMan TabletInputService SNMP XblGameSave SNMPTrap HomeGroupListener lmhosts PlugPlay Spooler UevAgentService shpamsvc NetTcpPortSharing TrkWks iphlpsvc HomeGroupProvider BranchCache FDResPub Browser Telephony fdpHost TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
@@ -500,18 +503,22 @@ for %%a in (%servicesD%) do (
 	sc config "%%a" start= disabled
 )
 echo Disabled bad services.
+echo "Disabling weak services 100% complete..."
+echo "Restoring critical services 0% complete..."
 echo Setting services to manual...
 for %%b in (%servicesM%) do (
 	echo Service: %%b
 	sc config "%%b" start= demand
 )
 echo Set services to manual
+echo "Restoring critical services 50% complete..."
 echo Seting services to auto...
 for %%c in (%servicesG%) do (
 	echo Service: %%c
 	sc config "%%c" start= auto
 )
 echo Started auto services...
+echo "Restoring critical services 100% complete."
 pause
 goto MENU
 
