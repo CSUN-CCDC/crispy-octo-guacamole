@@ -93,7 +93,7 @@ echo 29. Check for prohibited/sketchy files Remove .zip, .exe, .msi
 echo 30. Update all programs adlice program updater
 echo 31. NoVirusThanks Sys Hardener
 echo 32. Install Antivirus
-echo 33. 
+echo 69. Nice 
 
 
 
