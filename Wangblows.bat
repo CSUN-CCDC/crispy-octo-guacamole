@@ -34,7 +34,7 @@ setlocal
 for %%k in (lm cu cr u cc) do call :ExpReg %%k
 goto :eof
 :ExpReg
-cd C:\Users\Administrator\Artemis.txt
+cd C:\Users\Administrator\
 reg.exe export hk%1 hk%1.reg > nul
 if "%errorlevel%"=="1" (
   echo ^>^> Export --hk%1-- Failed.
