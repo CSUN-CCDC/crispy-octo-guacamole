@@ -92,10 +92,19 @@ echo 29. Check for prohibited/sketchy files Remove .zip, .exe, .msi
 echo 30. Update all programs adlice program updater
 echo 31. NoVirusThanks Sys Hardener
 echo 32. Install Antivirus
-echo 34. Google Chrome Hardener
+echo 33. Harden Networking
+
+
 
 set /p mo="Enter your choice: "
-IF %mo%==34 goto Thirtyfour
+IF %mo%==33 goto Thirtythree
+IF %mo%==32 goto Thirtytwo
+IF %mo%==31 goto Thirtyone
+IF %mo%==30 goto Thirty
+IF %mo%==29 goto Twentynine
+IF %mo%==28 goto Twentyeight
+IF %mo%==27 goto Twentyseven
+IF %mo%==26 goto Twentysix
 IF %mo%==25 goto Twentyfive
 IF %mo%==24 goto Twentyfour
 IF %mo%==23 goto Twentythree
@@ -883,6 +892,22 @@ goto MENU
 bcdedit.exe /set {current} nx AlwaysOn
 goto MENU
 
+:Twentyfour
+
+goto MENU
+
+:Twentyfive
+
+goto MENU
+
+:Twentysix
+
+goto MENU
+
+:Twentyseven
+
+goto MENU
+
 :Twentyeight
 echo Firefox security
 echo Refresh Firefox
@@ -890,15 +915,27 @@ echo Warn when try to install addons
 echo Popup blocker
 echo Remove bad extensions
 echo Update Firefox
+
 goto MENU
 
-:Thirtyfour
-Reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "RemoteAccessHostAllowClientPairing" /t REG_DWORD /d "0" /f
-Reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "DefaultPluginsSetting" /t REG_DWORD /d "3" /f
-Reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "AllowOutdatedPlugins" /t REG_DWORD /d "0" /f
-Reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "MetricsReportingEnabled" /t REG_DWORD /d "0" /f
-Reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "SitePerProcess" /t REG_DWORD /d "1" /f
-Reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "ImportSavedPasswords" /t REG_DWORD /d "0" /f
+:Twentynine
+
+goto MENU
+
+:Thirty
+
+goto MENU
+
+:Thirtyone
+
+goto MENU
+
+:Thirtytwo
+
+goto MENU
+
+:Thirtythree
+
 goto MENU
 
 PAUSE >nul
