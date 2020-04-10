@@ -594,6 +594,7 @@ auditpol /set /category:"Privilege Use" /success:enable /failure:enable
 auditpol /set /category:"System" /success:enable /failure:enable
 auditpol /set /category:* /success:enable
 auditpol /set /category:* /failure:enable
+pause
 goto MENU
 
 :Eleven
@@ -608,6 +609,7 @@ auditpol /set /category:"Privilege Use" /success:disable /failure:enable
 auditpol /set /category:"System" /success:disable /failure:enable
 auditpol /set /category:* /success:disable
 auditpol /set /category:* /failure:enable
+pause
 goto MENU
 
 :Twelve
@@ -622,6 +624,7 @@ auditpol /set /category:"Privilege Use" /success:enable /failure:disable
 auditpol /set /category:"System" /success:enable /failure:disable
 auditpol /set /category:* /success:enable
 auditpol /set /category:* /failure:disable
+pause
 goto MENU
 
 :Thirteen
@@ -660,6 +663,7 @@ if exist C:\Windows\System32\ntrights.exe (
 		ntrights -U "Administrators" -R SeBatchLogonRight
 		ntrights -U "Administrator" -R SeBatchLogonRight
 		echo Managed User Rights
+		pause
 )
 goto MENU
 
@@ -686,6 +690,7 @@ FOR /F "TOKENS=2* delims==" %%G IN ('
 			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Wangblows\Wangblows.txt
           )
 endlocal
+pause
 goto MENU
 
 :Fifteen
@@ -754,6 +759,7 @@ net localgroup Users Guest /delete)
 )
 echo Invalid input %groupOption%
 endlocal
+pause
 goto Fifteen
 
 
@@ -780,6 +786,7 @@ goto :Sixteen
 
 :Seventeen
 reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
+pause
 goto MENU
 
 :Eighteen
