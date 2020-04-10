@@ -823,7 +823,7 @@ reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v
 REG ADD HKCU\SOFTWARE\Microsoft\Internet Explorer\PhishingFilter /v EnabledV9 /t REG_DWORD /d 1 /f
 goto MENU
 IF %a%==w (
-reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ 0 /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ Warn /f
 goto MENU
 )
 
