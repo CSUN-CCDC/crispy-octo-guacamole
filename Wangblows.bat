@@ -154,8 +154,7 @@ reg ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v Di
 reg ADD HKCU\SYSTEM\CurrentControlSet\Services\CDROM /v AutoRun /t REG_DWORD /d 1 /f
 reg ADD HKLM\SYSTEM\CurrentControlSet\Control\CrashControl /v CrashDumpEnabled /t REG_DWORD /d 0 /f
 reg ADD "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Remote Assistance" /v CreateEncryptedOnlyTickets /t REG_DWORD /d 1 /f
-
-
+pause
 goto MENU
 
 :Two
@@ -188,6 +187,7 @@ netsh advfirewall set privateprofile state on
 netsh advfirewall set currentprofile logging maxfilesize 4096
 netsh advfirewall set currentprofile logging droppedconnections enable
 netsh advfirewall set currentprofile logging allowedconnections enable
+pause
 goto MENU
 
 :Three
@@ -211,6 +211,7 @@ echo User profiles flashed
 dir /b /s "C:\" > c.flashed
 echo C:\ Flashed
 pause
+
 echo Finding media files in C:\Users and/or C:\Documents and Settings...
 findstr .mp3 users.flashed >NUL
 if %errorlevel%==0 where /r c:\Users\ *.mp3 > media_audio
@@ -290,12 +291,14 @@ C:\WINDOWS\system32\notepad.exe media_audio
 C:\WINDOWS\system32\notepad.exe media_pics
 echo Finding Hacktools now... >> C:\Wangblows\Wangblows.txt
 cls
-findstr "scapy Metasploit Cain nmap keylogger Armitage nikto Wireshark netcat orphcrack r57 beef weevely dradis sqlmap w3af c99  aircrack b374k mimikatz php9cba php99eb caidao" c.flashed >> C:\Wangblows\Wangblows.txt
+findstr "scapy metasploit Cain nmap keylogger Armitage nikto Wireshark netcat orphcrack r57 beef weevely dradis sqlmap w3af c99  aircrack b374k mimikatz php9cba php99eb caidao" c.flashed >> C:\Wangblows\Wangblows.txt
 if %errorlevel%==0 (
+echo Potential harmful software detected. Please take note, then press any key.
 echo Potential harmful software detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
+pause
 goto MENU
 
 :Five
@@ -315,6 +318,7 @@ if %rdpChk%==y (
 	net start TermService
 	start SystemPropertiesRemote.exe /wait
 	echo Enabled remote desktop
+	pause
 	goto MENU
 )
 if %rdpChk%==n (
@@ -328,17 +332,19 @@ if %rdpChk%==n (
 	net stop TermService
 	start SystemPropertiesRemote.exe /wait
 	echo Disabled remote desktop
+	pause
 	goto MENU
 )
 echo Invalid input %rdpChk%
+pause
 goto :Five
 
 
 
 
 :Six
-REM Windows auomatic updates
-echo "ENABLING AUTO-UPDATES"
+REM Windows automatic updates
+echo Windows automatic updates configuration
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /v AUOptions /t REG_DWORD /d 5 /f
 reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v AutoInstallMinorUpdates /t REG_DWORD /d 1 /f
 reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v NoAutoUpdate /t REG_DWORD /d 0 /f
@@ -348,6 +354,7 @@ reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /v ElevateNonAdmi
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoWindowsUpdate /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\Internet Communication Management\Internet Communication" /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
+pause
 goto MENU
 
 :Seven
@@ -507,21 +514,24 @@ for %%c in (%servicesG%) do (
 	echo Service: %%c
 	sc config "%%c" start= auto
 )
-echo Started auto services
+echo Started auto services...
+pause
 goto MENU
 
 :Eight
 REM START SYS INTEG SCAN!
 echo "STARTING SYSTEM INTERGRITY SCAN"
 echo "If it fails make sure you can access Sfc.exe"
-Sfc.exe /scannow
+sfc.exe /scannow
+pause
 goto MENU
+
 :Nine
 REM PowerShell RootKit detection start
-echo "POWERSHELL ROOTKIT DETECTION WITH MALWAREBYTES ROOTKIT BETA (Requires powershell execution policy)"
-REM Downloads MalwareBytes scan file
-powershell Invoke-WebRequest -OutFile MBRTKit.exe https://data-cdn.mbamupdates.com/web/mbar-1.10.3.1001.exe
-MBRTKit.exe
+echo "PowerShell downloading AVG anti-virus"
+powershell Invoke-WebRequest -OutFile AVG.exe https://bits.avcdn.net/productfamily_ANTIVIRUS/insttype_FREE/platform_WIN_AVG/installertype_ONLINE/build_RELEASE
+start AVG.exe /wait
+pause
 goto MENU
 
 
