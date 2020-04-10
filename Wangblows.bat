@@ -288,109 +288,115 @@ C:\WINDOWS\system32\notepad.exe media_pics
 echo Finding Hacktools now...
 findstr "Cain" c.flashed
 if %errorlevel%==0 (
-echo Cain detected. Please take note, then press any key.
+echo Cain detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "nmap" c.flashed
 if %errorlevel%==0 (
-echo Nmap detected. Please take note, then press any key.
+echo Nmap detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "keylogger" c.flashed
 if %errorlevel%==0 (
-echo Potential keylogger detected. Please take note, then press any key.
+echo Potential keylogger detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "Armitage" c.flashed
 if %errorlevel%==0 (
-echo Potential Armitage detected. Please take note, then press any key.
+echo Potential Armitage detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "Metasploit" c.flashed
 if %errorlevel%==0 (
-echo Potential Metasploit framework detected. Please take note, then press any key.
+echo Potential Metasploit framework detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "Wireshark" c.flashed
 if %errorlevel%==0 (
-echo Potential Wireshark detected. Please take note, then press any key.
+echo Potential Wireshark detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "netcat" c.flashed
 if %errorlevel%==0 (
-echo Potential netcat detected. Please take note, then press any key.
+echo Potential netcat detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "orphcrack" c.flashed
 if %errorlevel%==0 (
-echo Potential orphcrack detected. Please take note, then press any key.
+echo Potential orphcrack detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "passwords" c.flashed
 if %errorlevel%==0 (
-echo Potential passwords detected. Please take note, then press any key.
+echo Potential passwords detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "lsass" c.flashed
 if %errorlevel%==0 (
-echo Potential lsass detected. Please take note, then press any key.
+echo Potential lsass detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "r57" c.flashed
 if %errorlevel%==0 (
-echo Potential r57 detected. Please take note, then press any key.
+echo Potential r57 detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "weevely" c.flashed
 if %errorlevel%==0 (
-echo Potential weevely detected. Please take note, then press any key.
+echo Potential weevely detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "c99" c.flashed
 if %errorlevel%==0 (
-echo Potential c99 detected. Please take note, then press any key.
+echo Potential c99 detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "b374k" c.flashed
 if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key.
+echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "caidao" c.flashed
 if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key.
+echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "php99eb" c.flashed
 if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key.
+echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "php9cba" c.flashed
 if %errorlevel%==0 (
-echo Potential password detected. Please take note, then press any key.
+echo Potential password detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
 findstr "README" c.flashed
 if %errorlevel%==0 (
-echo Potential README detected. Please take note, then press any key.
+echo Potential README detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "mimikatz" c.flashed
+if %errorlevel%==0 (
+echo Potential mimikatz detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
