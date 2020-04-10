@@ -139,7 +139,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Lsa:RunAsPPL" /v RunAsPPL /t REG_
 
 reg add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v NullSessionPipes /t REG_MULTI_SZ /d "" /f
 
-
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Main" /v DoNotTrack /t REG_DWORD /d 1 /f
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Download" /v RunInvalidSignatures /t REG_DWORD /d 1 /f
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_LOCALMACHINE_LOCKDOWN\Settings" /v LOCALMACHINE_CD_UNLOCK /t REG_DWORD /d 1 /t
@@ -275,39 +274,69 @@ C:\WINDOWS\system32\notepad.exe media_video
 C:\WINDOWS\system32\notepad.exe media_audio
 C:\WINDOWS\system32\notepad.exe media_pics
 echo Finding Hacktools now...
-findstr "Cain" programfiles.flashed
+findstr "Cain" c.flashed
 if %errorlevel%==0 (
 echo Cain detected. Please take note, then press any key.
 pause >NUL
 )
 cls
-findstr "nmap" programfiles.flashed
+findstr "nmap" c.flashed
 if %errorlevel%==0 (
 echo Nmap detected. Please take note, then press any key.
 pause >NUL
 )
 cls
-findstr "keylogger" programfiles.flashed
+findstr "keylogger" c.flashed
 if %errorlevel%==0 (
 echo Potential keylogger detected. Please take note, then press any key.
 pause >NUL
 )
 cls
-findstr "Armitage" programfiles.flashed
+findstr "Armitage" c.flashed
 if %errorlevel%==0 (
 echo Potential Armitage detected. Please take note, then press any key.
 pause >NUL
 )
 cls
-findstr "Metasploit" programfiles.flashed
+findstr "Metasploit" c.flashed
 if %errorlevel%==0 (
 echo Potential Metasploit framework detected. Please take note, then press any key.
 pause >NUL
 )
 cls
-findstr "Shellter" programfiles.flashed
+findstr "Wireshark" c.flashed
 if %errorlevel%==0 (
-echo Potential Shellter detected. Please take note, then press any key.
+echo Potential Wireshark detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "netcat" c.flashed
+if %errorlevel%==0 (
+echo Potential netcat detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "orphcrack" c.flashed
+if %errorlevel%==0 (
+echo Potential orphcrack detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "passwords" c.flashed
+if %errorlevel%==0 (
+echo Potential passwords detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "password" c.flashed
+if %errorlevel%==0 (
+echo Potential password detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "README" c.flashed
+if %errorlevel%==0 (
+echo Potential README detected. Please take note, then press any key.
 pause >NUL
 )
 cls
