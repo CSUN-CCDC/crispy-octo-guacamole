@@ -1,4 +1,5 @@
 @echo off
+title 0A
 title CCDC meets Cyber Patriot
 echo Checking if this script contains Administrative rights...
 net sessions
@@ -61,7 +62,7 @@ if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblo
 
 ::test michael is bi bi bii
 :MENU
-echo Choose An option:
+echo Choose an Option:
 echo 1. A bunch of automated things I guess
 echo 2. List Processes
 echo 3. Changing Password Policies
