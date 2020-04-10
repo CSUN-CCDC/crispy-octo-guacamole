@@ -80,17 +80,18 @@ echo 17. Enable User Account Control
 echo 18. Enable Windows Firewall
 echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
-echo 21. 
+echo 21. SysInternals Autoruns and Process Explorer with VT Upload
 echo 22. Clear Hosts File
 echo 23. Enable Data Execution Prevention
 echo 24. Run Security Programs
-echo 25. Uninstall programs + features
+echo 25. Uninstall programs + features appwiz.cpl
 echo 26. Set up Backup
 echo 27. Other application settings
 echo 28. Firefox security settings
-echo 29. Check for prohibited/sketchy files
+echo 29. Check for prohibited/sketchy files Remove .zip, .exe, .msi
 echo 30. Update all programs adlice program updater
 echo 31. NoVirusThanks Sys Hardener
+echo 32. Install Antivirus
 
 
 
@@ -489,7 +490,7 @@ dism /online /quiet /disable-feature /featurename:TelnetServer
 
 
 :services
-set servicesD=RemoteAccess CDPSvc SNMP SNMPTrap HomeGroupListener lmhosts PlugPlay Spooler UevAgentService shpamsvc NetTcpPortSharing TrkWks iphlpsvc HomeGroupProvider BranchCache FDResPub Browser Telephony fdpHost TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
+set servicesD=RemoteAccess CDPSvc mnmsrvc XboxGipSvc xbgm xboxgip XblAuthManager RasMan TabletInputService SNMP XblGameSave SNMPTrap HomeGroupListener lmhosts PlugPlay Spooler UevAgentService shpamsvc NetTcpPortSharing TrkWks iphlpsvc HomeGroupProvider BranchCache FDResPub Browser Telephony fdpHost TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
 set servicesM=dmserver SrvcSurg
 set servicesG=Dhcp Dnscache NtLmSsp EventLog MpsSvc winmgmt wuauserv CryptSvc Schedule WdiServiceHost WdiSystemHost
 echo Disabling bad services...
@@ -799,6 +800,14 @@ goto MENU
 :Twentythree
 bcdedit.exe /set {current} nx AlwaysOn
 goto MENU
+
+:Twentyeight
+echo Firefox security
+echo Refresh Firefox
+echo Warn when try to install addons
+echo Popup blocker
+echo Remove bad extensions
+echo Update Firefox
 
 
 PAUSE >nul
