@@ -41,6 +41,7 @@ echo 18. Remove Capability (Needs work)
 echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
 echo 21. NoVirusThanks Sys Hardener
+echo 22. Clear Hosts File
 
 CHOICE /C 123456789 /M "Enter your choice: "
 
@@ -320,12 +321,37 @@ pause >NUL
 )
 cls
 goto MENU
+
 :Five
-REM No Remote Desktop
-echo "DISABLING REMOTE DESKTOP"
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
-goto MENU
+set /p rdpChk="Enable remote desktop (y/n)"
+if %rdpChk%==y (
+	echo Enabling remote desktop...
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 1 /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 1 /f
+	REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 1 /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
+	netsh advfirewall firewall set rule group="remote desktop" new enable=yes
+	echo Please select "Allow connections only from computers running Remote Desktop with Network Level Authentication (more secure)"
+	start SystemPropertiesRemote.exe /wait
+	echo Enabled remote desktop
+	goto MENU
+)
+if %rdpChk%==n (
+	echo Disabling remote desktop...
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 0 /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 0 /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
+	netsh advfirewall firewall set rule group="remote desktop" new enable=no
+	start SystemPropertiesRemote.exe /wait
+	echo Disabled remote desktop
+	goto MENU
+)
+echo Invalid input %rdpChk%
+goto :Five
+
+
 
 
 :Six
@@ -648,6 +674,12 @@ goto MENU
 
 :Seventeen
 reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
+goto MENU
+
+:Twentytwo
+attrib -r -s C:\WINDOWS\system32\drivers\etc\hosts
+echo > C:\Windows\System32\drivers\etc\hosts
+attrib +r +s C:\WINDOWS\system32\drivers\etc\hosts
 goto MENU
 
 PAUSE >nul
