@@ -33,35 +33,37 @@ echo 10. Full Auditing for Failure and Success
 echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
 echo 13. Secure NT Rights
-echo 14. Automatic Password Change (Needs work)
+echo 14. Automatic Password Change
 echo 15. User and Group Management
-echo 16. User Enabler and Disabler
-echo 17. Enable User Account Control (Needs work)
+echo 16. User Enable or Disable
+echo 17. Enable User Account Control
 echo 18. Remove Capability (Needs work)
 echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
 echo 21. NoVirusThanks Sys Hardener
 echo 22. Clear Hosts File
 echo 23. Enable Data Execution Prevention
+echo 24.
 
-CHOICE /C 123456789 /M "Enter your choice: "
+set /p mo="Enter your choice: "
 
-if ERRORLEVEL 17 goto Seventeen
-if ERRORLEVEL 15 goto Fifteen
-if ERRORLEVEL 14 got Fourteen
-if ERRORLEVEL 13 goto Thirteen
-if ERRORLEVEL 12 goto Twelve
-if ERRORLEVEL 11 goto Eleven
-if ERRORLEVEL 10 goto Ten
-if ERRORLEVEL 9 goto Nine
-if ERRORLEVEL 8 goto Eight
-if ERRORLEVEL 7 goto Seven
-if ERRORLEVEL 6 goto Six
-if ERRORLEVEL 5 goto Five
-if ERRORLEVEL 4 goto Four
-if ERRORLEVEL 3 goto Three
-if ERRORLEVEL 2 goto Two
-if ERRORLEVEL 1 goto One
+IF %mo%==17 goto Seventeen
+IF %mo%==15 goto Fifteen
+IF %mo%==16 goto Sixteen
+IF %mo%==14 got Fourteen
+IF %mo%==13 goto Thirteen
+IF %mo%==12 goto Twelve
+IF %mo%==11 goto Eleven
+IF %mo%==10 goto Ten
+IF %mo%==9 goto Nine
+IF %mo%==8 goto Eight
+IF %mo%==7 goto Seven
+IF %mo%==6 goto Six
+IF %mo%==5 goto Five
+IF %mo%==4 goto Four
+IF %mo%==3 goto Three
+IF %mo%==2 goto Two
+IF %mo%==1 goto One
 
 :One
 REM Automation found from all over the interwebs, sources unknown, please open issue. sokme crap;
@@ -805,7 +807,7 @@ goto MENU
 setlocal EnableDelayedExpansion
 cls
 net users
-set /p a=Would you like to delete a user?[y/n]:
+set /p a=Would you like to disable a user? [y/n]:
 IF %a%==y (
 cls
 net users
