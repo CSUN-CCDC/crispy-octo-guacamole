@@ -362,6 +362,7 @@ goto MENU
 :Seven
 REM Removing good ol' insecure stuff but not me. I may be insecure, but I am important. Or am I? I don't even know anymore
 echo "DISABLING WEAK SERVICES"
+echo on
 dism /online /quiet /disable-feature /featurename:Printing-PrintToPDFServices-Features
 dism /online /quiet /disable-feature /featurename:Printing-XPSServices-Features
 dism /online /quiet /disable-feature /featurename:SearchEngine-Client-Package
@@ -493,7 +494,7 @@ dism /online /quiet /disable-feature /featurename:IIS-FTPExtensibility
 dism /online /quiet /disable-feature /featurename:TFTP
 dism /online /quiet /disable-feature /featurename:TelnetClient
 dism /online /quiet /disable-feature /featurename:TelnetServer
-
+echo off
 echo "Disabling weak services 70% complete..."
 
 
