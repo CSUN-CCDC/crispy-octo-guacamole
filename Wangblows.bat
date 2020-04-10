@@ -391,6 +391,7 @@ dism /online /quiet /disable-feature /featurename:MSMQ-HTTP
 dism /online /quiet /disable-feature /featurename:MSMQ-Multicast
 dism /online /quiet /disable-feature /featurename:MSMQ-Triggers
 dism /online /quiet /disable-feature /featurename:IIS-CertProvider
+echo "Disabling weak services 20% complete..."
 dism /online /quiet /disable-feature /featurename:IIS-WindowsAuthentication
 dism /online /quiet /disable-feature /featurename:IIS-DigestAuthentication
 dism /online /quiet /disable-feature /featurename:IIS-ClientCertificateMappingAuthentication
