@@ -365,7 +365,7 @@ set /p option=Is IIS a critical service? (y/n):
 IF %option%==y (
 REM Removing good ol' insecure stuff but not me. I may be insecure, but I am important. Or am I? I don't even know anymore
 echo "DISABLING WEAK SERVICES"
-echo on
+@echo on
 dism /online /quiet /disable-feature /featurename:Printing-PrintToPDFServices-Features
 dism /online /quiet /disable-feature /featurename:Printing-XPSServices-Features
 dism /online /quiet /disable-feature /featurename:SearchEngine-Client-Package
@@ -443,12 +443,12 @@ dism /online /quiet /disable-feature /featurename:Containers
 dism /online /quiet /disable-feature /featurename:TFTP
 dism /online /quiet /disable-feature /featurename:TelnetClient
 dism /online /quiet /disable-feature /featurename:TelnetServer
-echo off
+@echo off
 echo "Disabling weak services 70% complete..."
 
 
 :services
-set servicesD=RemoteAccess CDPSvc mnmsrvc XboxGipSvc xbgm xboxgip XblAuthManager RasMan TabletInputService SNMP XblGameSave SNMPTrap HomeGroupListener lmhosts PlugPlay Spooler UevAgentService shpamsvc NetTcpPortSharing TrkWks iphlpsvc HomeGroupProvider BranchCache FDResPub Browser Telephony fdpHost TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IISADMIN IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
+set servicesD=RemoteAccess CDPSvc mnmsrvc XboxGipSvc xbgm xboxgip XblAuthManager RasMan TabletInputService SNMP XblGameSave SNMPTrap HomeGroupListener lmhosts PlugPlay Spooler UevAgentService shpamsvc NetTcpPortSharing TrkWks iphlpsvc HomeGroupProvider BranchCache FDResPub Browser Telephony fdpHost TapiSrv Tlntsvr tlntsvr p2pimsvc simptcp fax msftpsvc iprip ftpsvc RemoteRegistry RasMan RasAuto seclogon MSFTPSVC W3SVC SMTPSVC Dfs TrkWks MSDTC DNS ERSVC NtFrs MSFtpsvc helpsvc HTTPFilter IsmServ WmdmPmSN Spooler RDSessMgr RPCLocator RsoPProv	ShellHWDetection ScardSvr Sacsvr TermService Uploadmgr VDS VSS WINS WinHttpAutoProxySvc SZCSVC CscService hidserv IPBusEnum PolicyAgent SCPolicySvc SharedAccess SSDPSRV Themes upnphost nfssvc nfsclnt MSSQLServerADHelper
 set servicesM=dmserver SrvcSurg
 set servicesG=Dhcp Dnscache NtLmSsp EventLog MpsSvc winmgmt wuauserv CryptSvc Schedule WdiServiceHost WdiSystemHost
 echo Disabling bad services...
@@ -477,6 +477,7 @@ echo "Restoring critical services 100% complete."
 pause
 goto MENU)
 goto MENU
+
 IF %option%==n (
 REM Removing good ol' insecure stuff but not me. I may be insecure, but I am important. Or am I? I don't even know anymore
 echo "DISABLING WEAK SERVICES"
