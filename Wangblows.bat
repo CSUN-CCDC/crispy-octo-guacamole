@@ -328,7 +328,49 @@ echo Potential passwords detected. Please take note, then press any key.
 pause >NUL
 )
 cls
-findstr "password" c.flashed
+findstr "lsass" c.flashed
+if %errorlevel%==0 (
+echo Potential lsass detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "r57" c.flashed
+if %errorlevel%==0 (
+echo Potential r57 detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "weevely" c.flashed
+if %errorlevel%==0 (
+echo Potential weevely detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "c99" c.flashed
+if %errorlevel%==0 (
+echo Potential c99 detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "b374k" c.flashed
+if %errorlevel%==0 (
+echo Potential password detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "caidao" c.flashed
+if %errorlevel%==0 (
+echo Potential password detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "php99eb" c.flashed
+if %errorlevel%==0 (
+echo Potential password detected. Please take note, then press any key.
+pause >NUL
+)
+cls
+findstr "php9cba" c.flashed
 if %errorlevel%==0 (
 echo Potential password detected. Please take note, then press any key.
 pause >NUL
