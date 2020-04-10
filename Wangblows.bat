@@ -1,6 +1,8 @@
 @echo off
 title 0A
 title CCDC meets Cyber Patriot
+::Initilize variables
+%path=%~dp0
 echo Checking if this script contains Administrative rights...
 net sessions
 if %errorlevel%==0 (
@@ -90,7 +92,7 @@ echo 26. Set up Backup
 echo 27. Other application settings
 echo 28. Firefox security settings
 echo 29. Check for prohibited/sketchy files Remove .zip, .exe, .msi
-echo 30. Update all programs adlice program updater
+echo 30. Update all programs using UCheck
 echo 31. NoVirusThanks Sys Hardener
 echo 32. Install Antivirus
 echo 69. Nice 
@@ -574,6 +576,7 @@ auditpol /set /subcatergory: "MPSSVC Rule-Level Policy" /success:enable /failure
 auditpol /set /subcatergory: "Filtering Platform Policy" /success:enable /failure:enable
 auditpol /set /subcatergory: "Other Policy Change Events" /success:enable /failure:enable
 auditpol /set /subcatergory: "User Account Management" /success:enable /failure:enable
+echo Setting policies about 50% complete...
 auditpol /set /subcatergory: "Computer Account Management" /success:enable /failure:enable
 auditpol /set /subcatergory: "Security Group Management" /success:enable /failure:enable
 auditpol /set /subcatergory: "Distribution Group" /success:enable /failure:enable
@@ -795,7 +798,7 @@ goto MENU
 
 :Eighteen
 powershell Invoke-WebRequest -OutFile SysinternalsSuite.zip https://download.sysinternals.com/files/SysinternalsSuite.zip
-Expand-Archive SysinternalsSuite.zip -DestinationPath C:\Windows\System32\
+powershell Expand-Archive SysinternalsSuite.zip -DestinationPath C:\Windows\System32\
 pause
 goto MENU
 
@@ -848,11 +851,13 @@ Net stop "SNMP Trap"
 sc config "SNMP Trap" start=disabled
 Net stop "Remote Registry"
 sc config "Remote Registry" start=disabled
-
+pause
 goto MENU
 
 :Thirty
-
+powershell Invoke-WebRequest -OutFile Ucheck.exe https://download.adlice.com/api/?action=download&app=ucheck&type=x86
+copy /y SysinternalsSuite.zip -DestinationPath C:\Windows\System32\
+pause
 goto MENU
 
 :Thirtyone
