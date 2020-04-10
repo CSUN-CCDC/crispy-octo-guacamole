@@ -10,7 +10,7 @@ CCDC-master
 CCDC-Windows_Script-master
 CCDC-Windows_Script-master1
 cyber_patriot_2016-master
-CyberPatriot_Windows_Scripts-master
+$$$$$CyberPatriot_Windows_Scripts-master
 CyberPatriot1-master
 $$$$$CyberPatriot-master
 CyberPatriot--master
@@ -30,7 +30,7 @@ UCI-CCDC2020-master
 vigilant-potato-master
 Windows-CCDC-Blue-Team-Scripts-master
 WindowsCCDC-master
-Windows-Scripts-master
+$$$$$Windows-Scripts-master
 
 
 
