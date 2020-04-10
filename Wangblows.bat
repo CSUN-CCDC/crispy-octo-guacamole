@@ -1,6 +1,6 @@
 @echo off
 title CCDC meets Cyber Patriot
-echo Checking if script contains Administrative rights...
+echo Checking if this script contains Administrative rights...
 net sessions
 if %errorlevel%==0 (
 echo Success!
@@ -84,7 +84,7 @@ echo 21. SysInternals Autoruns and Process Explorer with VT Upload
 echo 22. Clear Hosts File
 echo 23. Enable Data Execution Prevention
 echo 24. Run Security Programs
-echo 25. Uninstall programs + features appwiz.cpl
+echo 25. Uninstall programs
 echo 26. Set up Backup
 echo 27. Other application settings
 echo 28. Firefox security settings
@@ -965,6 +965,11 @@ netsh advfirewall set privateprofile state on
 netsh advfirewall set currentprofile logging maxfilesize 4096
 netsh advfirewall set currentprofile logging droppedconnections enable
 netsh advfirewall set currentprofile logging allowedconnections enable
+goto MENU
+
+:Twentyfive
+start appwiz.cpl /wait
+pause
 goto MENU
 
 PAUSE >nul
