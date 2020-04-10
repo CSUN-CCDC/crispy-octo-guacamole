@@ -50,7 +50,7 @@ set /p mo="Enter your choice: "
 IF %mo%==17 goto Seventeen
 IF %mo%==15 goto Fifteen
 IF %mo%==16 goto Sixteen
-IF %mo%==14 got Fourteen
+IF %mo%==14 goto Fourteen
 IF %mo%==13 goto Thirteen
 IF %mo%==12 goto Twelve
 IF %mo%==11 goto Eleven
@@ -695,6 +695,7 @@ FOR /F "TOKENS=2* delims==" %%G IN ('
             net user %%~g Csunccdc420$69
 			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Users\Administrator\Artemis.txt
           )
+endlocal
 @ECHO OFF
 SETLOCAL EnableExtensions
 FOR /F "TOKENS=2* delims==" %%G IN ('
@@ -703,39 +704,13 @@ FOR /F "TOKENS=2* delims==" %%G IN ('
             net user %%~g Csunccdc420$69
 			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Users\Administrator\Artemis.txt
           )
+endlocal
 goto MENU
 
 :Fifteen
 set /p groupOption="Use automatic or manual group management? (Recommended: Manual) (a/m)"
 if %groupOption%==m (
-	cls
-	net localgroup
-	set /p grp=What group would you like to check?:
-	net localgroup !grp!
-	set /p answer=Is there a user you would like to add or remove?[add/remove/back]:
-	if "%answer%"=="add" (
-		set /p userAdd=Please enter the user you would like to add: 
-		net localgroup !grp! !userAdd! /add
-		echo !userAdd! has been added to !grp!
-	)
-	if "%answer%"=="remove" (
-		set /p userRem=Please enter the user you would like to remove:
-		net localgroup !grp! !userRem! /delete
-		echo !userRem! has been removed from !grp!
-	)
-	if "%answer%"=="back" (
-		goto :group
-	)
-
-	set /p answer=Would you like to go check again?[y/n]
-	if /I "%answer%"=="y" (
-		goto :group
-	)
-	if /I "%answer%"=="n" (
-		goto :menu
-	)
-endlocal
-	goto MENU
+start compmgmt.msc /wait
 )
 if %groupOption%==a (
 @ECHO OFF
@@ -766,7 +741,7 @@ net localgroup Guests Guest /add
 net localgroup Users Guest /delete)
 			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Users\Administrator\Artemis.txt
           )
-	goto MENU
+endlocal
 @ECHO OFF
 SETLOCAL EnableExtensions
 FOR /F "TOKENS=2* delims==" %%G IN ('
@@ -797,7 +772,8 @@ net localgroup Users Guest /delete)
           )
 )
 echo Invalid input %groupOption%
-goto :Fifteen
+endlocal
+goto Fifteen
 
 :Twentythree
 bcdedit.exe /set {current} nx AlwaysOn
