@@ -322,7 +322,7 @@ echo Potential Wireshark detected. Please take note, then press any key. >> C:\W
 pause >NUL
 )
 cls
-findstr "netcat" c.flashed
+findstr "netcat" "nc" c.flashed
 if %errorlevel%==0 (
 echo Potential netcat detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
@@ -397,6 +397,48 @@ cls
 findstr "mimikatz" c.flashed
 if %errorlevel%==0 (
 echo Potential mimikatz detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "aircrack" c.flashed
+if %errorlevel%==0 (
+echo Potential aircrack detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "w3af" c.flashed
+if %errorlevel%==0 (
+echo Potential w3af detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "sqlmap" c.flashed
+if %errorlevel%==0 (
+echo Potential sqlmap detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "beef" c.flashed
+if %errorlevel%==0 (
+echo Potential beef detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "dradis" c.flashed
+if %errorlevel%==0 (
+echo Potential dradis detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "nikto" c.flashed
+if %errorlevel%==0 (
+echo Potential nikto detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
+pause >NUL
+)
+cls
+findstr "scapy" c.flashed
+if %errorlevel%==0 (
+echo Potential scapy detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
 )
 cls
