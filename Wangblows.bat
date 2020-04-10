@@ -61,12 +61,12 @@ if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblo
 ::test michael is bi bi bii
 :MENU
 echo Choose an Option:
-echo 1. A bunch of automated things I guess
+echo 1. Enable Auto-Update
 echo 2. Harden Networking
 echo 3. Take Registry Backup
 echo 4. Find Files
 echo 5. Disable Remote Desktop
-echo 6. Enable Auto-Update
+echo 6. A bunch of automated things I guess
 echo 7. Disable Weak Services
 echo 8. System Integrity Scan
 echo 9. Powershell rootkit detection
