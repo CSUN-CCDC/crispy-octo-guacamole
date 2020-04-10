@@ -57,7 +57,7 @@ start cmd.exe /c net start >> C:\Services_Started.txt
 if %errorlevel%==1 echo Running services failed to write >> C:\Users\Administrator\Artemis.txt
 
 
-::test michael is bi
+::test michael is bi bi bii
 :MENU
 echo Choose An option:
 echo 1. A bunch of automated things I guess
