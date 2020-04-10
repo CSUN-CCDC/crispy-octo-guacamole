@@ -286,48 +286,8 @@ C:\WINDOWS\system32\notepad.exe media_video
 C:\WINDOWS\system32\notepad.exe media_audio
 C:\WINDOWS\system32\notepad.exe media_pics
 echo Finding Hacktools now...
-findstr "Cain" c.flashed
-if %errorlevel%==0 (
-echo Cain detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
 cls
-findstr "nmap" c.flashed
-if %errorlevel%==0 (
-echo Nmap detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "keylogger" c.flashed
-if %errorlevel%==0 (
-echo Potential keylogger detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "Armitage" c.flashed
-if %errorlevel%==0 (
-echo Potential Armitage detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "Metasploit" c.flashed
-if %errorlevel%==0 (
-echo Potential Metasploit framework detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "Wireshark" c.flashed
-if %errorlevel%==0 (
-echo Potential Wireshark detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
-pause >NUL
-)
-cls
-findstr "netcat" "nc" c.flashed
-
-
-
-cls
-findstr "scapy" "Metasploit" "nikto" "Wireshark" "netcat" "nc" "orphcrack" "passwords" "r57" "beef" "weevely" "dradis" "sqlmap" "w3af" "c99"  "aircrack" "b374k" "mimikatz" "php9cba" "php99eb" "caidao" c.flashed
+findstr "scapy" "Metasploit" "Cain" "nmap" "keylogger" "Armitage" "nikto" "Wireshark" "netcat" "nc" "orphcrack" "passwords" "r57" "beef" "weevely" "dradis" "sqlmap" "w3af" "c99"  "aircrack" "b374k" "mimikatz" "php9cba" "php99eb" "caidao" c.flashed
 if %errorlevel%==0 (
 echo Potential harmful software detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
