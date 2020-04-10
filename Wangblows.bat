@@ -34,8 +34,8 @@ echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
 echo 13. Secure NT Rights
 echo 14. Automatic Password Change (Needs work)
-echo 15. Group Management
-echo 16. Harden PowerShell (Script Execution) (Needs work)
+echo 15. User and Group Management
+echo 16. User Enabler and Disabler
 echo 17. Enable User Account Control (Needs work)
 echo 18. Remove Capability (Needs work)
 echo 19. Remove Packages and Update Packages (Needs work)
@@ -535,7 +535,6 @@ for %%c in (%servicesG%) do (
 	sc config "%%c" start= auto
 )
 echo Started auto services
-
 goto MENU
 
 :Eight
@@ -707,7 +706,33 @@ goto MENU
 :Fifteen
 set /p groupOption="Use automatic or manual group management? (Recommended: Manual) (a/m)"
 if %groupOption%==m (
+	cls
+	net localgroup
+	set /p grp=What group would you like to check?:
+	net localgroup !grp!
+	set /p answer=Is there a user you would like to add or remove?[add/remove/back]:
+	if "%answer%"=="add" (
+		set /p userAdd=Please enter the user you would like to add: 
+		net localgroup !grp! !userAdd! /add
+		echo !userAdd! has been added to !grp!
+	)
+	if "%answer%"=="remove" (
+		set /p userRem=Please enter the user you would like to remove:
+		net localgroup !grp! !userRem! /delete
+		echo !userRem! has been removed from !grp!
+	)
+	if "%answer%"=="back" (
+		goto :group
+	)
 
+	set /p answer=Would you like to go check again?[y/n]
+	if /I "%answer%"=="y" (
+		goto :group
+	)
+	if /I "%answer%"=="n" (
+		goto :menu
+	)
+endlocal
 	goto MENU
 )
 if %groupOption%==a (
@@ -777,8 +802,25 @@ bcdedit.exe /set {current} nx AlwaysOn
 goto MENU
 
 :Sixteen
-
+setlocal EnableDelayedExpansion
+cls
+net users
+set /p a=Would you like to delete a user?[y/n]:
+IF %a%==y (
+cls
+net users
+set /p DISABLE=What is the name of the user?:
+net user !DISABLE! /active:no
+echo !DISABLE! has been disabled
+set !DISABLE!=""
+pause
+endlocal
+)
+IF %a%==n (
+	endlocal
 goto MENU
+)
+goto :Sixteen
 
 :Seventeen
 reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
