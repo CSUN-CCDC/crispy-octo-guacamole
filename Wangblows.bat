@@ -690,7 +690,15 @@ SETLOCAL EnableExtensions
 FOR /F "TOKENS=2* delims==" %%G IN ('
         wmic USERACCOUNT where "status='OK'" get name/value  2^>NUL
     ') DO for %%g in (%%~G) do (
-            net user %%~g what1ASecure$PassPhraze!
+            net user %%~g Csunccdc420$69
+			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Users\Administrator\Artemis.txt
+          )
+@ECHO OFF
+SETLOCAL EnableExtensions
+FOR /F "TOKENS=2* delims==" %%G IN ('
+        wmic USERACCOUNT where "status='DEGRADED'" get name/value  2^>NUL
+    ') DO for %%g in (%%~G) do (
+            net user %%~g Csunccdc420$69
 			if %errorlevel%==1 echo "Did not change password for %%~g" >> C:\Users\Administrator\Artemis.txt
           )
 goto MENU
@@ -698,6 +706,37 @@ goto MENU
 :Fifteen
 echo Enable DEP
 bcdedit.exe /set {current} nx AlwaysOn
+goto MENU
+
+:Sixteen
+@ECHO OFF
+SETLOCAL EnableExtensions
+FOR /F "TOKENS=2* delims==" %%G IN ('
+        wmic USERACCOUNT where "status='OK'" get name/value  2^>NUL
+    ') DO for %%g in (%%~G) do (
+if %%~g==%username% (echo "Will not lose current user rights") else (
+net localgroup Users %%~g /add
+net localgroup Administrators %%~g /delete
+net localgroup "Power Users" %%~g /delete
+net localgroup "Access Control Assistance Operators" %%~g /delete
+net localgroup "Backup Operators" %%~g /delete
+net localgroup "Cryptographic Operators" %%~g /delete
+net localgroup "Distributed COM Users" %%~g /delete
+net localgroup "Event Log Readers" %%~g /delete
+net localgroup Guests %%~g /delete
+net localgroup "Hyper-V Administrators" %%~g /delete
+REM net localgroup IIS_IUSRS
+net localgroup "Network Configuration Operators" %%~g /delete
+net localgroup "Performance Log Users" %%~g /delete
+net localgroup "Performance Monitor Users" %%~g /delete
+net localgroup "Remote Desktop Users" %%~g /delete
+net localgroup "Remote Management Users" %%~g /delete
+net localgroup "Replicator" %%~g /delete
+net localgroup "System Managed Accounts Group" %%~g /delete
+net localgroup Guests Guest /add
+net localgroup Users Guest /delete)
+			if %errorlevel%==1 echo "Did not remove %%~g from a group" >> C:\Users\Administrator\Artemis.txt
+          )
 goto MENU
 
 :Seventeen
