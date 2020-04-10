@@ -819,11 +819,11 @@ goto MENU
 :Twentythree
 set /p a=Would you like to set block or warn for SmartScreen (b/w) (Recommended: Block):
 IF %a%==b (
-reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ RequireAdmin /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ /d RequireAdmin /f
 REG ADD HKCU\SOFTWARE\Microsoft\Internet Explorer\PhishingFilter /v EnabledV9 /t REG_DWORD /d 1 /f
 goto MENU
 IF %a%==w (
-reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ Warn /f
+reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ /d Warn /f
 goto MENU
 )
 
