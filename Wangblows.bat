@@ -46,6 +46,8 @@ echo 22. Clear Hosts File
 CHOICE /C 123456789 /M "Enter your choice: "
 
 if ERRORLEVEL 17 goto Seventeen
+if ERRORLEVEL 15 goto Fifteen
+if ERRORLEVEL 14 got Fourteen
 if ERRORLEVEL 13 goto Thirteen
 if ERRORLEVEL 12 goto Twelve
 if ERRORLEVEL 11 goto Eleven
@@ -333,6 +335,10 @@ if %rdpChk%==y (
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
 	netsh advfirewall firewall set rule group="remote desktop" new enable=yes
 	echo Please select "Allow connections only from computers running Remote Desktop with Network Level Authentication (more secure)"
+	net stop UmRdpService
+	net stop TermService
+	net start UmRdpService
+	net start TermService
 	start SystemPropertiesRemote.exe /wait
 	echo Enabled remote desktop
 	goto MENU
@@ -344,6 +350,8 @@ if %rdpChk%==n (
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 0 /f
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
 	netsh advfirewall firewall set rule group="remote desktop" new enable=no
+	net stop UmRdpService
+	net stop TermService
 	start SystemPropertiesRemote.exe /wait
 	echo Disabled remote desktop
 	goto MENU
@@ -670,6 +678,18 @@ if exist C:\Windows\System32\ntrights.exe (
 		ntrights -U "Administrator" -R SeBatchLogonRight
 		echo Managed User Rights
 )
+goto MENU
+
+:Fourteen
+echo Setting proper account properties...
+wmic UserAccount set PasswordExpires=True
+wmic UserAccount set PasswordChangeable=True
+wmic UserAccount set PasswordRequired=True
+goto MENU
+
+:Fifteen
+echo Enable DEP
+bcdedit.exe /set {current} nx AlwaysOn
 goto MENU
 
 :Seventeen
