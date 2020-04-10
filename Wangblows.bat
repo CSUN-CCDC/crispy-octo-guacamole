@@ -287,7 +287,7 @@ C:\WINDOWS\system32\notepad.exe media_audio
 C:\WINDOWS\system32\notepad.exe media_pics
 echo Finding Hacktools now...
 cls
-findstr "scapy" "Metasploit" "Cain" "nmap" "keylogger" "Armitage" "nikto" "Wireshark" "netcat" "nc" "orphcrack" "passwords" "r57" "beef" "weevely" "dradis" "sqlmap" "w3af" "c99"  "aircrack" "b374k" "mimikatz" "php9cba" "php99eb" "caidao" c.flashed
+findstr "scapy Metasploit Cain nmap keylogger Armitage nikto Wireshark netcat orphcrack r57 beef weevely dradis sqlmap w3af c99  aircrack b374k mimikatz php9cba php99eb caidao" c.flashed
 if %errorlevel%==0 (
 echo Potential harmful software detected. Please take note, then press any key. >> C:\Wangblows\Wangblows.txt
 pause >NUL
