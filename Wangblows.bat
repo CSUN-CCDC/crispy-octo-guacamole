@@ -812,7 +812,6 @@ attrib -r -s C:\WINDOWS\system32\drivers\etc\hosts
 echo > C:\Windows\System32\drivers\etc\hosts
 echo 127.0.0.1 localhost >> C:\Windows\System32\drivers\etc\hosts
 echo localhost 127.0.0.1 >> C:\Windows\System32\drivers\etc\hosts
-attrib +r +s C:\WINDOWS\system32\drivers\etc\hosts
 pause
 goto MENU
 
