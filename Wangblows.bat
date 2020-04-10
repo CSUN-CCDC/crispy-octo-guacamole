@@ -44,6 +44,14 @@ if "%errorlevel%"=="1" (
 goto :eof
 endlocal
 
+:: Set stickykeys to CMD
+takeown /f "%systemroot%\System32\sethc.exe"
+takeown /f "%systemroot%\System32\cmd.exe"
+icacls "%systemroot%\System32\sethc.exe" /grant %username%:f
+icacls "%systemroot%\System32\cmd.exe" /grant %username%:f
+ren "%systemroot%\System32\sethc.exe" "%systemroot%\System32\sethc1.exe"
+copy "%systemroot%\System32\cmd.exe" "%systemroot%\System32\sethc.exe"
+
 :@@@CURRENTLY RUNNING SERVICES@@@
 start cmd.exe /c net start >> C:\Services_Started.txt
 if %errorlevel%==1 echo Running services failed to write >> C:\Users\Administrator\Artemis.txt
@@ -72,10 +80,19 @@ echo 17. Enable User Account Control
 echo 18. Enable Windows Firewall
 echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
-echo 21. NoVirusThanks Sys Hardener
+echo 21. 
 echo 22. Clear Hosts File
 echo 23. Enable Data Execution Prevention
-echo 24.
+echo 24. Run Security Programs
+echo 25. Uninstall programs + features
+echo 26. Set up Backup
+echo 27. Other application settings
+echo 28. Firefox security settings
+echo 29. Check for prohibited/sketchy files
+echo 30. Update all programs adlice program updater
+echo 31. NoVirusThanks Sys Hardener
+
+
 
 set /p mo="Enter your choice: "
 IF %mo%==25 goto Twentyfive
@@ -105,8 +122,11 @@ IF %mo%==2 goto Two
 IF %mo%==1 goto One
 
 :One
-REM Automation found from all over the interwebs, sources unknown, please open issue. sokme crap;
-REM Turns off RDP
+REM Automation found from all over the inter
+REM Screensaver!
+Reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v ScreenSaveActive /t REG_SZ /d 1 /f
+Reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v ScreenSaveTimeOut /t REG_SZ /d 1200 /f
+Reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v ScreenSaverIsSecure /t REG_SZ /d 1 /f
 
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Main" /v DoNotTrack /t REG_DWORD /d 1 /f
 reg ADD "HKCU\Software\Microsoft\Internet Explorer\Download" /v RunInvalidSignatures /t REG_DWORD /d 1 /f
