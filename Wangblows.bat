@@ -17,6 +17,38 @@ If %ERRORLEVEL% == 1 (
 	exit
 )
 
+:@@@INTITIAL SERVICE CONFIG@@@
+start cmd.exe /c sc query >> C:\Services_Original.txt
+if %errorlevel%==1 ( echo Failed to write Original Services >> C:\Users\Administrator\Artemis.txt
+) else (
+echo Outputted Original Service Configs.
+)
+
+:@@@FIREWALL BACKUP@@@
+netsh advfirewall export "C:\Users\Administrator\Original_Firewall_Policy.wfw"
+if %errorlevel%==1 echo "Failed to export firewall policy" >> C:\Users\Administrator\Artemis.txt
+
+:@@@REGISTRY BACKUP@@@
+@echo off
+setlocal
+for %%k in (lm cu cr u cc) do call :ExpReg %%k
+goto :eof
+:ExpReg
+cd C:\Users\Administrator\Artemis.txt
+reg.exe export hk%1 hk%1.reg > nul
+if "%errorlevel%"=="1" (
+  echo ^>^> Export --hk%1-- Failed.
+) else (
+  echo ^>^> Export --hk%1-- Success.
+)
+goto :eof
+endlocal
+
+:@@@CURRENTLY RUNNING SERVICES@@@
+start cmd.exe /c net start >> C:\Services_Started.txt
+if %errorlevel%==1 echo Running services failed to write >> C:\Users\Administrator\Artemis.txt
+
+
 ::test michael is bi
 :MENU
 echo Choose An option:
@@ -34,10 +66,10 @@ echo 11. Full Audit for Failure Only
 echo 12. Full Audit for Success Only
 echo 13. Secure NT Rights
 echo 14. Automatic Password Change
-echo 15. User and Group Management
+echo 15. User Group Management
 echo 16. User Enable or Disable
 echo 17. Enable User Account Control
-echo 18. Remove Capability (Needs work)
+echo 18. Enable Windows Firewall
 echo 19. Remove Packages and Update Packages (Needs work)
 echo 20. Update Windows AppStore Apps (Needs work)
 echo 21. NoVirusThanks Sys Hardener
@@ -46,7 +78,14 @@ echo 23. Enable Data Execution Prevention
 echo 24.
 
 set /p mo="Enter your choice: "
-
+IF %mo%==25 goto Twentyfive
+IF %mo%==24 goto Twentyfour
+IF %mo%==23 goto Twentythree
+IF %mo%==22 goto Twentytwo
+IF %mo%==21 goto Twentyone
+IF %mo%==20 goto Twenty
+IF %mo%==19 goto Nineteen
+IF %mo%==18 goto Eighteen
 IF %mo%==17 goto Seventeen
 IF %mo%==15 goto Fifteen
 IF %mo%==16 goto Sixteen
@@ -775,9 +814,6 @@ echo Invalid input %groupOption%
 endlocal
 goto Fifteen
 
-:Twentythree
-bcdedit.exe /set {current} nx AlwaysOn
-goto MENU
 
 :Sixteen
 setlocal EnableDelayedExpansion
@@ -804,10 +840,30 @@ goto :Sixteen
 reg ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 goto MENU
 
+:Eighteen
+:@@@ENABLE WINDOWS FIREWALL
+sc config MPSSVC start= auto
+net start MPSSVC
+netsh Advfirewall set allprofiles state on
+netsh advfirewall set publicprofile state on
+netsh advfirewall set domainprofile state on
+netsh advfirewall set publicprofile state on
+netsh advfirewall set privateprofile state on
+netsh advfirewall set currentprofile logging maxfilesize 4096
+netsh advfirewall set currentprofile logging droppedconnections enable
+netsh advfirewall set currentprofile logging allowedconnections enable
+goto MENU
+
+
 :Twentytwo
 attrib -r -s C:\WINDOWS\system32\drivers\etc\hosts
 echo > C:\Windows\System32\drivers\etc\hosts
 attrib +r +s C:\WINDOWS\system32\drivers\etc\hosts
 goto MENU
+
+:Twentythree
+bcdedit.exe /set {current} nx AlwaysOn
+goto MENU
+
 
 PAUSE >nul
