@@ -83,7 +83,7 @@ echo 15. User Group Management
 echo 16. User Enable or Disable
 echo 17. Enable User Account Control
 echo 18. Download and Install SysInternals
-echo 19. Remove Packages and Update Packages (Needs work)
+echo 19. Remove Packages
 echo 20. Update Windows AppStore Apps (Needs work)
 echo 21. SysInternals Autoruns and Process Explorer with VT Upload
 echo 22. Clear Hosts File
@@ -928,7 +928,15 @@ pause
 goto MENU
 
 :Nineteen
+dism /online /get-capabilities >> C:\Wangblows\capabilities.txt
+notepad C:\Windows\System32\notepad.exe C:\Wangblows\capabilities.txt
+echo REMOVE ANY CAPABILITIES THAT ARE UNAUTHORIZED!
+pause
+goto MENU
 
+:Twenty
+echo Starting the Apps Folder
+start shell:AppsFolder /wait
 pause
 goto MENU
 
