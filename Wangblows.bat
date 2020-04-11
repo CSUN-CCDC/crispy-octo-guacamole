@@ -2,7 +2,7 @@
 title 0A
 title Cyber Patriot meets Hivestorm meets CCDC 
 ::Initilize variables
-
+set mypath=%~dp0
 ::echo Checking if this script contains Administrative rights...
 ::net openfiles
 ::if %errorlevel%==0 (
@@ -21,10 +21,11 @@ sc config srservice start= Auto
 net start srservice
 sc config VSS start= auto
 
-copy /y LGPO.exe C:\Windows\System32\LGPO.exe
-start %cd%\lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
+copy /y %mypath%\LGPO.exe C:\Windows\System32\LGPO.exe
+start %cd%\lgpo.exe /b C:\Wangblows\ /n "Policy Backup"
 echo Make sure policy has been exported
 pause
+
 
 start regedit.exe
 echo Make sure registry has been exported
