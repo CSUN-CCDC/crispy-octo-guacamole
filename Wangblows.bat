@@ -74,7 +74,7 @@ echo Choose an Option:
 echo 1. Enable Auto-Update
 echo 2. Harden Networking
 echo 3. Take Registry Backup
-echo 4. Find Files
+echo 4. Check for prohibited/sketchy files Remove .zip, .exe, .msi
 echo 5. Disable Remote Desktop
 echo 6. Miscallaneous Registry Security Keys
 echo 7. Disable Weak Services
@@ -99,7 +99,7 @@ echo 25. Uninstall programs
 echo 26. Set up Backup
 echo 27. Other application settings
 echo 28. Firefox security settings
-echo 29. Check for prohibited/sketchy files Remove .zip, .exe, .msi
+echo 29. 
 echo 30. Update all programs using UCheck 
 echo 31. NoVirusThanks Sys Hardener
 echo 32. Install Antivirus
@@ -1007,16 +1007,6 @@ goto MENU
 
 :Twentynine
 REM Services
-Net stop "Telnet"
-sc config "Telnet" start=disabled
-Net stop "Telephony"
-sc config "Telephony" start=disabled
-Net stop "RIP Listener"
-sc config "RIP Listener" start=disabled
-Net stop "SNMP Trap"
-sc config "SNMP Trap" start=disabled
-Net stop "Remote Registry"
-sc config "Remote Registry" start=disabled
 pause
 goto MENU
 
