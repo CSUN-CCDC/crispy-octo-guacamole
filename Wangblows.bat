@@ -3,15 +3,15 @@ title 0A
 title Cyber Patriot meets Hivestorm meets CCDC 
 ::Initilize variables
 %path=%~dp0
-echo Checking if this script contains Administrative rights...
-net openfiles
-if %errorlevel%==0 (
-echo Success!
-) else (
-echo Please run as Administrator.
-pause
-exit
-)
+::echo Checking if this script contains Administrative rights...
+::net openfiles
+::if %errorlevel%==0 (
+::echo Success!
+::) else (
+::echo Please run as Administrator.
+::pause
+::exit
+::)
 
 mkdir C:\Wangblows
 
