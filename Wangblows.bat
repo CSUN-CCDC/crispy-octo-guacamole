@@ -38,7 +38,6 @@ echo Outputted Original Service Configs.
 )
 
 :@@@Listing possible penetrations@@@
-cd C:\Wangblows\
 echo "STARTING TO OUTPUT PROCESS FILES DIRECTLY TO THE C:\Wangblows\ DRIVE!"
 wmic process list brief > BriefProcesses.txt
 if %errorlevel%==1 echo Brief Processes failed to write >> C:\Wangblows\Wangblows.txt
