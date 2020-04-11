@@ -99,10 +99,11 @@ echo 25. Uninstall programs
 echo 26. Set up Backup
 echo 27. Other application settings
 echo 28. Firefox security settings
-echo 29. 
+echo 29. Windows Security Center
 echo 30. Update all programs using UCheck 
-echo 31. NoVirusThanks Sys Hardener
-echo 32. Install Antivirus
+echo 31. Install Antivirus
+echo 32. 
+echo 33. 
 echo 69. Nice 
 
 set /p mo="Enter your choice: "
@@ -665,10 +666,7 @@ goto MENU
 
 :Nine
 REM PowerShell RootKit detection start
-echo "PowerShell downloading AVG anti-virus"
-powershell Invoke-WebRequest -OutFile AVG.exe https://bits.avcdn.net/productfamily_ANTIVIRUS/insttype_FREE/platform_WIN_AVG/installertype_ONLINE/build_RELEASE
-start AVG.exe /wait
-pause
+
 goto MENU
 
 
@@ -984,14 +982,17 @@ pause
 goto MENU
 
 :Twentyfive
+start appwiz.cpl /wait
 pause
 goto MENU
 
 :Twentysix
+start sdclt.exe /configure
 pause
 goto MENU
 
 :Twentyseven
+echo Go look for critical services and harden them.
 pause
 goto MENU
 
@@ -1002,11 +1003,13 @@ echo Warn when try to install addons
 echo Popup blocker
 echo Remove bad extensions
 echo Update Firefox
+echo CIS benchmark
 pause
 goto MENU
 
 :Twentynine
-REM Services
+REM Security Center
+start wscui.cpl /wait
 pause
 goto MENU
 
@@ -1018,7 +1021,11 @@ pause
 goto MENU
 
 :Thirtyone
+echo "PowerShell downloading AVG anti-virus"
+powershell Invoke-WebRequest -OutFile AVG.exe https://bits.avcdn.net/productfamily_ANTIVIRUS/insttype_FREE/platform_WIN_AVG/installertype_ONLINE/build_RELEASE
+start AVG.exe /wait
 pause
+
 goto MENU
 
 :Thirtytwo
@@ -1026,11 +1033,6 @@ pause
 goto MENU
 
 :Thirtythree
-pause
-goto MENU
-
-:Twentyfive
-start appwiz.cpl /wait
 pause
 goto MENU
 
