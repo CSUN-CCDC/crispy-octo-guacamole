@@ -649,8 +649,6 @@ echo "Restoring critical services 100% complete."
 pause
 goto MENU)
 
-
-
 :Eight
 REM START SYS INTEG SCAN!
 echo "STARTING SYSTEM INTERGRITY SCAN"
