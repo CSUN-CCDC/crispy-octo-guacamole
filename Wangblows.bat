@@ -21,7 +21,7 @@ sc config srservice start= Auto
 net start srservice
 sc config VSS start= auto
 
-
+copy /y LGPO.exe C:\Windows\System32\LGPO.exe
 start %cd%\lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
 echo Make sure policy has been exported
 pause
@@ -38,7 +38,7 @@ If %ERRORLEVEL% == 1 (
 )
 
 :@@@INTITIAL SERVICE CONFIG@@@
-start cmd.exe /c sc query >> C:\Wangblows\Services_Original.txt
+sc query >> C:\Wangblows\Services_Original.txt
 if %errorlevel%==1 ( echo Failed to write Original Services >> C:\Wangblows\Wangblows.txt
 ) else (
 echo Outputted Original Service Configs.
@@ -46,13 +46,13 @@ echo Outputted Original Service Configs.
 
 :@@@Listing possible penetrations@@@
 echo "STARTING TO OUTPUT PROCESS FILES DIRECTLY TO THE C:\Wangblows\ DRIVE!"
-wmic process list brief > BriefProcesses.txt
+wmic process list brief > C:\Wangblows\BriefProcesses.txt
 if %errorlevel%==1 echo Brief Processes failed to write >> C:\Wangblows\Wangblows.txt
-wmic process list full >FullProcesses.txt
+wmic process list full > C:\Wangblows\FullProcesses.txt
 if %errorlevel%==1 echo Full Processes failed to write >> C:\Wangblows\Wangblows.txt
-wmic startup list full > StartupLists.txt
+wmic startup list full > C:\Wangblows\StartupLists.txt
 if %errorlevel%==1 echo Startup Processes failed to write >> C:\Wangblows\Wangblows.txt
-net start > StartedProcesses.txt
+net start > C:\Wangblows\StartedProcesses.txt
 if %errorlevel%==1 echo Started processes failed to write >> C:\Wangblows\Wangblows.txt
 reg export HKLM\Software\Microsoft\Windows\CurrentVersion\Run  Run.reg
 if %errorlevel%==1 echo Run processes failed to write >> C:\Wangblows\Wangblows.txt
