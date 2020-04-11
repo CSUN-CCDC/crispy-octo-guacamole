@@ -4,7 +4,7 @@ title Cyber Patriot meets Hivestorm meets CCDC
 ::Initilize variables
 %path=%~dp0
 echo Checking if this script contains Administrative rights...
-net sessions
+net openfiles
 if %errorlevel%==0 (
 echo Success!
 ) else (
@@ -104,7 +104,7 @@ echo 30. Update all programs using UCheck
 echo 31. Install Antivirus
 echo 32. 
 echo 33. 
-echo 69. Nice 
+
 
 set /p mo="Enter your choice: "
 IF %mo%==69 goto Nice
@@ -1037,6 +1037,7 @@ pause
 goto MENU
 
 :Nice
-echo Reserved for future use, but nice.
+echo Resetting Group Policy...
+
 goto MENU
 PAUSE >nul
