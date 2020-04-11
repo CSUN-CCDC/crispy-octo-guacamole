@@ -19,6 +19,8 @@ echo Enabling system restore...
 Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v DisableSR /t REG_DWORD /d 0 /f
 sc config srservice start= Auto
 net start srservice
+sc config VSS start= auto
+
 
 lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
 echo Make sure policy has been exported
