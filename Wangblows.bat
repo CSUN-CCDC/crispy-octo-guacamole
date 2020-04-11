@@ -13,6 +13,12 @@ pause
 exit
 )
 
+echo Enabling system restore...
+Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v DisableSR /t REG_DWORD /d 0 /f
+sc config srservice start= Auto
+net start srservice
+
+
 start lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
 
 mkdir C:\Wangblows
@@ -84,7 +90,7 @@ echo 16. User Enable or Disable
 echo 17. Enable User Account Control
 echo 18. Download and Install SysInternals
 echo 19. Remove Packages
-echo 20. Update Windows AppStore Apps (Needs work)
+echo 20. Update Windows AppStore Apps
 echo 21. SysInternals Autoruns and Process Explorer with VT Upload
 echo 22. Clear Hosts File
 echo 23. SmartScreen Toggle
@@ -937,6 +943,7 @@ goto MENU
 :Twenty
 echo Starting the Apps Folder
 start shell:AppsFolder /wait
+echo Update Windows Store Applications!
 pause
 goto MENU
 
@@ -962,6 +969,17 @@ goto MENU
 goto MENU
 
 :Twentyfour
+echo Running RogueKillers
+echo Running ESET Online Scanner
+echo Running AdwCleaner
+echo OTL Logger
+echo SecurityCheck
+echo OTL
+echo Farbar Service Scanner
+echo HijackThis 
+echo BlitzBlank 
+echo Hitman Pro
+
 pause
 goto MENU
 
