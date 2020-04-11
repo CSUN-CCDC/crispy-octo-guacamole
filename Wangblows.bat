@@ -22,11 +22,11 @@ net start srservice
 sc config VSS start= auto
 
 
-lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
+start %cd%\lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
 echo Make sure policy has been exported
 pause
 
-start regedit.exe /wait
+start regedit.exe
 echo Make sure registry has been exported
 pause
 
