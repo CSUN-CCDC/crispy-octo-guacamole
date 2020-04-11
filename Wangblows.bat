@@ -20,8 +20,13 @@ Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemR
 sc config srservice start= Auto
 net start srservice
 
+lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
+echo Make sure policy has been exported
+pause
 
-start lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
+start regedit.exe /wait
+echo Make sure registry has been exported
+pause
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine" /v "PowerShellVersion" /z >nul
 If %ERRORLEVEL% == 1 (
