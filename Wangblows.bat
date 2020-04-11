@@ -13,6 +13,8 @@ pause
 exit
 )
 
+start lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
+
 mkdir C:\Wangblows
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine" /v "PowerShellVersion" /z >nul
@@ -92,7 +94,7 @@ echo 26. Set up Backup
 echo 27. Other application settings
 echo 28. Firefox security settings
 echo 29. Check for prohibited/sketchy files Remove .zip, .exe, .msi
-echo 30. Update all programs using UCheck
+echo 30. Update all programs using UCheck 
 echo 31. NoVirusThanks Sys Hardener
 echo 32. Install Antivirus
 echo 69. Nice 
@@ -928,6 +930,7 @@ pause
 goto MENU
 
 :Nineteen
+
 pause
 goto MENU
 
