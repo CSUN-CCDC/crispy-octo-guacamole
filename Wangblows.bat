@@ -13,6 +13,8 @@ pause
 exit
 )
 
+mkdir C:\Wangblows
+
 echo Enabling system restore...
 Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v DisableSR /t REG_DWORD /d 0 /f
 sc config srservice start= Auto
@@ -20,8 +22,6 @@ net start srservice
 
 
 start lgpo.exe /b C:\Wangblows\ /n "Policy Backup" /wait
-
-mkdir C:\Wangblows
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine" /v "PowerShellVersion" /z >nul
 If %ERRORLEVEL% == 1 (
