@@ -101,9 +101,6 @@ echo 28. Firefox security settings
 echo 29. Windows Security Center
 echo 30. Update all programs using UCheck 
 echo 31. Install Antivirus
-echo 32. 
-echo 33. 
-
 
 set /p mo="Enter your choice: "
 IF %mo%==69 goto Nice
@@ -1035,8 +1032,4 @@ goto MENU
 pause
 goto MENU
 
-:Nice
-echo Resetting Group Policy...
-
-goto MENU
 PAUSE >nul
