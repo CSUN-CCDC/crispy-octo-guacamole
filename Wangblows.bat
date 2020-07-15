@@ -12,6 +12,7 @@ set mypath=%~dp0
 ::pause
 ::exit
 ::)
+::Test
 
 mkdir C:\Wangblows
 
