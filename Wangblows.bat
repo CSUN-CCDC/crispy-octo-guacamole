@@ -10,9 +10,10 @@ set mypath=%~dp0
 ::) else (
 ::echo Please run as Administrator.
 ::pause
-::exit
+::exit 
 ::)
 ::Test
+
 
 mkdir C:\Wangblows
 
