@@ -24,6 +24,7 @@ Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemR
 sc config srservice start= Auto
 net start srservice
 
+::@@LOCAL GROUP POLICY@@
 copy /y %mypath%\LGPO.exe C:\Windows\System32\LGPO.exe
 start %cd%\lgpo.exe /b C:\Wangblows\ /n "Policy Backup"
 echo Make sure policy has been exported
