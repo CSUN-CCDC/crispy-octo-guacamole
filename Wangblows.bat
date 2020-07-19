@@ -16,11 +16,13 @@ set mypath=%~dp0
 
 mkdir C:\Wangblows
 
+sc config VSS start= auto
+net start VSS
 echo Enabling system restore...
+start cmd.exe /c wmic /namespace:\\root\default Path SystemRestore Call enable “C:\”
 Reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v DisableSR /t REG_DWORD /d 0 /f
 sc config srservice start= Auto
 net start srservice
-sc config VSS start= auto
 
 copy /y %mypath%\LGPO.exe C:\Windows\System32\LGPO.exe
 start %cd%\lgpo.exe /b C:\Wangblows\ /n "Policy Backup"
