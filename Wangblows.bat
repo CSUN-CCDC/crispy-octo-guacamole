@@ -975,7 +975,8 @@ goto MENU
 IF %a%==w (
 reg add HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v SmartScreenEnabled /t REG_SZ /d Warn /f
 goto MENU
-)
+) 
+REM nani
 
 goto MENU
 
