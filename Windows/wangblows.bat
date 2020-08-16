@@ -83,7 +83,7 @@ if %errorlevel%==1 echo Running services failed to write >> C:\Wangblows\Wangblo
 
 :MENU
 echo Choose an Option:
-echo 2. Harden Networking
+echo 2. Harden Netwokring
 echo 3. Take Registry Backup
 echo 5. Disable Remote Desktop
 echo 6. Miscallaneous Registry Security Keys
@@ -154,12 +154,14 @@ netsh advfirewall set currentprofile logging allowedconnections enable
 pause
 goto MENU
 
+:: prompts a manual backup for registry
 :Three
 echo Backup HKLM, HKCR, HKCU, HKU, HKCC manually
 start regedit.exe /wait
 pause
 goto MENU
 
+::
 :Five
 set /p rdpChk="Enable remote desktop (y/n)"
 if %rdpChk%==y (
@@ -250,7 +252,7 @@ goto MENU)
 goto MENU
 
 IF %option%==n (
-REM Removing good ol' insecure stuff but not me. I may be insecure, but I am important. Or am I? I don't even know anymore
+:: Removing good ol' insecure stuff but not me. I may be insecure, but I am important. Or am I? I don't even know anymore
 echo "DISABLING WEAK SERVICES"
 echo on
 
