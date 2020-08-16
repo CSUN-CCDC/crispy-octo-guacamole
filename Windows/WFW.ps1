@@ -11,7 +11,7 @@ function CheckService{
     Set-Service -Name $ServiceName -StartupType Automatic -Force
     Start-Service $ServiceName
     Write-Host "Starting " $ServiceName " service" 
-    " ---------------------- " 
+    " |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| " 
     " Service is now started"
     }
     if ($arrService.Status -eq "running"){ 
@@ -46,7 +46,8 @@ do
         Write-Host "Stage 1/6: Obtaining local firewall health status..."
         CheckService("mpssvc")
         CheckService("bfe")
-
+# Get Policystoresourcetype object and read to do next action
+    Get-NetFirewallRule -PolicyStoreSource | Select-Object -ExpandProperty EndRange | Select-Object -ExpandProperty IPAddressToString
     } '2' {
     'You chose option #2'
     } '3' {
