@@ -8,6 +8,7 @@ function CheckService{
     param($ServiceName)
     $arrService = Get-Service -Name $ServiceName
     if ($arrService.Status -ne "Running"){
+    Set-Service -Name $ServiceName -StartupType Automatic -Force
     Start-Service $ServiceName
     Write-Host "Starting " $ServiceName " service" 
     " ---------------------- " 
@@ -44,6 +45,8 @@ do
         Clear-Host
         Write-Host "Stage 1/6: Obtaining local firewall health status..."
         CheckService("mpssvc")
+        CheckService("bfe")
+
     } '2' {
     'You chose option #2'
     } '3' {
