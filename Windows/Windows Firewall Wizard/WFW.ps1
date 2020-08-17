@@ -24,7 +24,7 @@ function Show-WFW-Menu {
     )
     Clear-Host
     Write-Host "=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| $Title |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|="
-    Write-Host ""
+    Write-Host "Troubleshoot inactive / disabled Firewall"
     Write-Host "Check if Group Policy has interfered with Firewall"
     Write-Host ""
     Write-Host "" 
@@ -43,7 +43,7 @@ do
     {
     '1' {
         Clear-Host
-        Write-Host "Stage 1/6: Obtaining local firewall health status..."
+        Write-Host "Stage 1/6: Performing factory reconfiguration of local firewall..."
         CheckService("mpssvc")
         CheckService("bfe")
 # Get Policystoresourcetype object and read to do next action
