@@ -45,16 +45,18 @@ do
     '1' {
         Clear-Host
         title Hello
-
         Write-Host "Stage 1/6: Performing factory reconfiguration of local firewall..."
+        Start-Process -FilePath WindowsFirewall.diagcab -Verb RunAs -Wait
+        Read-Host "Press Enter key to continue with automatic repairs if Windows Firewall still does not work..."
         CheckService("mpssvc")
         CheckService("bfe")
         reg import .\mpssvc.reg
         reg import .\mpsdrv.reg
-# Get Policystoresourcetype object and read to do next action
-    Get-NetFirewallRule -PolicyStoreSource | Select-Object -ExpandProperty EndRange | Select-Object -ExpandProperty IPAddressToString
     } '2' {
-    'You chose option #2'
+Write-Host -BackgroundColor "Black" -ForegroundColor "Lime"
+        # Get Policystoresourcetype object and read to do next action
+#Get-NetFirewallRule -PolicyStoreSource | Select-Object -ExpandProperty EndRange | Select-Object -ExpandProperty IPAddressToString
+        'You chose option #2'
     } '3' {
       'You chose option #3'
     }
