@@ -22,6 +22,7 @@ function Show-WFW-Menu {
     param (
         [string]$Title = 'WFW Menu'
     )
+    title "Windows Firewall Wizard by @1ncryption"
     Clear-Host
     Write-Host "=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| $Title |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|="
     Write-Host "Troubleshoot inactive / disabled Firewall"
@@ -43,9 +44,13 @@ do
     {
     '1' {
         Clear-Host
+        title Hello
+
         Write-Host "Stage 1/6: Performing factory reconfiguration of local firewall..."
         CheckService("mpssvc")
         CheckService("bfe")
+        reg import .\mpssvc.reg
+        reg import .\mpsdrv.reg
 # Get Policystoresourcetype object and read to do next action
     Get-NetFirewallRule -PolicyStoreSource | Select-Object -ExpandProperty EndRange | Select-Object -ExpandProperty IPAddressToString
     } '2' {
