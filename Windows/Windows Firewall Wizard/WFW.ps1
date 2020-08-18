@@ -39,23 +39,32 @@ function Show-WFW-Menu {
 do
  {
     Show-WFW-Menu
-    $selection = Read-Host "Please select an option."
+    $selection = Read-Host "Please select an option: "
     switch ($selection)
     {
     '1' {
         Clear-Host
-        title Hello
+        title "Troubleshoot inactive / disabled Firewall"
         Write-Host "Stage 1/6: Performing factory reconfiguration of local firewall..."
+        #Backup current configuration of firewall
+        Write-Host "Your existing firewall configuration has been saved to: c:\Pre-advfirewallpolicy.wfw" -Foregroundcolor CYAN
+        netsh advfirewall export "c:\Pre-advfirewallpolicy.wfw" | Out-Null
+        #Microsoft repair firewall
         Start-Process -FilePath WindowsFirewall.diagcab -Verb RunAs -Wait
+        #Reinstall firewall service
+        cmd.exe /c Rundll32.exe setupapi,InstallHinfSection Ndi-Steelhead 132 %windir%\inf\netrass.inf     
         Read-Host "Press Enter key to continue with automatic repairs if Windows Firewall still does not work..."
         CheckService("mpssvc")
         CheckService("bfe")
-        reg import .\mpssvc.reg
-        reg import .\mpsdrv.reg
+        netsh advfirewall set domainprofile state on
+        netsh advfirewall set privateprofile state on
+        netsh advfirewall set publicprofile state on
+netsh advfirewall set privateprofile state on
     } '2' {
 Write-Host -BackgroundColor "Black" -ForegroundColor "Lime"
         # Get Policystoresourcetype object and read to do next action
 #Get-NetFirewallRule -PolicyStoreSource | Select-Object -ExpandProperty EndRange | Select-Object -ExpandProperty IPAddressToString
+        gpresult.exe -z 
         'You chose option #2'
     } '3' {
       'You chose option #3'
