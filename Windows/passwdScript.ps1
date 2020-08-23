@@ -8,7 +8,7 @@ Write-Host "`nDisabling password complexity, because I guess we don't come up wi
 secedit /export /cfg C:\securityPolicy.cfg
 (Get-Content C:\securityPolicy.cfg).replace("PasswordComplexity = 1","PasswordComplexity = 0") | Out-File C:\securityPolicy.cfg
 secedit /configure /db C:\windows\security\local.sdb /cfg C:\securityPolicy.cfg /areas SECURITYPOLICY
-rm -force C:\securityPolicy.cfg -confirm:$false
+Remove-Item -force C:\securityPolicy.cfg -confirm:$false
 
 Write-Host "\nPassword Complexity Disabled. If the last message of this script does not prompt it has been reverted back, then you have to revert back."
 
@@ -29,6 +29,6 @@ Write-Host "Set all user 'Change Passwords at Log On' to False"
 secedit /export /cfg C:\securityPolicy.cfg
 (Get-Content C:\securityPolicy.cfg).replace("PasswordComplexity = 0","PasswordComplexity = 1") | Out-File C:\securityPolicy.cfg
 secedit /configure /db C:\windows\security\local.sdb /cfg C:\securityPolicy.cfg /areas SECURITYPOLICY
-rm -force C:\securityPolicy.cfg -confirm:$false
+Remove-Item -force C:\securityPolicy.cfg -confirm:$false
 
 Write-Host "Password Complexity set back to 1"

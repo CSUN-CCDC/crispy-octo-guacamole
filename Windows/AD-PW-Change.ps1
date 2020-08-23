@@ -3,7 +3,7 @@ Import-Module ActiveDirectory
 Add-Type -AssemblyName System.Web
 [System.Web.Security.Membership]::GeneratePassword(16,2)
 #Create list of AD Users
-Get-ADUser -Filter * | select SamAccountName | Export-CSV -Path C:\Users\Administrator\PasswordSubmission.csv
+Get-ADUser -Filter * | Select-Object SamAccountName | Export-CSV -Path C:\Users\Administrator\PasswordSubmission.csv
 (Get-Content C:\Users\Administrator\PasswordSubmission.csv) -replace '"' -replace "`n","`r`n" > Userlist.txt
 #Parse each user in each line
 $users = Get-Content -Encoding ascii -Path C:\Users\Administrator\Documents\Userlist.txt
