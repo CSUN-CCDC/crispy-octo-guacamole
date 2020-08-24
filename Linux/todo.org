@@ -1,7 +1,7 @@
 #+TITLE: Punch List for Arian
 
 * WAIT
-* TODO Linux script format decision
+* TODO Linux script format decision. Tell me what you want to do Arian.
 * TODO What elements do you want to harden via script?
 * TODO Test deployment
 * DONE
