@@ -3,5 +3,5 @@
 * WAIT
 * TODO Linux script format decision
 * TODO What elements do you want to harden via script?
-* TODO Test deployme
+* TODO Test deployment
 * DONE
