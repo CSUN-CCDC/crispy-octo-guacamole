@@ -3,7 +3,8 @@
 Written by @1ncryption
 This script is to walk you through the setup process for a local firewall deployment using my sexy firewwall strategies.
 #>
-
+# Load assembly
+[System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 function CheckService{
     param($ServiceName)
     $arrService = Get-Service -Name $ServiceName
@@ -25,17 +26,15 @@ function Show-WFW-Menu {
     title "Windows Firewall Wizard by @1ncryption"
     Clear-Host
     Write-Host "=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| $Title |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|="
-    Write-Host "Troubleshoot inactive / disabled Firewall"
-    Write-Host "Check if Group Policy has interfered with Firewall"
-    Write-Host ""
-    Write-Host "" 
-    Write-Host "Active Directory Domain Controller"
+    Write-Host "1. Troubleshoot inactive / disabled Firewall"
+    Write-Host "2. Check if Group Policy has interfered with Firewall"
+    Write-Host "3. Active Directory Domain Controller"
     Write-Host "Read Only Active Directory Domain Controller"
     Write-Host "Workstation with no services"
     Write-Host "Server"
     Write-Host "Q: Press 'Q' (case sensitive) to quit."
 }
-
+   
 do
  {
     Show-WFW-Menu
@@ -45,23 +44,25 @@ do
     '1' {
         Clear-Host
         title "Troubleshoot inactive / disabled Firewall"
-        Write-Host "Stage 1/6: Performing factory reconfiguration of local firewall..."
+        Write-Warning "Performing factory reconfiguration of local firewall..."
         #Backup current configuration of firewall
-        Write-Host "Your existing firewall configuration has been saved to: c:\Pre-advfirewallpolicy.wfw" -Foregroundcolor CYAN
+        Write-Host -BackgroundColor Black -ForegroundColor Yellow "Your existing firewall configuration has been saved to: c:\Pre-advfirewallpolicy.wfw" -Foregroundcolor CYAN
         netsh advfirewall export "c:\Pre-advfirewallpolicy.wfw" | Out-Null
+        Write-Host -BackgroundColor Black -ForegroundColor Yellow "Backed up rules to C:\Original-advfirewallpolicy.wfw"
         #Microsoft repair firewall
         Start-Process -FilePath WindowsFirewall.diagcab -Verb RunAs -Wait
         #Reinstall firewall service
         cmd.exe /c Rundll32.exe setupapi,InstallHinfSection Ndi-Steelhead 132 %windir%\inf\netrass.inf     
-        Read-Host "Press Enter key to continue with automatic repairs if Windows Firewall still does not work..."
+        Write-Host -BackgroundColor Black -ForegroundColor Green "Please confirm the firewall is operational. If not, press enter."
         CheckService("mpssvc")
         CheckService("bfe")
         netsh advfirewall set domainprofile state on
         netsh advfirewall set privateprofile state on
         netsh advfirewall set publicprofile state on
-netsh advfirewall set privateprofile state on
+        
+        [System.Windows.Forms.MessageBox]::Show("Message Text","Title",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
     } '2' {
-Write-Host -BackgroundColor "Black" -ForegroundColor "Lime"
+Write-Host -BackgroundColor "Black" -ForegroundColor "Cyan"
         # Get Policystoresourcetype object and read to do next action
 #Get-NetFirewallRule -PolicyStoreSource | Select-Object -ExpandProperty EndRange | Select-Object -ExpandProperty IPAddressToString
         gpresult.exe -z 
