@@ -1,7 +1,8 @@
 #+TITLE: Punch List for Arian
 
 * WAIT
-* TODO Linux script format decision. Tell me what you want to do Arian.
-* TODO What elements do you want to harden via script?
-* TODO Test deployment
+* TODO Start by hardening SSH automatically and editing the config file, whichever way you feel is best.
+* TODO Then editing other known services like vsftpd
+* TODO What other elements do you want to harden via script? Start with the network layer. 
+* TODO Test deployment on new and older versions of shell running
 * DONE
