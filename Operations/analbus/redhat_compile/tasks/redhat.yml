@@ -1,0 +1,79 @@
+---
+# Begin RedHat tasks file
+- name: Create a temp directory
+  tempfile:
+    state: directory
+    prefix: "{{ nix_software_name }}"
+  register: nix_software_tgz_path
+
+- name: Print Temp directory path
+  debug:
+    msg: "Temp directory is located at: {{ nix_software_tgz_path }}"
+
+- name: Pull TGZ from web
+  become: yes
+  get_url:
+    url: "{{ nix_software_url }}"
+    dest: "{{ nix_software_tgz_path.path }}/{{ nix_software_tar_name }}"
+    mode: '666'
+    validate_certs: no
+
+- name: Unarchive the pulled tgz
+  become: yes
+    src: "{{ nix_software_tgz_path.path }}/{{ nix_software_tar_name }}"
+    dest: "{{ nix_software_dest_folder }}"
+    remote_src: yes
+    group: root
+
+- name: Bootstrap
+  become: yes
+  command: "./bootstrap"
+  args:
+    chdir: "{{ nix_software_dest_folder }}/{{ nix_software_name }}"
+
+- name: Configure
+  become: yes
+  command: "./configure"
+  args:
+    chdir: "{{ nix_software_dest_folder }}/{{ nix_software_name }}"
+
+- name: Make
+  become: yes
+  make:
+    chdir: "{{ nix_software_dest_folder }}/{{ nix_software_name }}"
+  async: 3000
+  poll: 60
+  register: nix_software_make_waiting
+
+- name: Make Waiting
+  become: yes
+  async_status:
+    jid: "{{ nix_software_make_waiting.ansible_job_id }}"
+  register: nix_software_make_result
+  until: nix_software_make_result.finished
+  retries: 75
+
+- name: Install
+  become: yes
+  command: "make install"
+  args:
+    chdir: "{{ nix_software_dest_folder }}/{{ nix_software_name }}"
+  async: 3000
+  poll: 60
+  register: nix_software_install_waiting
+
+- name: Install Waiting
+  become: yes
+  async_status:
+    jid: "{{ nix_software_install_waiting.ansible_job_id }}"
+  register: nix_software_install_result
+  until: nix_software_install_result.finished
+  retries: 75
+
+- name: Delete temp Directory
+  become: yes
+  file:
+    path: "{{ nix_software_tgz_path.path }}"
+    state: absent
+
+...

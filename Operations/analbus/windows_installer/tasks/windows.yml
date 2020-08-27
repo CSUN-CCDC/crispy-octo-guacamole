@@ -1,0 +1,34 @@
+---
+# Begin Windows tasks file
+- name: Create a temp directory
+  win_file:
+    state: directory
+    path: "{{ win_software_dest_folder }}"
+
+- name: Pull installer from web
+  become: yes
+  win_get_url:
+    url: "{{ win_software_url }}"
+    dest: "{{ win_software_dest_folder }}\\{{ win_software_installer }}"
+    validate_certs: no
+    timeout: 600
+
+# Sometimes use /qn an /log c:\temp\install.log
+- name: Run the installer
+  become: yes
+  win_command: "{{ win_software_dest_folder }}\\{{ win_software_installer }} /S" 
+  args:
+    creates: "{{ win_install_path }}"
+
+- name: Create Desktop Shortcut
+  win_shortcut:
+    src: "{{ win_install_path }}\\{{ win_software_exe }}"
+    dest: "C:\\Users\\Public\\Desktop\\{{ win_link_name }}"
+
+- name: Delete temp Directory
+  become: yes
+  win_file:
+    path: "{{ win_software_dest_folder }}"
+    state: absent
+
+...

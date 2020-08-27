@@ -1,0 +1,27 @@
+---
+- name: Make a temp directory
+  file:
+    path: "/tmp/{{ nix_software_name }}"
+    state: directory
+
+- name: Download software package file
+  become: yes
+  get_url:
+    url: "{{ nix_software_url }}"
+    dest: "/tmp/{{ nix_software_name }}/{{ nix_software_tar_name }}"
+    mode: '666'
+    validate_certs: no
+    timeout: 600
+
+- name: Install the Package
+  become: yes
+  yum:
+    name: "/tmp/{{ nix_software_name }}/{{ nix_software_tar_name }}"
+    state: latest
+    disable_gpg_check: yes
+
+- name: Delete Temp directory
+  become: yes
+  file:
+    path: "/tmp/{{ nix_software_name }}"
+    state: absent
