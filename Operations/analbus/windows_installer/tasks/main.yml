@@ -1,0 +1,12 @@
+---
+- name: "Install software: Windows"
+  import_tasks: windows.yml
+  when: ansible_os_family == "Windows"
+  become_method: runas
+  become_user: "{{ win_become_user }}"
+
+#- name: "Install software: RedHat"
+#  import_tasks: redhat.yml
+#  when: ansible_os_family == "RedHat"
+
+...

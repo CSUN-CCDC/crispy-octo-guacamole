@@ -1,0 +1,24 @@
+---
+software:
+
+# Linux Variables
+nix_software_name:
+nix_software_tar_name:
+nix_software_home:
+nix_software_dest_folder:
+nix_software_url:
+nix_executable_path:
+
+# Windows Variables
+win_link_name:
+win_software_exe:
+win_software_tar_name:
+win_software_dest_folder:
+win_installer_exe:
+win_software_url:
+win_software_name:
+win_software_home:
+win_software_cfg:
+win_installpath:
+
+...
