@@ -28,7 +28,7 @@ function Show-WFW-Menu {
     Write-Host "=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| $Title |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|="
     Write-Host "1. Troubleshoot inactive / disabled Firewall"
     Write-Host "2. Auto Identify existing GPO firewall rules"
-    Write-Host "3. Active Directory Domain Controller"
+    Write-Host "3. Harden Active Directory Domain Controller"
     Write-Host "4. Read Only Active Directory Domain Controller"
     Write-Host "5. Workstation with no services"
     Write-Host "6. Server"
@@ -102,7 +102,20 @@ do
     
         
     } '3' {
-      'You chose option #3'
+        Clear-Host
+        Try {
+            New-NetFirewallRule -DisplayName "Allow DNS Outbound" -Direction Outbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -OverrideBlockRules True -Profile Any -RemotePort Any -Protocol UDP -RemoteAddress Any -LocalPort 53
+            New-NetFirewallRule -DisplayName "Allow DNS Inbound" -Direction Inbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -OverrideBlockRules True -Profile Any -RemotePort Any -Protocol UDP -RemoteAddress Any -LocalPort 53
+
+            New-NetFirewallRule -DisplayName "Allow DNS Outbound TCP" -Direction Outbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -OverrideBlockRules True -Profile Any -RemotePort Any -Protocol TCP -RemoteAddress Any -LocalPort 53
+            New-NetFirewallRule -DisplayName "Allow DNS Inbound TCP" -Direction Inbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -OverrideBlockRules True -Profile Any -RemotePort Any -Protocol TCP -RemoteAddress Any -LocalPort 53
+            
+            #88 TCP/UDP, 445 TCP, 139 TCP 135, TCP 3389, TCP 389, TCP 3268
+            
+        }catch {
+                [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Harden Active Directory Domain Controller",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                Write-Warning $Error[0]
+            }
     }
     }
     pause
