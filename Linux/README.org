@@ -4,6 +4,7 @@
 This script is responsible for setting a random password for all
 users excluding root and system users.
 * Todo [0/3]
-- [ ] Script for securing ~sshd_config~
+- [ ] Script for checking & securing ~sshd_config~
+- [ ] script for checking & securing mysql
 - [ ] Add a flag to check if ~$BLACK_TEAM_PGP_KEY~ exists and encrypt
   the files accordingly
