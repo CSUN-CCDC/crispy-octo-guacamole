@@ -11,10 +11,13 @@ def failed(text):
 def passed(text):
     print(f"\033[92m[ PASS ]: {text}\033[0m")
 
+if os.geteuid() != 0:
+    failed("Please re-run the script as root")
+    exit()
+
 # Context-aware `match' block
 # (User or Group, name)
 match = None
-
 
 for line in open("/etc/ssh/sshd_config", 'r'):
     # Match blocks
