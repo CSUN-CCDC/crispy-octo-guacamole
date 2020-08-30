@@ -28,7 +28,7 @@ function Show-WFW-Menu {
     Write-Host "=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| $Title |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|="
     Write-Host "1. Troubleshoot inactive / disabled Firewall"
     Write-Host "2. Auto Identify existing GPO firewall rules"
-    Write-Host "3. Active Directory Domain Controller"
+    Write-Host "3. Harden Active Directory Domain Controller"
     Write-Host "4. Read Only Active Directory Domain Controller"
     Write-Host "5. Workstation with no services"
     Write-Host "6. Server"
@@ -102,7 +102,56 @@ do
     
         
     } '3' {
-      'You chose option #3'
+        Clear-Host
+        Try {
+            #Change Remote Address Any to Whitelisted software
+      New-NetFirewallRule -DisplayName "Allow DNS Outbound" -Direction Outbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 53
+      New-NetFirewallRule -DisplayName "Allow DNS Inbound" -Direction Inbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 53
+
+      New-NetFirewallRule -DisplayName "Allow DNS Outbound TCP" -Direction Outbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 53
+      New-NetFirewallRule -DisplayName "Allow DNS Inbound TCP" -Direction Inbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 53
+      
+      New-NetFirewallRule -DisplayName "Allow Kerberos Outbound TCP" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 88
+      New-NetFirewallRule -DisplayName "Allow Kerberos Inbound TCP" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 88
+      
+      New-NetFirewallRule -DisplayName "Allow Kerberos Outbound" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 88
+      New-NetFirewallRule -DisplayName "Allow Kerberos Inbound" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 88
+      
+      New-NetFirewallRule -DisplayName "Allow SMB Outbound" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+      New-NetFirewallRule -DisplayName "Allow SMB Inbound" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+      
+      New-NetFirewallRule -DisplayName "DFSN, NetBIOS Session Service, NetLogon" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+      New-NetFirewallRule -DisplayName "DFSN, NetBIOS Session Service, NetLogon" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+      
+      New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 389
+      New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 389
+      
+      New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 389
+      New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 389
+      
+      New-NetFirewallRule -DisplayName "Global Catalog, Directory, Replication, User and Computer Authentication, Group Policy, Trusts" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 3268
+      New-NetFirewallRule -DisplayName "Global Catalog, Directory, Replication, User and Computer Authentication, Group Policy, Trusts" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 3268
+      
+      New-NetFirewallRule -DisplayName "Replication EPM" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 135
+      New-NetFirewallRule -DisplayName "Replication EPM" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 135
+      
+      New-NetFirewallRule -DisplayName "Windows Time, Trusts" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 123
+      New-NetFirewallRule -DisplayName "Windows Time, Trusts" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 123
+      
+      New-NetFirewallRule -DisplayName "DFS, Group Policy" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 138
+      New-NetFirewallRule -DisplayName "DFS, Group Policy" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 138
+      
+      New-NetFirewallRule -DisplayName "User and Computer Authentication" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 137
+      New-NetFirewallRule -DisplayName "User and Computer Authentication" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 137
+      
+      New-NetFirewallRule -DisplayName "User and Computer Authentication, Replication" -Direction Outbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 139
+      New-NetFirewallRule -DisplayName "User and Computer Authentication, Replication" -Direction Inbound -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 139
+            
+        }catch {
+                [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Harden Active Directory
+                + Domain Controller",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                Write-Warning $Error[0]
+            }
     }
     }
     pause
