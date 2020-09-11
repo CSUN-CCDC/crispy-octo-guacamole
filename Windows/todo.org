@@ -1,0 +1,27 @@
+#+TITLE: Punch List for Mika
+
+* WAIT Nothing
+* TODO Improvements to the Windows Security hardening script, make changes to github - always test on the Layer 8 servers within our blades.
+Due Sept. 20
+* TODO Create components within script to work on hardening AD and auditing useful componenets for AD
+Due Sept. 27
+* DONE Nothing
+
+#+TITLE: Punch List for Juan
+
+* WAIT Nothing
+* TODO Create a specific Active Directory hardening checklist by those LinkedIn articles and further research. Aim for quality and not page count. 
+* TODO Apply checklist and demo a completed vulnerability scan to the team on an old AD instance (2008, 2012) with IIS installed after running the hardening checklist.
+Due Sept. 27th 
+* DONE Nothing
+
+#+TITLE: Punch List for Oliver
+
+* WAIT Nothing
+* TODO Create the Windows Firewall script to assist with identifying misconfigured GPOs, add new firewalls quickly, via a wizard that supports my firewall strategy. 
+Due Sept. 20th 
+* TODO Team captain duties: Create team assignments and grade team assignments. 
+Due Today
+* DONE Nothing
+
+
