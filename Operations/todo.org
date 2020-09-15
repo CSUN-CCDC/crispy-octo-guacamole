@@ -1,6 +1,7 @@
 #+TITLE: Punch List for Michael
 
 * WAIT
+Due before Oct. 31 please
 * TODO Deploy Splunk Enterprise as soon as computationally possible in an unknown envrionment, time and test
 * TODO Deploy Splunk Forwarders for Windows as soon as computationally possible in an unknown envrionment, time and test
 * TODO Deploy Splunk Forwarders for Linux as soon as computationally possible in an unknown envrionment, time and test
