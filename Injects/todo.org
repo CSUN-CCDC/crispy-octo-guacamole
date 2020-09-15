@@ -1,9 +1,14 @@
 #+TITLE: Punch List for Leo
 
 * WAIT Nothing
-* TODO Generic inject template with table of contents, page count, area for company logo and area for To and From Team X. This is helpful so we won't need to do create new templates repeatedly. Have it ready in .doc, .docx, and .pdf, ready to go. Word can change color schemes to match the company. To and from are needed, the body can be more free. Executive summary, and the rest must be structured. 
+* TODO Please ask Max and I for more information!
 Due Sept. 27
+* TODO Generic inject template with table of contents, page count, area for company logo and area for To and From Team X. This is helpful so we won't need to do create new templates repeatedly. Have it ready in .doc, .docx, and .pdf, ready to go. Word can change color schemes to match the company. To and from are needed, the body can be more free. Executive summary, and the rest must be structured. 
+Due Oct. 4
 * TODO Remote Access Policy Template 
+Due Oct. 11
 * TODO Inventory Template (duplicate from Box from previous semesters)
+Due Oct. 11
 * TODO List of injects and inject tracking, completion, time left, submitted, not submitting, peoples attention needed.
+Due Oct. 11 
 * DONE Nothing
