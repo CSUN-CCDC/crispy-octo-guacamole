@@ -20,6 +20,7 @@ Due Sept. 27th
 * WAIT Nothing
 * TODO Create the Windows Firewall script to assist with identifying misconfigured GPOs, add new firewalls quickly, via a wizard that supports my firewall strategy. 
 Due Sept. 20th 
+* TODO Add to Windows checklist. 
 * TODO Team captain duties: Create team assignments and grade team assignments. 
 Due Today
 * DONE Nothing
