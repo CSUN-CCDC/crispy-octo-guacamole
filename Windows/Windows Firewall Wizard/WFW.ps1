@@ -5,6 +5,14 @@ This script is to walk you through the setup process for a local firewall deploy
 #>
 # Load assembly
 [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+Write-Warning -Message "Starting to beging the transcript process."
+Try {
+    Start-Transcript -Path "C:\Users\WFW.txt" -Force -noClobber
+} catch {
+    [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Begin Transcripting",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+    Write-Warning $Error[0]
+}
+}
 function CheckService{
     param($ServiceName)
     $arrService = Get-Service -Name $ServiceName
@@ -62,8 +70,7 @@ do
             netsh advfirewall set domainprofile state on
             netsh advfirewall set privateprofile state on
             netsh advfirewall set publicprofile state on
-        }
-        catch {
+        } catch {
             [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Troubleshoot inactive / disabled Firewall",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
             Write-Warning $Error[0]
         }
@@ -162,6 +169,14 @@ if ($confirmation -eq 'y' -Or 'Y') {
                 + Domain Controller",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
                 Write-Warning $Error[0]
             }
+    } '0' {
+        Clear-Host
+        Try {
+        netsh advfirewall firewall delete rule name=all
+        } catch {
+            [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Clean slate firewall rules",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                Write-Warning $Error[0]
+        }
     }
     }
     pause
