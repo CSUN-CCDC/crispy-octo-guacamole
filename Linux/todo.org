@@ -1,8 +1,10 @@
 #+TITLE: Punch List for Arian
 
 * WAIT
-* TODO Start by hardening SSH automatically and editing the config file, whichever way you feel is best.
-* TODO Then editing other known services like vsftpd
-* TODO What other elements do you want to harden via script? Start with the network layer. 
-* TODO Test deployment on new and older versions of shell running
+* TODO OS Hardening script: Start by hardening SSH automatically and editing the config file, whichever way you feel is best.
+* TODO Then editing other known services like vsftpd, nginx, dns, mail. More services? List them out here.
+October 4th
+* TODO Appropriate chmodding and incorperate other Linux based auditing scripts for security baselines
+* TODO Script the checklist
+October 11th
 * DONE
