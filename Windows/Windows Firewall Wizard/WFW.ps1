@@ -178,7 +178,12 @@ if ($confirmation -eq 'y' -Or 'Y') {
         } '4' {
             Clear-Host
             Try {
-                Write-Warning -Message "Starting to harden Desktop firewall rules"
+                Write-Warning -Message "Starting to harden Desktop firewall rules."
+                New-NetFirewallRule -DisplayName "Internet Explorer" -Direction Outbound -Program "C:\Program Files (x86)\Internet Explorer\iexplore.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort Any
+                New-NetFirewallRule -DisplayName "Mozilla Firefox" -Direction Outbound -Program "C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort Any
+                New-NetFirewallRule -DisplayName "Google Chrome" -Direction Outbound -Program "C:\Program Files\Google\Chrome\Application\chrome.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort Any
+
+
             } catch {
                 [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Workstation",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
                     Write-Warning $Error[0]
