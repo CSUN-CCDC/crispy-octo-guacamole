@@ -12,7 +12,6 @@ Try {
     [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Begin Transcripting",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
     Write-Warning $Error[0]
 }
-}
 function CheckService{
     param($ServiceName)
     $arrService = Get-Service -Name $ServiceName
@@ -38,9 +37,8 @@ function Show-WFW-Menu {
     Write-Host "1. Troubleshoot inactive / disabled Firewall"
     Write-Host "2. Auto Identify existing GPO firewall rules"
     Write-Host "3. Harden Active Directory Domain Controller"
-    Write-Host "4. Read Only Active Directory Domain Controller"
-    Write-Host "5. Workstation with no services"
-    Write-Host "6. Server"
+    Write-Host "4. Workstation with no services"
+    Write-Host "5. Server"
     Write-Host "Q: Press 'Q' (case sensitive) to quit."
 }
    
@@ -169,15 +167,23 @@ if ($confirmation -eq 'y' -Or 'Y') {
                 + Domain Controller",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
                 Write-Warning $Error[0]
             }
-    } '0' {
-        Clear-Host
-        Try {
-        netsh advfirewall firewall delete rule name=all
-        } catch {
-            [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Clean slate firewall rules",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
-                Write-Warning $Error[0]
+        } '0' {
+            Clear-Host
+            Try {
+            netsh advfirewall firewall delete rule name=all
+            } catch {
+                [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Clean slate firewall rules",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                    Write-Warning $Error[0]
+            }
+        } '4' {
+            Clear-Host
+            Try {
+                Write-Warning -Message "Starting to harden Desktop firewall rules"
+            } catch {
+                [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Workstation",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                    Write-Warning $Error[0]
+            }
         }
-    }
     }
     pause
  }
