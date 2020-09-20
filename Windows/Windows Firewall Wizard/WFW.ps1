@@ -26,6 +26,7 @@ function Show-WFW-Menu {
     title "Windows Firewall Wizard by @1ncryption"
     Clear-Host
     Write-Host "=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| $Title |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|="
+    Write-Host "0. Clean slate firewall rules"
     Write-Host "1. Troubleshoot inactive / disabled Firewall"
     Write-Host "2. Auto Identify existing GPO firewall rules"
     Write-Host "3. Harden Active Directory Domain Controller"
@@ -41,6 +42,7 @@ do
     $selection = Read-Host "Please select a number followed by enter (ex. 1): "
     switch ($selection)
     {
+
     '1' {
         Try {
             Clear-Host
@@ -104,7 +106,9 @@ do
     } '3' {
         Clear-Host
         Try {
-
+<#
+This will allow for active directory to lock in communications with another computer. 
+#>
     $IP = Read-Host "Please enter the host's IP address for secure Active Directory communications: "
     $confirmation = Read-Host "Are you sure you want to proceed? (y/n): "
 if ($confirmation -eq 'y' -Or 'Y') {
