@@ -9,6 +9,7 @@
 * TODO 			    e) Setup IPSTP Rules
 * TODO 			    f) Use GitHub to store configs
 * TODO 			    g) Use Box for documentation
+* TODO              h) Router configuration screenshot for campus IT as proof it has been fixed
 September 27, 2020
 * TODO 			    h) Oliver and Juan Basic pentest on vulnerable service with active state TP
 * TODO 2) Suricata IPS
