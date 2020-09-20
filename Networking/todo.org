@@ -6,7 +6,7 @@
 * TODO 			    b) No firewall rules, only hardened baseline
 * TODO 			    c) Versioning i.e. 9.1, 8.3, configuration files for each version
 * TODO 			    d) Setup IPS Threat Prevention IPSTP
-* TODO 			   e) Setup IPSTP Rules
+* TODO 			    e) Setup IPSTP Rules
 * TODO 			    f) Use GitHub to store configs
 * TODO 			    g) Use Box for documentation
 September 27, 2020
