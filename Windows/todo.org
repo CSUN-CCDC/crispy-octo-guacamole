@@ -24,6 +24,5 @@ Continously
 Due Oct. 4
 * TODO Add to Windows checklist. 
 Continously
-* DONE Create the Windows Firewall script to assist with identifying misconfigured GPOs, add new firewalls quickly, via a wizard that supports my firewall strategy. 
-
-
+* TODO Write to do install email for Doris unable to access server, 9, server 1 and server 2. 1 2 3 what we need
+* DONE Create the Windows Firewall script to assist with identifying misconfigured GPOs, add new firewalls quickly, via a wizard that supports my firewall strategy.
