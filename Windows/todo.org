@@ -18,12 +18,12 @@ Due Sept. 27th
 #+TITLE: Punch List for Oliver
 
 * WAIT Nothing
-* TODO Create the Windows Firewall script to assist with identifying misconfigured GPOs, add new firewalls quickly, via a wizard that supports my firewall strategy. 
-Due Sept. 20th 
-* TODO Network discovery
+* TODO Continue improvement of checklist
+Continously
+* TODO Network discovery plan
+Due Oct. 4
 * TODO Add to Windows checklist. 
-* TODO Team captain duties: Create team assignments and grade team assignments. 
-Due Today
-* DONE Nothing
+Continously
+* DONE Create the Windows Firewall script to assist with identifying misconfigured GPOs, add new firewalls quickly, via a wizard that supports my firewall strategy. 
 
 
