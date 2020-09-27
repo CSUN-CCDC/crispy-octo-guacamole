@@ -9,6 +9,6 @@ Due Oct. 4
 Due Oct. 11
 * TODO Inventory Template (duplicate from Box from previous semesters)
 Due Oct. 11
-* TODO List of injects and inject tracking, completion, time left, submitted, not submitting, peoples attention needed.
+* TODO INJECT TRACKCING LIST: List of injects and inject tracking, completion, time left, submitted, not submitting, peoples attention needed.
 Due Oct. 11 
 * DONE Nothing
