@@ -1,0 +1,32 @@
+Splunk Enterprise:
+  TGZ
+  wget -O splunk-8.0.5-a1a6394cc5ae-Linux-x86_64.tgz 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.5&product=splunk&filename=splunk-8.0.5-a1a6394cc5ae-Linux-x86_64.tgz&wget=true'  
+
+  Debian
+    wget -O splunk-8.0.5-a1a6394cc5ae-linux-2.6-amd64.deb 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.5&product=splunk&filename=splunk-8.0.5-a1a6394cc5ae-linux-2.6-amd64.deb&wget=true'
+
+  RPM
+    wget -O splunk-8.0.5-a1a6394cc5ae-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.5&product=splunk&filename=splunk-8.0.5-a1a6394cc5ae-linux-2.6-x86_64.rpm&wget=true'
+
+  Windows 64 bit
+    wget -O splunk-8.0.5-a1a6394cc5ae-x64-release.msi 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=windows&version=8.0.5&product=splunk&filename=splunk-8.0.5-a1a6394cc5ae-x64-release.msi&wget=true'
+
+Splunk Forwarder
+
+  Windows
+    wget -O splunkforwarder-8.0.5-a1a6394cc5ae-x64-release.msi 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=windows&version=8.0.5&product=universalforwarder&filename=splunkforwarder-8.0.5-a1a6394cc5ae-x64-release.msi&wget=true'
+
+  RPM
+    wget -O splunkforwarder-8.0.5-a1a6394cc5ae-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.5&product=universalforwarder&filename=splunkforwarder-8.0.5-a1a6394cc5ae-linux-2.6-x86_64.rpm&wget=true'
+
+  TGZ
+    wget -O splunkforwarder-8.0.5-a1a6394cc5ae-Linux-x86_64.tgz 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.5&product=universalforwarder&filename=splunkforwarder-8.0.5-a1a6394cc5ae-Linux-x86_64.tgz&wget=true'
+
+  DEB
+    wget -O splunkforwarder-8.0.5-a1a6394cc5ae-linux-2.6-amd64.deb 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.5&product=universalforwarder&filename=splunkforwarder-8.0.5-a1a6394cc5ae-linux-2.6-amd64.deb&wget=true'
+
+  FreeBSD
+    wget -O splunkforwarder-8.0.5-a1a6394cc5ae-freebsd-11.1-amd64.txz 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=freebsd&version=8.0.5&product=universalforwarder&filename=splunkforwarder-8.0.5-a1a6394cc5ae-freebsd-11.1-amd64.txz&wget=true'
+
+  Solaris 11
+    wget -O splunkforwarder-8.0.5-a1a6394cc5ae-SunOS-x86_64.tar.Z 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=solaris&version=8.0.5&product=universalforwarder&filename=splunkforwarder-8.0.5-a1a6394cc5ae-SunOS-x86_64.tar.Z&wget=true'

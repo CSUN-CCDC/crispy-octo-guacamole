@@ -13,7 +13,7 @@ nix_executable_path:
 win_link_name:
 win_software_exe:
 win_software_tar_name:
-win_software_dest_folder:
+win_software_dest_folder: C:\temp\
 win_installer_exe:
 win_software_url:
 win_software_name:
