@@ -5,6 +5,13 @@ This script is to walk you through the setup process for a local firewall deploy
 #>
 # Load assembly
 [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+Write-Warning -Message "Starting to beging the transcript process."
+Try {
+    Start-Transcript -Path "C:\Users\WFW.txt" -Force -noClobber
+} catch {
+    [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Begin Transcripting",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+    Write-Warning $Error[0]
+}
 function CheckService{
     param($ServiceName)
     $arrService = Get-Service -Name $ServiceName
@@ -26,12 +33,12 @@ function Show-WFW-Menu {
     title "Windows Firewall Wizard by @1ncryption"
     Clear-Host
     Write-Host "=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=| $Title |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|="
+    Write-Host "0. Clean slate firewall rules"
     Write-Host "1. Troubleshoot inactive / disabled Firewall"
     Write-Host "2. Auto Identify existing GPO firewall rules"
-    Write-Host "3. Active Directory Domain Controller"
-    Write-Host "Read Only Active Directory Domain Controller"
-    Write-Host "Workstation with no services"
-    Write-Host "Server"
+    Write-Host "3. Harden Active Directory Domain Controller"
+    Write-Host "4. Workstation with no services"
+    Write-Host "5. Server"
     Write-Host "Q: Press 'Q' (case sensitive) to quit."
 }
    
@@ -41,6 +48,7 @@ do
     $selection = Read-Host "Please select a number followed by enter (ex. 1): "
     switch ($selection)
     {
+
     '1' {
         Try {
             Clear-Host
@@ -60,8 +68,7 @@ do
             netsh advfirewall set domainprofile state on
             netsh advfirewall set privateprofile state on
             netsh advfirewall set publicprofile state on
-        }
-        catch {
+        } catch {
             [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Troubleshoot inactive / disabled Firewall",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
             Write-Warning $Error[0]
         }
@@ -102,8 +109,86 @@ do
     
         
     } '3' {
-      'You chose option #3'
-    }
+        Clear-Host
+        Try {
+<#
+This will allow for active directory to lock in communications with another computer. 
+#>
+    $IP = Read-Host "Please enter the host's IP address for secure Active Directory communications: "
+    $confirmation = Read-Host "Are you sure you want to proceed? (y/n): "
+if ($confirmation -eq 'y' -Or 'Y') {
+    New-NetFirewallRule -DisplayName "Allow DNS Outbound" -Direction Outbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 53
+    New-NetFirewallRule -DisplayName "Allow DNS Inbound" -Direction Inbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 53
+
+    New-NetFirewallRule -DisplayName "Allow DNS Outbound TCP" -Direction Outbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 53
+    New-NetFirewallRule -DisplayName "Allow DNS Inbound TCP" -Direction Inbound -Program "C:\Windows\System32\dns.exe" -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 53
+    
+    New-NetFirewallRule -DisplayName "Allow Kerberos Outbound TCP" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 88
+    New-NetFirewallRule -DisplayName "Allow Kerberos Inbound TCP" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 88
+    
+    New-NetFirewallRule -DisplayName "Allow Kerberos Outbound" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 88
+    New-NetFirewallRule -DisplayName "Allow Kerberos Inbound" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 88
+    
+    New-NetFirewallRule -DisplayName "Allow SMB Outbound" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+    New-NetFirewallRule -DisplayName "Allow SMB Inbound" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+    
+    New-NetFirewallRule -DisplayName "DFSN, NetBIOS Session Service, NetLogon" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+    New-NetFirewallRule -DisplayName "DFSN, NetBIOS Session Service, NetLogon" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 445
+    
+    New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 389
+    New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 389
+    
+    New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 389
+    New-NetFirewallRule -DisplayName "LDAP Directory, Replication, User and Computer, Authentication, Group Policy, Trusts" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 389
+    
+    New-NetFirewallRule -DisplayName "Global Catalog, Directory, Replication, User and Computer Authentication, Group Policy, Trusts" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 3268
+    New-NetFirewallRule -DisplayName "Global Catalog, Directory, Replication, User and Computer Authentication, Group Policy, Trusts" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 3268
+    
+    New-NetFirewallRule -DisplayName "Replication EPM" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 135
+    New-NetFirewallRule -DisplayName "Replication EPM" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 135
+    
+    New-NetFirewallRule -DisplayName "Windows Time, Trusts" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 123
+    New-NetFirewallRule -DisplayName "Windows Time, Trusts" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 123
+    
+    New-NetFirewallRule -DisplayName "DFS, Group Policy" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 138
+    New-NetFirewallRule -DisplayName "DFS, Group Policy" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 138
+    
+    New-NetFirewallRule -DisplayName "User and Computer Authentication" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 137
+    New-NetFirewallRule -DisplayName "User and Computer Authentication" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol UDP -LocalPort 137
+    
+    New-NetFirewallRule -DisplayName "User and Computer Authentication, Replication" -Direction Outbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 139
+    New-NetFirewallRule -DisplayName "User and Computer Authentication, Replication" -Direction Inbound -RemoteAddress $IP -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort 139
+
+}
+            #Change Remote Address Any to Whitelisted software
+                
+        }catch {
+                [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Harden Active Directory
+                + Domain Controller",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                Write-Warning $Error[0]
+            }
+        } '0' {
+            Clear-Host
+            Try {
+            netsh advfirewall firewall delete rule name=all
+            } catch {
+                [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Clean slate firewall rules",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                    Write-Warning $Error[0]
+            }
+        } '4' {
+            Clear-Host
+            Try {
+                Write-Warning -Message "Starting to harden Desktop firewall rules."
+                New-NetFirewallRule -DisplayName "Internet Explorer" -Direction Outbound -Program "C:\Program Files (x86)\Internet Explorer\iexplore.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort Any
+                New-NetFirewallRule -DisplayName "Mozilla Firefox" -Direction Outbound -Program "C:\Program Files (x86)\Mozilla Firefox\firefox.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort Any
+                New-NetFirewallRule -DisplayName "Google Chrome" -Direction Outbound -Program "C:\Program Files\Google\Chrome\Application\chrome.exe" -RemoteAddress Any -Action Allow -Enabled True -InterfaceType Any -Profile Any -RemotePort Any -Protocol TCP -LocalPort Any
+
+
+            } catch {
+                [System.Windows.Forms.MessageBox]::Show("There was an error during this process.","Workstation",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Hand)
+                    Write-Warning $Error[0]
+            }
+        }
     }
     pause
  }

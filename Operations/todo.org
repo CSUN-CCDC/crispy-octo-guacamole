@@ -3,10 +3,13 @@
 * WAIT
 * TODO Deploy Splunk Enterprise as soon as computationally possible in an unknown envrionment, time and test
 * TODO Deploy Splunk Forwarders for Windows as soon as computationally possible in an unknown envrionment, time and test
+Due October 10 
 * TODO Deploy Splunk Forwarders for Linux as soon as computationally possible in an unknown envrionment, time and test
 * TODO Operation FASTFOOD: Deploy services via Ansible via cookbooks saved in our GitHub
+Due October 17
 * TODO Firewall security and support sorrounding this option is EXTREMELY critical. SSH and WinRM highly vulnerable points of entry and information leakage.
 * TODO Perhaps use a scripting langauge that is defaulted on a given OS to cover as many as possible, OR create multiple simple scripts that work for multiple OS and OS versions. Debian 4 vs Debian 9. 
+Due October 24
 * TODO <Something else to do here>
 * TODO
 * TODO
