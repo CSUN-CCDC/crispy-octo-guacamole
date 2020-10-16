@@ -11,10 +11,9 @@
 * TODO 			    g) Use Box for documentation
 * TODO              h) Router configuration screenshot for campus IT as proof it has been fixed
 * TODO              i) Blade5 DMZ'd? assess for security
-September 27, 2020
+October 11, 2020
 * TODO 			    h) Oliver and Juan Basic pentest on vulnerable service with active state TP
 * TODO 2) Suricata IPS
 October 4, 2020 
 * TODO Setup with pfSense and configured in-line, black box pentest
-October 11, 2020
 * DONE <Something done here>

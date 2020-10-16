@@ -8,4 +8,5 @@ October 4th
 * TODO Appropriate chmodding and incorperate other Linux based auditing scripts for security baselines
 * TODO Script the checklist
 October 11th
+* TODO Script the checklist, script the services, adding Lynis... vagrant,
 * DONE

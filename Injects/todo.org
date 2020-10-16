@@ -11,4 +11,7 @@ Due Oct. 11
 Due Oct. 11
 * TODO INJECT TRACKCING LIST: List of injects and inject tracking, completion, time left, submitted, not submitting, peoples attention needed.
 Due Oct. 11 
+* TODO Improvements - Jump to top from a given bottom. Excel spreadsheet? Timers?
+Due Oct. 18
+
 * DONE Nothing
