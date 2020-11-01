@@ -16,4 +16,14 @@ October 11, 2020
 * TODO 2) Suricata IPS
 October 4, 2020 
 * TODO Setup with pfSense and configured in-line, black box pentest
+
+* TODO Background priority task (can take some time):
+* TODO Script Ping Sweep to find nodes that have not been given to us
+* TODO Script will have whitelist insertion portion parsed via text file
+* TODO Output to new text file with new ping sweep IP addresses
+* TODO 
+192.168.1.1
+192.168.1.2
+192.168.1.4
+192.168.1.29
 * DONE <Something done here>
