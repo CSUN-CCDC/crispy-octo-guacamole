@@ -13,5 +13,8 @@ Due Oct. 11
 Due Oct. 11 
 * TODO Improvements - Jump to top from a given bottom. Excel spreadsheet? Timers?
 Due Oct. 18
+* TODO Inventory Script with Arian - Obtain all information inside of computer via script for easy copy paste for Injects.
+* TODO Information matches with the headers of the inventory table (OS name, OS version, User accounts, ports open)
+Due Nov. 6
 
 * DONE Nothing

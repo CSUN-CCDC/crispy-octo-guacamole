@@ -9,4 +9,8 @@ October 4th
 * TODO Script the checklist
 October 11th
 * TODO Script the checklist, script the services, adding Lynis... vagrant,
+
+* TODO Inventory Script with Arian - Obtain all information inside of computer via script for easy copy paste for Injects.
+* TODO Information matches with the headers of the inventory table (OS name, OS version, User accounts, ports open)
+Due Nov. 6
 * DONE
