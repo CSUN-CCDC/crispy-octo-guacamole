@@ -26,8 +26,7 @@ $WindowsBuild = systeminfo | findstr /B /C:"OS Version"
 $IPAddress = ipconfig | findstr /C:Address
 $IPAddress2 = Get-NetIPAddress -AddressFamily IPv4 | Select-Object IPAddress
 
-$OpenPorts
-nmap localhost -sV --open -oN parseme
+nmap localhost -sV -oN parseme
 $a,$b,$c,$d,$e,$f,$g = Get-Content .\parseme
 $OpenPorts = $g[0..($g.count - 3)]
 
