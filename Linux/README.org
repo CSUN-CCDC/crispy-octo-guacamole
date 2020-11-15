@@ -26,6 +26,13 @@ sudo python3 secure-openssh.py
 - [X] Check if the user is root
 ** ~secure-vsftpd.py~
 In progress...
+** ~inventory.sh~
+*** Purpose
+Get information about a system
+*** Usage
+#+begin_src shell
+sudo inventory.sh
+#+end_src
 * Resources
 ** General linux security
 ** Resource specific
