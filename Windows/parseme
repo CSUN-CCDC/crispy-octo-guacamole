@@ -1,1 +1,15 @@
-# Nmap 7.91 scan initiated Sun Nov 01 14:51:15 2020 as: "C:\\Program Files (x86)\\Nmap\\nmap.exe" -sV -oN parseme localhost
+# Nmap 7.91 scan initiated Sun Nov 15 14:30:15 2020 as: "C:\\Program Files (x86)\\Nmap\\nmap.exe" -sV -oN parseme localhost
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00045s latency).
+Other addresses for localhost (not scanned): ::1
+rDNS record for 127.0.0.1: kubernetes.docker.internal
+Not shown: 996 closed ports
+PORT    STATE SERVICE         VERSION
+135/tcp open  msrpc           Microsoft Windows RPC
+443/tcp open  ssl/https       VMware Workstation SOAP API 16.0.0
+445/tcp open  microsoft-ds?
+903/tcp open  ssl/vmware-auth VMware Authentication Daemon 1.10 (Uses VNC, SOAP)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows, cpe:/o:vmware:Workstation:16.0.0
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Nov 15 14:32:38 2020 -- 1 IP address (1 host up) scanned in 143.34 seconds
