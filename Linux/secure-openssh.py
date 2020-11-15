@@ -5,7 +5,6 @@ import os
 def warning(text):
     print(f"\033[93m[ WARNING ]: {text}\033[0m")
 
-
 def failed(text):
     print(f"\033[91m[ FAIL ]: {text}\033[0m")
 
@@ -28,8 +27,6 @@ if os.system("cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bck") != 0:
 # Context-aware `match' block
 # (User or Group, name)
 match = None
-
-
 
 new_config = ""
 
