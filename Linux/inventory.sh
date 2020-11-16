@@ -25,7 +25,10 @@ FILE="inventory.txt"
 info "Starting scan..."
 
 # Get hostname
-hostname > $FILE
+info "Getting hostname"
+echo "hostname: $(hostname)" > $FILE
+echo >> $FILE
+pass "Finished getting hostname"
 
 # Get IP information
 if [ $(command -v ip) ]; then
@@ -38,6 +41,8 @@ else
     fail "Neither ip nor ifconfig are installed; quitting."
     exit 1
 fi
+pass "Finished getting IP info"
+echo >> $FILE
 
 # Get open ports
 if [ $(command -v nmap) ]; then
@@ -53,3 +58,9 @@ else
     fail "no port scan tool is available; quitting"
     exit 1
 fi
+pass "Finished port scan"
+echo >> $FILE
+
+# Get users
+echo "Users: " >> $FILE
+egrep -v 'nologin$' /etc/passwd | cut -d: -f1 >> $FILE
