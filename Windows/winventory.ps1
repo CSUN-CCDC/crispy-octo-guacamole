@@ -32,9 +32,6 @@ Write-Host -BackgroundColor White -ForegroundColor Green "Nmap installed."
     Start-Process C:\nmap.exe
 }
 
-
-
-
 #Obtain Machine Purpose
 $Purpose = Read-Host "What is the purpose of this machine? (These are the connected services for X company)"
 
