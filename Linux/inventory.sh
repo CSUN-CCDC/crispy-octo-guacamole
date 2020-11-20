@@ -30,6 +30,23 @@ echo "hostname: $(hostname)" > $FILE
 echo >> $FILE
 pass "Finished getting hostname"
 
+# Get OS info
+if [ $(command -v hostnamectl) ]; then
+    info "Using hostnamectl to get OS info"
+    hostnamectl >> $FILE
+elif [ -e /etc/os-release ]; then
+    info "Using /etc/os-release"
+    cat /etc/os-release >> $FILE
+elif [ -e /etc/lsb-release ]; then
+    info "Using /etc/lsb-release"
+    cat /etc/lsb-release >> $FILE
+else
+    fail "Was not able to get OS info"
+    exit 1
+fi
+pass "Finished getting OS info"
+echo >> $FILE
+
 # Get IP information
 if [ $(command -v ip) ]; then
     info "Using ip to get ip info"
@@ -52,7 +69,7 @@ elif [ $(command -v netstat) ]; then
     warning "nmap is not installed. Using netstat"
     netstat -tulpn >> $FILE
 elif [ $(command -v ss) ]; then
-    warning "nmap and netstat is not installed. Using ss"
+    warning "nmap and netstat are not installed. Using ss"
     ss -ltu >> $FILE
 else
     fail "no port scan tool is available; quitting"
