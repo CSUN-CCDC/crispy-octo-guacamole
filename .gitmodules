@@ -1,0 +1,9 @@
+[submodule "uci"]
+	path = uci-repo
+	url = https://github.com/UCI-CCDC/CCDC
+[submodule "stanford"]
+	path = stanford-repo
+	url = https://github.com/applied-cyber/ccdc
+[submodule "ucr"]
+	path = ucr-repo
+	url = https://github.com/ucrcyber/CCDC
