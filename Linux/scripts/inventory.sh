@@ -27,12 +27,12 @@ else
 fi
 
 # Get open ports
-if [ $(command -v nmap) ]; then
-    nmap -sV localhost | tee $FILE
+if [ $(command -v ss) ]; then
+    ss -lnptu | tee $FILE
 elif [ $(command -v netstat) ]; then
     netstat -tulpn | tee $FILE
-elif [ $(command -v ss) ]; then
-    ss -ltu | tee $FILE
+elif [ $(command -v nmap) ]; then
+    nmap -sV localhost | tee $FILE
 else
     echo "no port scan tool is available; quitting"
     exit 1
@@ -46,8 +46,8 @@ egrep -v 'nologin$' /etc/passwd | cut -d: -f1 | tee $FILE
 if [ $(command -v curl) ]; then
     curl -F "file=@$FILE" https://file.io
 else
-    fail "Was not able to upload the file"
-    exit
+    echo "Was not able to upload the file"
+    exit 1
 fi
 
 echo "Done! Wrote to $FILE"
